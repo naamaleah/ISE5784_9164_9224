@@ -1,0 +1,65 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"7345b2ac-acad-4245-a662-5d58aa030623\" name=\"Changes\" comment=\"start\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/primitives/Point.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/primitives/Vector.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"naamaleah\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/naamaleah/ISE5784_9164_9224.git\",\r\n    \"accountId\": \"9eefaedc-540b-4beb-9bf2-3d7e68369b67\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2g80Fz13jdhNjtiZvC4f9IVBrsf\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/naama/IdeaProjects/ISE5784_9164_9224/src/test\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\naama\\IdeaProjects\\ISE5784_9164_9224\\src\\test\" />\r\n      <recent name=\"C:\\Users\\naama\\IdeaProjects\\ISE5784_9164_9224\\src\\primitives\" />\r\n      <recent name=\"C:\\Users\\naama\\IdeaProjects\\ISE5784_9164_9224\\src\\geometries\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"7345b2ac-acad-4245-a662-5d58aa030623\" name=\"Changes\" comment=\"\" />\r\n      <created>1715063805174</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1715063805174</updated>\r\n      <workItem from=\"1715063806266\" duration=\"3000\" />\r\n      <workItem from=\"1715499478457\" duration=\"1777000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"ניסוי\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715066202625</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715066202625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"checking\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715066448625</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715066448625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"start\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715500313743</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715500313743</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"ניסוי\" />\r\n    <MESSAGE value=\"checking\" />\r\n    <MESSAGE value=\"start\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"start\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,9 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="start">
+-      <change afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
++    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="sync">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -41,6 +39,7 @@
+ }</component>
+   <component name="ProjectId" id="2g80Fz13jdhNjtiZvC4f9IVBrsf" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++    <OptionsSetting value="false" id="Update" />
+     <ConfirmationsSetting value="2" id="Add" />
+   </component>
+   <component name="ProjectViewState">
+@@ -86,7 +85,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1715063805174</updated>
+       <workItem from="1715063806266" duration="3000" />
+-      <workItem from="1715499478457" duration="1777000" />
++      <workItem from="1715499478457" duration="5487000" />
+     </task>
+     <task id="LOCAL-00001" summary="ניסוי">
+       <option name="closed" value="true" />
+@@ -112,7 +111,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1715500313743</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="sync">
++      <option name="closed" value="true" />
++      <created>1715501523102</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1715501523102</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -122,6 +129,7 @@
+     <MESSAGE value="ניסוי" />
+     <MESSAGE value="checking" />
+     <MESSAGE value="start" />
+-    <option name="LAST_COMMIT_MESSAGE" value="start" />
++    <MESSAGE value="sync" />
++    <option name="LAST_COMMIT_MESSAGE" value="sync" />
+   </component>
+ </project>
+\ No newline at end of file
