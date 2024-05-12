@@ -13,8 +13,8 @@ public class Point {
         xyz=new Double3(d1,d2,d3);
     }
 
-    public Vectore substract(Point other){
-        return new Vectore(this.xyz.subtract(other.xyz));
+    public Vector substract(Point other){
+        return new Vector(this.xyz.subtract(other.xyz));
     }
 
     public Point Add(Vector vec){
@@ -26,7 +26,7 @@ public class Point {
     }
 
     public double distance(Point p){
-        return math.sqrt(this.distanceSquared(p));
+        return Math.sqrt(this.distanceSquared(p));
     }
 
 
