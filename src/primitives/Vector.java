@@ -46,7 +46,7 @@ public class Vector extends Point {
 
     /**Scaling vectors returns a vector
      *
-     * @param x double prameter
+     * @param x double
      * @return a vector
      */
     public Vector scale(double x){
