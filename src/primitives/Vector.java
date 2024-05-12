@@ -38,7 +38,7 @@ public class Vector extends Point {
     /**Adding vectors returns a vector
      *
      * @param v vector parameter
-     * @return
+     * @return vector
      */
     public Vector add(Vector v){
         return new Vector(this.xyz.add(v.xyz));
@@ -47,7 +47,7 @@ public class Vector extends Point {
     /**Scaling vectors returns a vector
      *
      * @param x double prameter
-     * @return a vectore
+     * @return a vector
      */
     public Vector scale(double x){
         return new Vector(this.xyz.scale(x));
