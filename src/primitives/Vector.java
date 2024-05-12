@@ -6,9 +6,9 @@ public class Vector extends Point {
 
     /**A constructor that accepts three values
      *
-     * @param x
-     * @param y
-     * @param z
+     * @param x first number value
+     * @param y second number value
+     * @param z third number value
      */
     public Vector(double x, double y,double z) {
         super(x,y,z);
@@ -18,7 +18,7 @@ public class Vector extends Point {
 
     /**A constructor that accepts Double3 value
      *
-     * @param d
+     * @param d Double3 parameter
      */
     public Vector(Double3 d) {
         super(d);
@@ -37,7 +37,7 @@ public class Vector extends Point {
 
     /**Adding vectors returns a vector
      *
-     * @param v
+     * @param v vector parameter
      * @return
      */
     public Vector add(Vector v){
@@ -46,8 +46,8 @@ public class Vector extends Point {
 
     /**Scaling vectors returns a vector
      *
-     * @param x
-     * @return
+     * @param x double prameter
+     * @return a vectore
      */
     public Vector scale(double x){
         return new Vector(this.xyz.scale(x));
@@ -55,8 +55,8 @@ public class Vector extends Point {
 
     /**Calculation of a scalar product
      *
-     * @param v
-     * @return
+     * @param v vectore parameter
+     * @return dotProduct as double
      */
     public double dotProduct(Vector v){
         return xyz.d1*v.xyz.d1+xyz.d2*v.xyz.d2+xyz.d3*v.xyz.d3;
@@ -64,8 +64,8 @@ public class Vector extends Point {
 
     /**Calculation of vector product
      *
-     * @param v
-     * @return
+     * @param v vectore parameter
+     * @return the crossProduct
      */
     public Vector crossProduct (Vector v){
         return new Vector(this.xyz.d2 * v.xyz.d3 - this.xyz.d3  * v.xyz.d2,this.xyz.d3  * v.xyz.d1 - this.xyz.d1 * v.xyz.d3 ,this.xyz.d1 * v.xyz.d2 - this.xyz.d2 * v.xyz.d1);
@@ -73,7 +73,7 @@ public class Vector extends Point {
 
     /**The length of the vector squared
      *
-     * @return
+     * @return The length of the vector squared
      */
     public double lengthSquared(){
         return dotProduct(this);
@@ -81,7 +81,7 @@ public class Vector extends Point {
 
     /**The length of the vector
      *
-     * @return
+     * @return The length of the vector
      */
     public double length(){
         return Math.sqrt(lengthSquared());
@@ -89,7 +89,7 @@ public class Vector extends Point {
 
     /**Vector normalization
      *
-     * @return
+     * @return normalized vector
      */
     public Vector normalize(){
         return new Vector(this.xyz.reduce(length()));
