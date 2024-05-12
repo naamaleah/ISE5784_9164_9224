@@ -38,8 +38,8 @@ public class Point {
 
     /**Adding points returns a point
      *
-     * @param vec
-     * @return
+     * @param vec a vector
+     * @return point
      */
     public Point add(Vector vec){
         return new Point(this.xyz.add(vec.xyz));
