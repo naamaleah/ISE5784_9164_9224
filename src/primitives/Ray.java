@@ -1,7 +1,12 @@
 package primitives;
 
+/**
+ * This class represents ray
+ */
 public class Ray {
+  /** Source point */
   private final Point head;
+  /** Direction vector*/
   private final Vector direction;
 
   @Override
@@ -14,6 +19,11 @@ public class Ray {
         return obj instanceof Ray other && head.equals(other.head)&&direction.equals(other.direction);
   }
 
+  /**A parameter constructor accepts a point and a vector
+   *
+   * @param p
+   * @param v
+   */
   public Ray(Point p,Vector v){
     this.head=p;
     this.direction=v.normalize();
