@@ -13,5 +13,8 @@ class SphereTest {
      */
     @Test
     void testGetNormal() {
+        // ============ Equivalence Partitions Tests ==============
+
+        // =============== Boundary Values Tests ==================
     }
 }

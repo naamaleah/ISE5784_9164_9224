@@ -13,5 +13,8 @@ class CylinderTest {
      */
     @Test
     void testGetNormal() {
+        // ============ Equivalence Partitions Tests ==============
+
+        // =============== Boundary Values Tests ==================
     }
 }
