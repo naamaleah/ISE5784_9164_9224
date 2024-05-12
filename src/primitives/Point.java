@@ -17,7 +17,7 @@ public class Point {
         return new Vector(this.xyz.subtract(other.xyz));
     }
 
-    public Point Add(Vector vec){
+    public Point add(Vector vec){
         return new Point(this.xyz.add(vec.xyz));
     }
 
