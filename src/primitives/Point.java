@@ -13,7 +13,7 @@ public class Point {
         xyz=new Double3(d1,d2,d3);
     }
 
-    public Vector substract(Point other){
+    public Vector subtract(Point other){
         return new Vector(this.xyz.subtract(other.xyz));
     }
 
