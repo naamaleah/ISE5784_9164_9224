@@ -3,14 +3,15 @@ package primitives;
 public class Point {
     protected final Double3 xyz;
 
-    public static Point ZERO=new Point(0d,0d,0d);
+    public static Point ZERO=new Point(0,0,0);
 
     public Point(Double3 d3) {
        xyz=d3;
     }
 
-    public Point(Double d1,Double d2,Double d3) {
-        xyz=new Double3(d1,d2,d3);
+
+   public Point(double x,double y,double z) {
+       xyz=new Double3(x,y,z);
     }
 
     public Vector subtract(Point other){
