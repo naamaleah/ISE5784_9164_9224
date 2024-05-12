@@ -17,9 +17,9 @@ public final class Main {
     * @param args irrelevant here
     */
    public static void main(String[] args) {
-      Point  p1         = new Point(1d, 2d, 3d);
-      Point  p2         = new Point(2d, 4d, 6d);
-      Point  p3         = new Point(2d, 4d, 5d);
+      Point  p1         = new Point(1, 2, 3);
+      Point  p2         = new Point(2, 4, 6);
+      Point  p3         = new Point(2, 4, 5);
 
       Vector v1         = new Vector(1, 2, 3);
       Vector v1Opposite = new Vector(-1, -2, -3);
