@@ -29,8 +29,8 @@ public class Point {
 
     /**Point subtraction returns a vector
      *
-     * @param other
-     * @return
+     * @param other a point
+     * @return vector
      */
     public Vector subtract(Point other){
         return new Vector(this.xyz.subtract(other.xyz));
@@ -47,17 +47,17 @@ public class Point {
 
     /**Returns distance between points squared
      *
-     * @param p
-     * @return
+     * @param p a point
+     * @return distance Squared
      */
     public double distanceSquared(Point p){
         return (xyz.d1-p.xyz.d1)*(xyz.d1-p.xyz.d1)+(xyz.d2-p.xyz.d2)*(xyz.d2-p.xyz.d2)+(xyz.d3-p.xyz.d3)*(xyz.d3-p.xyz.d3);
     }
 
-    /**eturns distance between points
+    /**returns distance between points
      *
-     * @param p
-     * @return
+     * @param p a point
+     * @return distance
      */
     public double distance(Point p){
         return Math.sqrt(this.distanceSquared(p));
