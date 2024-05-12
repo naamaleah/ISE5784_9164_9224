@@ -1,8 +1,8 @@
 package primitives;
 
 public class Ray {
-  private Point head;
-  private Vectore direction;
+  private final Point head;
+  private final Vector direction;
 
   @Override
     public String toString() {
@@ -13,4 +13,10 @@ public class Ray {
         if(this == obj)return true;
         return obj instanceof Ray other && head.equals(other.head)&&direction.equals(other.direction);
   }
+
+  public Ray(Point p,Vector v){
+    this.head=p;
+    this.direction=v.normalize();
+  }
+
 }
