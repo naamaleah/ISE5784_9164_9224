@@ -21,8 +21,8 @@ public class Ray {
 
   /**A parameter constructor accepts a point and a vector
    *
-   * @param p
-   * @param v
+   * @param p first parameter Point
+   * @param v second parameter Vector
    */
   public Ray(Point p,Vector v){
     this.head=p;
