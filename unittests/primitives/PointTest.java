@@ -79,14 +79,19 @@ class PointTest {
      */
     @Test
     void testDistance() {
-        Point  p1         = new Point(1, 2, 3);
-        Point  p3         = new Point(2, 4, 5);        // ============ Equivalence Partitions Tests ==============
-
-        // =============== Boundary Values Tests ==================
-        // distances
+      // ============ Equivalence Partitions Tests ==============
         Point  p1         = new Point(1, 2, 3);
         Point  p3         = new Point(2, 4, 5);
-        assertEquals(0,p1.distanceSquared(p1),DELTA, "ERROR: point squared distance to itself is not zero");
+
+        //TC01:Test that the distance between two different points it proper
+        assertEquals(0,p1.distance(p3) - 9,DELTA, "distance() between two different points is  wrong result");
+
+        // =============== Boundary Values Tests ==================
+
+        //TC02:Test that the distance between the same point it proper
+
+        assertEquals(0,p1.distanceSquared(p1),DELTA, "distance() to itself is not zero");
+
         assertEquals(0, p1.distance(p1),DELTA, "ERROR: point distance to itself is not zero");
         assertEquals(0,p1.distanceSquared(p3) - 9,DELTA, "ERROR: squared distance between points is wrong");
         assertEquals(0,p3.distanceSquared(p1) - 9,DELTA, "ERROR: squared distance between points is wrong");
