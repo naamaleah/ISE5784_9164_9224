@@ -13,11 +13,12 @@ class PlaneTest {
     @Test
     public void testConstructor(){
         // ============ Equivalence Partitions Tests ==============
-       // TC01: Correct concave quadrangular with vertices in correct order
+       // TC01: Correct concave
         assertDoesNotThrow(() -> new Plane(new Point(0, 0, 1),
                         new Point(1, 0, 0),
                         new Point(0, 1, 0)),
                 "Failed constructing a correct Plane");
+        // =============== Boundary Values Tests ==================
 
         // TC02: Points on the same line
         assertThrows(IllegalArgumentException.class, //

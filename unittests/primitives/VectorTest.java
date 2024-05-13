@@ -22,6 +22,7 @@ class VectorTest {
         //constructing a correct vector
         assertDoesNotThrow(() -> new Vector(0, 0, 1),
                 "Failed constructing a correct vector");
+        // =============== Boundary Values Tests ==================
         //Try constructing vector zero
         assertThrows(IllegalArgumentException.class, //
                 () -> new Vector(0, 0, 0), //
