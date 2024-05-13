@@ -26,7 +26,9 @@ class PointTest {
         // Boundary Value Analysis tests ======================================================================
 
         // TC02 subtracting point from itself
-        assertEquals(Vector.ZERO, p1.subtract(p1), "subtract(), wrong subtract for same points");
+        assertThrows(IllegalArgumentException.class,
+                ()->new Point(1,2,3).subtract(new Point(1,2,3)),
+                "subtract(), Point- same Point must throw exception" );
 
         //TC03 subtracting point from opposite
         assertEquals(new Vector(2,4,6), p1.subtract(new Point(-1,-2,-3)), "subtract(), wrong subtract for opposite points");
@@ -72,7 +74,7 @@ class PointTest {
       // ============ Equivalence Partitions Tests ==============
         Point  p1         = new Point(1, 2, 3);
         //TC01:Test that the distance between two different points it proper
-        assertEquals(9,p1.distance(new Point(2, 4, 5)) ,DELTA, "distance() between two different points is  wrong result");
+        assertEquals(3,p1.distance(new Point(2, 4, 5)) ,DELTA, "distance() between two different points is  wrong result");
 
         // =============== Boundary Values Tests ==================
 
