@@ -181,7 +181,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1715609697366</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="Final">
+      <option name="closed" value="true" />
+      <created>1715623419843</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715623419843</updated>
+    </task>
+    <task id="LOCAL‎-00010" summary="Final">
+      <option name="closed" value="true" />
+      <created>1715623430046</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL‎-00010" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1715623430046</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +220,7 @@
     <MESSAGE value="Sphere" />
     <MESSAGE value="final" />
     <MESSAGE value="Tests Vector" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests Vector" />
+    <MESSAGE value="Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final" />
   </component>
 </project>
