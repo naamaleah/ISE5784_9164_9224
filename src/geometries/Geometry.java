@@ -4,7 +4,7 @@ import primitives.*;
 /**
  * An interface that represents some geometric body
  */
-public interface Geometry {
+public interface Geometry extends Intersectable{
 
     /**
      *Calculates and returns the normal
