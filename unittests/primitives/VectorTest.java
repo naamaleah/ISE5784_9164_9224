@@ -24,19 +24,16 @@ class VectorTest {
         Vector v1Opposite = new Vector(-1, -2, -3);
         // ============ Equivalence Partitions Tests ==============
 
+        //checking if adding two vectors returns the expected value
+        assertEquals(new Vector(5,3,5), v1.add(v2), "ERROR: add() wrong result");
 
         // =============== Boundary Values Tests ==================
+
+        //checking if adding opposite but equal vectors returns 0 and therefore throw an exception
         assertThrows(
                 IllegalArgumentException.class,
                 () -> v1.add(v1Opposite),
                 "ERROR: Vector + -itself does not throw an exception");
-
-
-
-
-
-        Vector v2         = new Vector(1, 0, 0);
-      //  assertEquals(new Vector(2,2,3),v1.add(v2),);
     }
 
     /**
@@ -44,6 +41,10 @@ class VectorTest {
      */
     @Test
     void testScale() {
+        Vector v1         = new Vector(1, 2, 3);
+        Vector v1Opposite = new Vector(-1, -2, -3);
+        Vector v2         = new Vector(-2, -4, -6);
+        Vector v3         = new Vector(0, 3, -2);
         // ============ Equivalence Partitions Tests ==============
 
         // =============== Boundary Values Tests ==================
@@ -55,9 +56,27 @@ class VectorTest {
      */
     @Test
     void testDotProduct() {
+        Vector v1         = new Vector(1, 2, 3);
+        Vector v1Opposite = new Vector(-1, -2, -3);
+        Vector v2         = new Vector(-2, -4, -6);
+        Vector v3         = new Vector(0, 3, -2);
+        Vector v4         = new Vector(0, 0, 1);
         // ============ Equivalence Partitions Tests ==============
 
+        //checking if DotProduct for an angle smaller than 90 returns the correct value
+        assertEquals(-28, v1.dotProduct(v2), "ERROR: dotProduct() wrong value");
+        //checking if DotProduct for an angle bigger than 90 returns the correct value
+        assertEquals(3, v1.dotProduct(v4), "ERROR: dotProduct() wrong value");
+
         // =============== Boundary Values Tests ==================
+        //checking if DotProduct for orthogonal vectors is zero
+        assertEquals(0, v1.dotProduct(v3), "ERROR: dotProduct() for orthogonal vectors is not zero");
+
+        //checking if DotProduct with a vector whose length is 1 returns the expected value
+        assertEquals(3, v1.dotProduct(v4), "ERROR: dotProduct() for vector whose length is 1 is not right");
+
+        if (!isZero(v1.dotProduct(v2) + 28))
+            out.println("ERROR: dotProduct() wrong value");
 
     }
 
@@ -104,9 +123,7 @@ class VectorTest {
         // ============ Equivalence Partitions Tests ==============
         assertEquals(3,v1.length(),0.00001,"ERROR: length() wrong value");
         // =============== Boundary Values Tests ==================
-
-
-
+        //no need for a boundary Values Tests for that
     }
 
     /**
