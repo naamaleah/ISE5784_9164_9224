@@ -21,7 +21,8 @@ class CylinderTest {
         assertEquals(cylinder.getNormal(new Point(2,2,0)) ,new Vector(1,0,0),
                 "Normal abnormality");
         // TC02: Normal test on base
-        assertEquals(cylinder.getNormal(new Point(1,1,0)) ,new Vector(0,-1,0),
+        assertEquals(cylinder.getNormal(new Point(1,1,0)) ,
+                new Vector(0,-1,0),
                 "Normal abnormality");
         // TC03: Normal test on top base
         assertEquals(cylinder.getNormal(new Point(1,5,0)) ,new Vector(0,1,0),
