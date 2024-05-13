@@ -1,5 +1,6 @@
 package primitives;
 
+import geometries.Polygon;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.System.out;
@@ -13,10 +14,22 @@ import static primitives.Util.isZero;
 class VectorTest {
 
     private final double DELTA = 0.000001;
+
+    /** Test method for {@link Vector#Vector(Double3)}. */
+    @Test
+    public void testConstructor(){
+        // ============ Equivalence Partitions Tests ==============
+        assertDoesNotThrow(() -> new Vector(0, 0, 1),
+                "Failed constructing a correct vector");
+        assertThrows(IllegalArgumentException.class, //
+                () -> new Vector(0, 0, 0), //
+                "Constructed a vector zero");
+
+    }
+
     /**
      * Test method for {@link primitives.Vector#add(primitives.Vector)}.
      */
-
     @Test
     void testAdd() {
         Vector v1         = new Vector(1, 2, 3);
@@ -167,6 +180,6 @@ class VectorTest {
         assertEquals(1,u.length(),0.00001,"ERROR: the normalized vector is not a unit vector");
         assertThrows(IllegalArgumentException.class,()->v.crossProduct(u),"ERROR: the normalized vector is not parallel to the original one");
         // =============== Boundary Values Tests ==================
-        //no need for a boundary Values Tests for length
+        //no need for a boundary Values Tests for Normalization
     }
 }
