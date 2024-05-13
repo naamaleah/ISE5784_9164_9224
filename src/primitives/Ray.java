@@ -29,4 +29,19 @@ public class Ray {
     this.direction=v.normalize();
   }
 
+  /**
+   * getter for head
+   * @return head
+   */
+  public Point getHead() {
+    return head;
+  }
+
+  /**
+   * getter for direction
+   * @return direction
+   */
+  public Vector getDirection() {
+    return direction;
+  }
 }
