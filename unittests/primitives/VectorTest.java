@@ -37,7 +37,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector#scale(primitives.Vector)}.
+     * Test method for {@link primitives.Vector#scale(double)}.
      */
     @Test
     void testScale() {
@@ -156,7 +156,7 @@ class VectorTest {
     }
 
     /**
-     * Test method for {@link primitives.Vector#normalize(primitives.Vector)}.
+     * Test method for {@link primitives.Vector#normalize()}.
      */
     @Test
     void testNormalize() {
