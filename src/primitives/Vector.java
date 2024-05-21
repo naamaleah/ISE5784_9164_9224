@@ -78,7 +78,7 @@ public class Vector extends Point {
      * @return The length of the vector squared
      */
     public double lengthSquared(){
-        return dotProduct(this);
+        return  xyz.d1*xyz.d1+xyz.d2*xyz.d2+xyz.d3*xyz.d3;
     }
 
     /**The length of the vector
