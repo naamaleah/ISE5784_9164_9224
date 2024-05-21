@@ -20,7 +20,9 @@ class PointTest {
         // Equivalence Partitions tests ======================================================================
         // TC01 subtract two different points
         Point p1 = new Point(1, 2, 3);
-        assertEquals( new Vector(-1, -1, -1), p1.subtract(new Point(2, 3, 4)), "subtract(), wrong subtract for different points");
+        assertEquals( new Vector(-1, -1, -1),
+                p1.subtract(new Point(2, 3, 4)),
+                "subtract(), wrong subtract for different points");
 
 
         // Boundary Value Analysis tests ======================================================================
@@ -31,7 +33,9 @@ class PointTest {
                 "subtract(), Point- same Point must throw exception" );
 
         //TC03 subtracting point from opposite
-        assertEquals(new Vector(2,4,6), p1.subtract(new Point(-1,-2,-3)), "subtract(), wrong subtract for opposite points");
+        assertEquals(new Vector(2,4,6),
+                p1.subtract(new Point(-1,-2,-3)),
+                "subtract(), wrong subtract for opposite points");
 
     }
 
@@ -59,7 +63,9 @@ class PointTest {
         // Equivalence Partitions tests ======================================================================
         // TC01 distance squared between two different points
         Point p0 = new Point(0, 0, 1);
-        assertEquals(4, p0.distanceSquared(new Point(0, 0, 3)),DELTA, "distanceSquared() of different points is incorrect");
+        assertEquals(4, p0.distanceSquared(new Point(0, 0, 3)),
+                DELTA,
+                "distanceSquared() of different points is incorrect");
 
         // Boundary Value Analysis tests ======================================================================
         // TC02 distance squared from point to itself
@@ -74,12 +80,16 @@ class PointTest {
       // ============ Equivalence Partitions Tests ==============
         Point  p1         = new Point(1, 2, 3);
         //TC01:Test that the distance between two different points it proper
-        assertEquals(3,p1.distance(new Point(2, 4, 5)) ,DELTA, "distance() between two different points is  wrong result");
+        assertEquals(3,p1.distance(new Point(2, 4, 5)) ,
+                DELTA,
+                "distance() between two different points is  wrong result");
 
         // =============== Boundary Values Tests ==================
 
         //TC02:Test that the distance between the same point it proper
-        assertEquals(0,p1.distanceSquared(p1),DELTA, "distance() to itself is not zero");
+        assertEquals(0,p1.distanceSquared(p1),
+                DELTA,
+                "distance() to itself is not zero");
 
     }
 }
