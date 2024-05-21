@@ -79,7 +79,9 @@ class VectorTest {
 
         //=============== Boundary Values Tests ==================
         //multiply in zero
-        assertThrows(IllegalArgumentException.class,()->new Vector(1,2,3).scale(0),"scale in zero dont throw exception!");
+        assertThrows(IllegalArgumentException.class,
+                ()->new Vector(1,2,3).scale(0),
+                "scale in zero dont throw exception!");
         //multiply in 1
         assertEquals(v0,v0.scale(1), "scale() wrong result");
 
@@ -105,10 +107,14 @@ class VectorTest {
 
         // =============== Boundary Values Tests ==================
         //checking if DotProduct for orthogonal vectors is zero
-        assertEquals(0, v1.dotProduct(v3), "ERROR: dotProduct() for orthogonal vectors is not zero");
+        assertEquals(0,
+                v1.dotProduct(v3),
+                "ERROR: dotProduct() for orthogonal vectors is not zero");
 
         //checking if DotProduct with a vector whose length is 1 returns the expected value
-        assertEquals(3, v1.dotProduct(v4), "ERROR: dotProduct() for vector whose length is 1 is not right");
+        assertEquals(3,
+                v1.dotProduct(v4),
+                "ERROR: dotProduct() for vector whose length is 1 is not right");
 
     }
 
@@ -127,21 +133,34 @@ class VectorTest {
         Vector vr = v1.crossProduct(v2);
 
         // TC01: Test that length of cross-product is proper (orthogonal vectors taken for simplicity)
-        assertEquals( vr.length(),v1.length() * v2.length(),  0.00001, "crossProduct() wrong result length");
+        assertEquals( vr.length(),
+                v1.length() * v2.length(),
+                0.00001,
+                "crossProduct() wrong result length");
 
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
 
-        assertEquals(new Vector(-13,2,3),v1.crossProduct(v2), "ERROR: dotProduct() wrong value in opposite direction");//opposite direction
-        assertEquals(new Vector(8,-4,0),v1.crossProduct(v6), "ERROR: dotProduct() wrong value in acute angle");//acute angle
-        assertEquals(new Vector(3,-15,9),v1.crossProduct(v5), "ERROR: dotProduct() wrong value in obtuse angle");//obtuse angle
+        assertEquals(new Vector(-13,2,3),
+                v1.crossProduct(v2),
+                "ERROR: dotProduct() wrong value in opposite direction");//opposite direction
+        assertEquals(new Vector(8,-4,0),
+                v1.crossProduct(v6),
+                "ERROR: dotProduct() wrong value in acute angle");//acute angle
+        assertEquals(new Vector(3,-15,9),
+                v1.crossProduct(v5),
+                "ERROR: dotProduct() wrong value in obtuse angle");//obtuse angle
 
         // =============== Boundary Values Tests ==================
         //check if the vectors is parallel
-        assertThrows(IllegalArgumentException.class,()->v1.crossProduct(v3),"crossProduct() for parallel vectors does not throw an exception");
+        assertThrows(IllegalArgumentException.class,
+                ()->v1.crossProduct(v3),
+                "crossProduct() for parallel vectors does not throw an exception");
         //same vector
-        assertThrows(IllegalArgumentException.class,()->v1.crossProduct(v1),"Didn't throw parallel exception!");
+        assertThrows(IllegalArgumentException.class,
+                ()->v1.crossProduct(v1),
+                "Didn't throw parallel exception!");
 
     }
 
@@ -152,7 +171,10 @@ class VectorTest {
     void testLengthSquared() {
         Vector v1= new Vector(1, 2, 2);
         // ============ Equivalence Partitions Tests ==============
-        assertEquals(9,v1.lengthSquared(),0.00001,"ERROR: lengthSquared() wrong value");
+        assertEquals(9,
+                v1.lengthSquared(),
+                0.00001,
+                "ERROR: lengthSquared() wrong value");
         // =============== Boundary Values Tests ==================
         //no need for a boundary Values Tests for length squared
 
@@ -180,8 +202,12 @@ class VectorTest {
         Vector u = v.normalize();
         // ============ Equivalence Partitions Tests ==============
         //Testing normalized vectors characteristics
-        assertEquals(1,u.length(),0.00001,"ERROR: the normalized vector is not a unit vector");
-        assertThrows(IllegalArgumentException.class,()->v.crossProduct(u),"ERROR: the normalized vector is not parallel to the original one");
+        assertEquals(1,u.length(),
+                0.00001,
+                "ERROR: the normalized vector is not a unit vector");
+        assertThrows(IllegalArgumentException.class,
+                ()->v.crossProduct(u),
+                "ERROR: the normalized vector is not parallel to the original one");
         // =============== Boundary Values Tests ==================
         //no need for a boundary Values Tests for Normalization
     }
