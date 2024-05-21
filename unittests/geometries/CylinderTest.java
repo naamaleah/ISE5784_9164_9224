@@ -31,7 +31,7 @@ class CylinderTest {
         // TC01: A dot on the center of the lower base
         assertEquals(cylinder.getNormal(new Point(0,1,0)),new Vector(0,-1,0),
                 "Normal abnormality");
-        // TC02: A dot on the center of the upper base
+        // TC02: A dot at the center of the upper base
         assertEquals(cylinder.getNormal(new Point(0,5,0)),new Vector(0,1,0),
                 "Normal abnormality");    }
 }

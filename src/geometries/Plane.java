@@ -1,7 +1,10 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
  * Class of plain
@@ -40,12 +43,32 @@ public class Plane implements Geometry {
         q=p;
         normal=v.normalize();
     }
+
+    /**
+     * Normal to the plane
+     * @param p A point to calculate the normal
+     * @return Normal to the plane
+     */
     @Override
     public Vector getNormal(Point p) {
         return normal;
     }
 
+    /**
+     * Getter
+     * @return normal-field
+     */
     public Vector getNormal() {
         return normal;
+    }
+
+    /**
+     * Intsersections of a ray with the plane
+     * @param ray parameter
+     * @return Intsersections with the plane
+     */
+    @Override
+    public List<Point> findIntsersections(Ray ray) {
+        return null;
     }
 }
