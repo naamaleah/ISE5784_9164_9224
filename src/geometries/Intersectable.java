@@ -5,7 +5,7 @@ import primitives.*;
 import java.util.List;
 
 /**
- * interface of Intersectable
+ * interface of Intersect-able
  */
 public interface Intersectable {
     /**
@@ -13,5 +13,5 @@ public interface Intersectable {
      * @param ray parameter
      * @return List of points
      */
-   public List<Point> findIntsersections(Ray ray);
+   public List<Point> findIntersections(Ray ray);
 }

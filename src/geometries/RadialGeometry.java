@@ -3,7 +3,7 @@ package geometries;
 /**
  * RadialGeometry abstract class that implements the Geometry interface,
  */
-public abstract class RadialGeometry {
+public abstract class RadialGeometry implements Geometry {
 
     protected final double radius;
 
