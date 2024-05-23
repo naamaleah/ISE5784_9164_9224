@@ -5,8 +5,11 @@ import primitives.*;
 import java.util.List;
 
 /**
- * Class of Tube
+ * Class Tube is the  class representing a tube of Euclidean geometry in Cartesian
+ * 3-Dimensional coordinate system.
+ * @author Naama and Yeela
  */
+
 public class Tube extends RadialGeometry{
 
     protected final Ray axis;
