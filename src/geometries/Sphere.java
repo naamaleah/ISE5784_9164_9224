@@ -5,7 +5,9 @@ import primitives.*;
 import java.util.List;
 
 /**
- * Class of a Sphere
+ * Class Sphere is the  class representing a sphere of Euclidean geometry in Cartesian
+ * 3-Dimensional coordinate system.
+ * @author Naama and Yeela
  */
 public class Sphere extends RadialGeometry {
     private final Point center;

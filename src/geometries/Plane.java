@@ -7,7 +7,9 @@ import primitives.Vector;
 import java.util.List;
 
 /**
- * Class of plain
+ * Class Plain is the  class representing a plain of Euclidean geometry in Cartesian
+ * 3-Dimensional coordinate system.
+ * @author Naama and Yeela
  */
 public class Plane implements Geometry {
 

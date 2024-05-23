@@ -4,7 +4,9 @@ import primitives.*;
 import java.util.List;
 
 /**
- * Class of Triangle
+ * Class Triangle is the  class representing a triangle of Euclidean geometry in Cartesian
+ * 3-Dimensional coordinate system.
+ * @author Naama and Yeela
  */
 public class Triangle extends Polygon {
     public Triangle(Point p1,Point p2,Point p3){

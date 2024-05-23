@@ -110,7 +110,7 @@ class PlaneTest {
                 "ERROR: findIntersections() did not return null when the ray begins in the plane");
 
         // Ray is neither orthogonal nor parallel to the plane and begins in the same
-        // point which appears as reference point in the plane
+        // TC09: point which appears as reference point in the plane
         assertNull(plane2.findIntersections(new Ray(new Point(0, 0, 1), new Vector(-3, 5, 2))),
                 "ERROR: findIntersections() did not return null when the ray begins " +
                         "in the same point which appears as reference point in the plane");
