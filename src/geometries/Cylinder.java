@@ -35,7 +35,8 @@ public class Cylinder extends Tube{
 
 
         // given point is on top base of the cylinder
-        if (p.equals(P0.add(direction.scale(height)))||isZero(p.subtract(P0.add(direction.scale(height))).dotProduct(direction)))
+        if (p.equals(P0.add(direction.scale(height)))||
+                isZero(p.subtract(P0.add(direction.scale(height))).dotProduct(direction)))
             return direction.normalize();
 
         // given point is on the circumference of cylinder
