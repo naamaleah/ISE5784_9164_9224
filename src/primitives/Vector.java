@@ -1,7 +1,11 @@
 package primitives;
+
 /**
- * This class represents a vector
+ * Class Vector is the basic class representing a vector of Euclidean geometry in Cartesian
+ * 3-Dimensional coordinate system.
+ * @author Naama and Yeela
  */
+
 public class Vector extends Point {
 
     /**A constructor that accepts three values
