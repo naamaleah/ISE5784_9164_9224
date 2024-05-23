@@ -44,11 +44,7 @@ public class Plane implements Geometry {
         normal=v.normalize();
     }
 
-    /**
-     * Normal to the plane
-     * @param p A point to calculate the normal
-     * @return Normal to the plane
-     */
+
     @Override
     public Vector getNormal(Point p) {
         return normal;
@@ -62,13 +58,9 @@ public class Plane implements Geometry {
         return normal;
     }
 
-    /**
-     * Intsersections of a ray with the plane
-     * @param ray parameter
-     * @return Intsersections with the plane
-     */
+
     @Override
-    public List<Point> findIntsersections(Ray ray) {
+    public List<Point> findIntersections(Ray ray) {
         return null;
     }
 }

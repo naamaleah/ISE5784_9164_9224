@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 /**
@@ -9,7 +11,7 @@ import static primitives.Util.isZero;
  */
 public class Cylinder extends Tube{
 
-    private double height;
+    private final double height;
 
     /**
      * Constructor to initialize Cylinder based on radius,ray and height
@@ -38,5 +40,11 @@ public class Cylinder extends Tube{
 
         // given point is on the circumference of cylinder
         return super.getNormal(p);
+    }
+
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }

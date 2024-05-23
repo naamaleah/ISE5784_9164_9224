@@ -11,5 +11,5 @@ public interface Geometry extends Intersectable{
      * @param p A point to calculate the normal
      * @return normal
      */
-    public Vector getNormal(Point p);
+    Vector getNormal(Point p);
 }
