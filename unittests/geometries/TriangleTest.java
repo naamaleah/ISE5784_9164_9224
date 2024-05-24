@@ -64,7 +64,7 @@ class TriangleTest {
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray intersects the triangle
-        var result = t.findIntersections(new Ray(p05051, new Vector(-0.5, -1, -1)));
+        List<Point> result = t.findIntersections(new Ray(p05051, new Vector(-0.5, -1, -1)));
         assertEquals(1, result.size(), "ERROR: findIntersections() did not return the right number of points");
         assertEquals(List.of(new Point(0.3, 0.1, 0.6)), result, "Incorrect intersection points");
 

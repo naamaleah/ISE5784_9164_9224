@@ -23,7 +23,7 @@ public class Triangle extends Polygon {
         if(this.plane.findIntersections(ray)==null)
             return null;
 
-        Vector v1=this.vertices.get(1).subtract(ray.getHead());
+        Vector v1=this.vertices.get(0).subtract(ray.getHead());
         Vector v2=this.vertices.get(1).subtract(ray.getHead());
         Vector v3=this.vertices.get(2).subtract(ray.getHead());
         try {
