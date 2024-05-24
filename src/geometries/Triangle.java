@@ -26,7 +26,6 @@ public class Triangle extends Polygon {
         Vector v1=this.vertices.get(0).subtract(ray.getHead());
         Vector v2=this.vertices.get(1).subtract(ray.getHead());
         Vector v3=this.vertices.get(2).subtract(ray.getHead());
-        try {
 
             Vector n1 = (v1.crossProduct(v2)).normalize();
             Vector n2 = (v2.crossProduct(v3)).normalize();
@@ -42,12 +41,5 @@ public class Triangle extends Polygon {
 
         //point is not in triangle
         return null;
-
-        }
-        catch(Exception e){
-            return null;
-        }
-
     }
-
 }
