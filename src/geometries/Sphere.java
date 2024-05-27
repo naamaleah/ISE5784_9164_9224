@@ -4,6 +4,9 @@ import primitives.*;
 
 import java.util.List;
 
+import static java.lang.Math.sqrt;
+import static primitives.Util.alignZero;
+
 /**
  * Class Sphere is the  class representing a sphere of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
@@ -30,6 +33,22 @@ public class Sphere extends RadialGeometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
+        Point P0 = ray.getHead();
+        Vector v = ray.getDirection();
+        if (P0.equals(center))
+            return List.of( center.add(v.scale(radius)));
+        Vector u=center.subtract(P0);
+        double tm=alignZero(v.dotProduct(u));
+        double d=alignZero(sqrt(u.lengthSquared()-tm*tm));
+        if(d>=radius) return null;
+        double th=alignZero(sqrt(this.radius*this.radius-d*d));
+        double t1=alignZero(tm-th);
+        double t2=alignZero(tm+th);
+        if(alignZero(t1)<=0)
+           return List.of(P0.add(v.scale(t2)));
+        if(alignZero(t2)<=0)
+            return List.of(P0.add(v.scale(t1)));
+        return List.of(P0.add(v.scale(t1)),P0.add(v.scale(t2)));
+
     }
 }
