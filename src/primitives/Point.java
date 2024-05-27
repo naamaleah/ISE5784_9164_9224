@@ -76,4 +76,11 @@ public class Point {
 
     @Override
     public String toString() {return ""+xyz;}
+
+    /*
+    getters for point
+     */
+    double getD1() {return xyz.d1;}
+    double getD2() {return xyz.d2;}
+    double getD3() {return xyz.d3;}
 }
