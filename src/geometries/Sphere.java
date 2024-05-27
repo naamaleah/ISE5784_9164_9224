@@ -45,9 +45,17 @@ public class Sphere extends RadialGeometry {
         double t1=alignZero(tm-th);
         double t2=alignZero(tm+th);
         if(alignZero(t1)<=0)
-           return List.of(P0.add(v.scale(t2)));
-        if(alignZero(t2)<=0)
+        {
+            if(alignZero(t2)<=0)
+                return null;
+            else
+                return List.of(P0.add(v.scale(t2)));
+
+        } else if (alignZero(t2)<=0)
+        {
             return List.of(P0.add(v.scale(t1)));
+        }
+        else
         return List.of(P0.add(v.scale(t1)),P0.add(v.scale(t2)));
 
     }
