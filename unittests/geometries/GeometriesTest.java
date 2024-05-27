@@ -20,41 +20,42 @@ class GeometriesTest {
 
         // ============ Equivalence Partitions Tests ==============
         Ray ray = new Ray(new Point(3.5,0,0),new Vector(1,0,0));
+
+        //TC01-Some shapes (but not all) are cut
         assertEquals(2,geometries.findIntersections(ray).size(),
-                    "TC-04 not all shape intersect");
+                    " not all shape intersect");
         assertEquals(List.of(new Point(4,0,0),new Point(5,0,0)),
                     geometries.findIntersections(ray),
-                    "TC-04 not all shape intersect");
+                    " not all shape intersect");
 
 
         // =============== Boundary Values Tests ==================
-            // TC01 - ray intersects all of the geometries
+            // TC02 - ray intersects all of the geometries
         ray = new Ray(new Point(0.5,0,0),new Vector(1,0,0));
         assertEquals(4, geometries.findIntersections(ray).size()
-                    ,"TC-01 all shapes intersect");
+                    ," all shapes intersect");
 
         assertEquals(List.of(new Point(1,0,0),new Point(3,0,0),new Point(4,0,0),
                         new Point(5,0,0)),geometries.findIntersections(ray),
-                "TC-01 all shapes intersect");
+                "all shapes intersect");
 
-
-
+        //TC03 no intersection shapes
         ray = new Ray(new Point(0.5,0,0),new Vector(0,1,0));
-        assertNull(geometries.findIntersections(ray),"TC-02 no intersection shapes");
+        assertNull(geometries.findIntersections(ray),"no intersection shapes");
 
 
-
+        //TC04 one shape intersect
         ray = new Ray(new Point(4.5,0,0),new Vector(1,0,0));
         assertEquals(1,geometries.findIntersections(ray).size(),
-                "TC-03 one shape intersect");
+                " one shape intersect");
         assertEquals(List.of(new Point(5,0,0)),geometries.findIntersections(ray),
-                "TC-03");
+                "one shape intersect");
 
 
-
+        //TC05 empty
         ray = new Ray(new Point(4.5,0,0),new Vector(1,0,0));
         assertNull(emptyGeometries.findIntersections(ray),
-                "TC-04 empty");
+                "empty");
 
 
     }
