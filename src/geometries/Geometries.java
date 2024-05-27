@@ -22,6 +22,7 @@ public class Geometries implements Intersectable {
     }
 
     public Geometries(Intersectable...geometries) {
+
     }
 
     public void add(Intersectable...geometries) {
