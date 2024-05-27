@@ -82,7 +82,7 @@ public class Plane implements Geometry {
             return null;
 
         double t=(nqp0)/(nv);
-        Point p=p0.add(v.scale(t));
+        Point p=ray.getPoint(t);
 
         // t must be positive
         if(t<0)

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="find intersections triangle">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2024_09_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2024_09_46__Changes_.xml" afterDir="false" />
+    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="test case">
+      <change afterPath="$PROJECT_DIR$/unittests/primitives/RayTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +49,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.GeometriesTest.testFindIntersections.executor": "Debug",
-    "JUnit.SphereTest.testFindIntersections.executor": "Run",
+    "JUnit.RayTest.testGetPoint.executor": "Run",
+    "JUnit.SphereTest.testFindIntersections.executor": "Debug",
     "JUnit.VectorTest.testLengthSquared.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -79,22 +81,22 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="geometries" />
       <recent name="primitives" />
+      <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GeometriesTest.testFindIntersections">
-    <configuration name="GeometriesTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.RayTest.testGetPoint">
+    <configuration name="RayTest.testGetPoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="primitives.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.GeometriesTest" />
-      <option name="METHOD_NAME" value="testFindIntersections" />
+      <option name="PACKAGE_NAME" value="primitives" />
+      <option name="MAIN_CLASS_NAME" value="primitives.RayTest" />
+      <option name="METHOD_NAME" value="testGetPoint" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,7 +136,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GeometriesTest.testFindIntersections" />
+        <item itemvalue="JUnit.RayTest.testGetPoint" />
         <item itemvalue="JUnit.SphereTest.testFindIntersections" />
         <item itemvalue="JUnit.VectorTest.testLengthSquared" />
       </list>
@@ -262,15 +264,7 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716817677237</updated>
     </task>
-    <task id="LOCAL-00014" summary="find intersections triangle">
-      <option name="closed" value="true" />
-      <created>1716828009174</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1716828009174</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,18 +290,6 @@
     <MESSAGE value="Final" />
     <MESSAGE value="test case" />
     <MESSAGE value="Sphere findintersections" />
-    <MESSAGE value="find intersections triangle" />
-    <option name="LAST_COMMIT_MESSAGE" value="find intersections triangle" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/geometries/Geometries.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="LAST_COMMIT_MESSAGE" value="Sphere findintersections" />
   </component>
 </project>
