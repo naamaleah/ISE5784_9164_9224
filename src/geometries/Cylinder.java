@@ -7,7 +7,9 @@ import java.util.List;
 import static primitives.Util.isZero;
 
 /**
- * The class will represent a Cylinder
+ * Class Cylinder is the  class representing a Cylinder of Euclidean geometry in Cartesian
+ * 3-Dimensional coordinate system.
+ * @author Naama and Yeela
  */
 public class Cylinder extends Tube{
 
