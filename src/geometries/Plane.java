@@ -1,10 +1,9 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
-
+import primitives.*;
 import java.util.List;
+
+import static primitives.Util.*;
 
 /**
  * Class Plain is the  class representing a plain of Euclidean geometry in Cartesian
@@ -63,6 +62,31 @@ public class Plane implements Geometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
+
+        Point q=this.q;
+        Vector n=this.normal;
+        Vector v=ray.getDirection();
+        Point p0=ray.getHead();
+        //ray is on the plane
+        if(q.equals(p0))
+            return null;
+
+        double nv = n.dotProduct(v);
+        // ray direction cannot be parallel to plane orientation
+        if (isZero(nv))
+            return null;
+
+        double nqp0= alignZero(n.dotProduct(q.subtract(p0)));
+        //t is not 0
+        if(isZero(nqp0))
+            return null;
+
+        double t=(nqp0)/(nv);
+        Point p=p0.add(v.scale(t));
+
+        // t must be positive
+        if(t<0)
+            return null;
+        return  List.of(p);
     }
 }
