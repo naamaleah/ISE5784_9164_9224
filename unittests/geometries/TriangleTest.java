@@ -59,13 +59,15 @@ class TriangleTest {
 
         // all tests assume a point on the plane in which the triangle is on and check
         // if the function identifies whether the point is inside the triangle or not
-        Triangle t = new Triangle(new Point(0, 0, 1), new Point(0, 1, 0), new Point(1, 0, 0));
+        Triangle t = new Triangle(new Point(0,0,1), new Point(0,1,0), new Point(1,0,0));
         final Point p05051 = new Point(0.5, 0.5, 1);
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray intersects the triangle
         List<Point> result = t.findIntersections(new Ray(p05051, new Vector(-0.5, -1, -1)));
-        assertEquals(1, result.size(), "ERROR: findIntersections() did not return the right number of points");
+        assertEquals(1,
+                result.size(),
+                "ERROR: findIntersections() did not return the right number of points");
         assertEquals(List.of(new Point(0.3, 0.1, 0.6)), result, "Incorrect intersection points");
 
         // TC02: Ray outside against edge
