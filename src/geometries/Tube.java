@@ -31,7 +31,6 @@ public class Tube extends RadialGeometry{
         double t=v.dotProduct(p.subtract(p0));
         Point o=p0.add(v.scale(t));
         return ((p).subtract(o)).normalize();
-
     }
 
 

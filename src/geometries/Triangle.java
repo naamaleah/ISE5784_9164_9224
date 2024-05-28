@@ -27,9 +27,9 @@ public class Triangle extends Polygon {
         Vector v2=this.vertices.get(1).subtract(ray.getHead());
         Vector v3=this.vertices.get(2).subtract(ray.getHead());
 
-            Vector n1 = (v1.crossProduct(v2)).normalize();
-            Vector n2 = (v2.crossProduct(v3)).normalize();
-            Vector n3 = (v3.crossProduct(v1)).normalize();
+        Vector n1 = (v1.crossProduct(v2)).normalize();
+        Vector n2 = (v2.crossProduct(v3)).normalize();
+        Vector n3 = (v3.crossProduct(v1)).normalize();
 
         double t1=alignZero(n1.dotProduct(ray.getDirection()));
         double t2=alignZero(n2.dotProduct(ray.getDirection()));
