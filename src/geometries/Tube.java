@@ -24,7 +24,7 @@ public class Tube extends RadialGeometry{
         this.axis = axis;
     }
 
-
+    @Override
     public Vector getNormal(Point p){
         Vector v=this.axis.getDirection();
         Point p0=this.axis.getHead();
