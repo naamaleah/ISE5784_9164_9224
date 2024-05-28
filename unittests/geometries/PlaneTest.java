@@ -106,7 +106,8 @@ class PlaneTest {
 
         // **** Group: the ray is neither orthogonal nor parallel to the plane
         // TC08: Ray begins in the plane
-        assertNull(plane2.findIntersections(new Ray(new Point(0.5, 0.25, 0.25), new Vector(-3, 5, 2))),
+        assertNull(plane2.findIntersections(new Ray(new Point(0.5, 0.25, 0.25),
+                        new Vector(-3, 5, 2))),
                 "ERROR: findIntersections() did not return null when the ray begins in the plane");
 
         // Ray is neither orthogonal nor parallel to the plane and begins in the same

@@ -53,13 +53,19 @@ class CylinderTest {
 
         var result = cylinder.findIntersections(new Ray(new Point(2.5, 0, -1), v001));
         assertEquals(2, result.size(), "Wrong number of points");
-        assertEquals(List.of(new Point(2.5, 0, 0), new Point(2.5, 0, 2)), result, "Bad intersection point");
+        assertEquals(List.of(new Point(2.5, 0, 0),
+                new Point(2.5, 0, 2)),
+                result,
+                "Bad intersection point");
 
         //TC04 ray starts from outside and crosses the cylinder
 
         result = cylinder.findIntersections(new Ray(new Point(-2, 0, 0.5), new Vector(1, 0, 0)));
         assertEquals(2, result.size(), "Wrong number of points");
-        assertEquals(List.of(new Point(1, 0, 0.5), new Point(3, 0, 0.5)), result, "Bad intersection points");
+        assertEquals(List.of(new Point(1, 0, 0.5),
+                new Point(3, 0, 0.5)),
+                result,
+                "Bad intersection points");
 
         //TC05 ray starts from inside and crosses the cylinder
 
@@ -76,13 +82,19 @@ class CylinderTest {
 
         result = cylinder.findIntersections(new Ray(new Point(1, 0, -1), new Vector(1, 0, 1)));
         assertEquals(2, result.size(), "Wrong number of points");
-        assertEquals(List.of(new Point(2, 0, 0), new Point(3, 0, 1)), result, "Bad intersection points");
+        assertEquals(List.of(new Point(2, 0, 0),
+                new Point(3, 0, 1)),
+                result,
+                "Bad intersection points");
 
         //TC08 ray starts from outside and crosses surface and base
 
         result = cylinder.findIntersections(new Ray(new Point(4, 0, 2), new Vector(-1, 0, -1)));
         assertEquals(2, result.size(), "Wrong number of points");
-        assertEquals(List.of(new Point(2, 0, 0), new Point(3, 0, 1)), result, "Bad intersection points");
+        assertEquals(List.of(new Point(2, 0, 0),
+                new Point(3, 0, 1)),
+                result,
+                "Bad intersection points");
 
 
         // =============== Boundary Values Tests ==================
@@ -108,7 +120,10 @@ class CylinderTest {
 
         result = cylinder.findIntersections(new Ray(new Point(-2, 0, 0.5), v100));
         assertEquals(2, result.size(), "Wrong number of points");
-        assertEquals(List.of(new Point(1, 0, 0.5), new Point(3, 0, 0.5)), result, "Bad intersection points");
+        assertEquals(List.of(new Point(1, 0, 0.5),
+                new Point(3, 0, 0.5)),
+                result,
+                "Bad intersection points");
 
         //TC13 ray is perpendicular to cylinder's ray and starts from inside cylinder (not center)
 
