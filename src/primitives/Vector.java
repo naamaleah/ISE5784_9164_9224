@@ -22,11 +22,11 @@ public class Vector extends Point {
 
     /**A constructor that accepts Double3 value
      *
-     * @param d Double3 parameter
+     * @param xyz Double3 parameter
      */
-    public Vector(Double3 d) {
-        super(d);
-        if(d.equals(Double3.ZERO))
+    public Vector(Double3 xyz) {
+        super(xyz);
+        if(xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("Vector is zero");
     }
 
