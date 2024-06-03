@@ -50,11 +50,11 @@ public class Vector extends Point {
 
     /**Scaling vectors returns a vector
      *
-     * @param x double
+     * @param scale double
      * @return a vector
      */
-    public Vector scale(double x){
-        return new Vector(this.xyz.scale(x));
+    public Vector scale(double scale){
+        return new Vector(this.xyz.scale(scale));
     }
 
     /**Calculation of a scalar product

@@ -13,10 +13,10 @@ public class Point {
 
     /**Parameter constructor
      *
-     * @param d3 coordinates
+     * @param xyz coordinates
      */
-    public Point(Double3 d3) {
-       xyz=d3;
+    public Point(Double3 xyz) {
+       this.xyz=xyz;
     }
 
     /**A constructor that accepts three parameters
