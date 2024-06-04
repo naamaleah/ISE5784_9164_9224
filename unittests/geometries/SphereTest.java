@@ -21,7 +21,7 @@ class SphereTest {
     void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: There is a simple single test here
-        Sphere sph = new Sphere(1.0, p001);
+        Sphere sph = new Sphere( p001,1.0);
         assertEquals(v001,
                 sph.getNormal(new Point(0, 0, 2)),
                 "Bad normal to sphere");
@@ -34,7 +34,7 @@ class SphereTest {
      */
     @Test
     public void testFindIntersections() {
-        Sphere sphere = new Sphere(1d,p100 );
+        Sphere sphere = new Sphere(p100,1d );
         final Point gp1 = new Point(0.0651530771650466, 0.355051025721682, 0);
         final Point gp2 = new Point(1.53484692283495, 0.844948974278318, 0);
         final var exp = List.of(gp1, gp2);
@@ -65,7 +65,7 @@ class SphereTest {
         // =============== Boundary Values Tests ==================
 
         // **** Group: Ray's line crosses the sphere (but not the center)
-        // TC11: Ray starts at sphere and goes inside (1 points)
+        // TC11: Ray starts at sphere and goes inside (1 point)
         result = sphere.findIntersections(new Ray(new Point(2, 0, 0), new Vector(-1, 1, 0)));
         assertEquals(1, result.size(), "There should be one intersection");
         assertEquals(List.of(p110), result, "Incorrect intersection point");
@@ -83,18 +83,18 @@ class SphereTest {
         assertEquals(2, result.size(), "There should be two intersections");
         assertEquals(List.of(p1, p2), result, "Incorrect intersection points");
 
-        // TC14: Ray starts at sphere and goes inside (1 points)
+        // TC14: Ray starts at sphere and goes inside (1 point)
         result = sphere.findIntersections(new Ray(new Point(1, -1, 0), new Vector(0, 1, 0)));
         assertEquals(1, result.size(), "There should be one intersection");
         assertEquals(List.of(p110), result, "Incorrect intersection point");
 
-        // TC15: Ray starts inside (1 points)
+        // TC15: Ray starts inside (1 point)
         p1 = new Point(2, 0, 0);
         result = sphere.findIntersections(new Ray(new Point(0.5, 0, 0),v100));
         assertEquals(1, result.size(), "There should be one intersection");
         assertEquals(List.of(p1), result, "Incorrect intersection point");
 
-        // TC16: Ray starts at the center (1 points)
+        // TC16: Ray starts at the center (1 point)
         result = sphere.findIntersections(new Ray(p100, new Vector(0, 1, 0)));
         assertEquals(1, result.size(), "There should be one intersection");
         assertEquals(List.of(p110), result, "Incorrect intersection point");

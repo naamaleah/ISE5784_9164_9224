@@ -17,12 +17,13 @@ public class Sphere extends RadialGeometry {
 
     /**
      * Constructor to initialize Sphere with radius and point
-     * @param r a radius
+     *
      * @param p a point
+     * @param r a radius
      */
-    public Sphere(double r,Point p) {
+    public Sphere(Point p, double r) {
         super(r);
-        center=p;
+        center= p;
     }
 
 
