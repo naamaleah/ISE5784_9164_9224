@@ -135,7 +135,7 @@ class VectorTest {
         // TC01: Test that length of cross-product is proper (orthogonal vectors taken for simplicity)
         assertEquals( vr.length(),
                 v1.length() * v2.length(),
-                0.00001,
+                DELTA,
                 "crossProduct() wrong result length");
 
         // TC02: Test cross-product result orthogonality to its operands
@@ -173,7 +173,7 @@ class VectorTest {
         // ============ Equivalence Partitions Tests ==============
         assertEquals(9,
                 v1.lengthSquared(),
-                0.00001,
+                DELTA,
                 "ERROR: lengthSquared() wrong value");
         // =============== Boundary Values Tests ==================
         //no need for a boundary Values Tests for length squared
