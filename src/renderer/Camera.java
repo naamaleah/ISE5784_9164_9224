@@ -1,5 +1,9 @@
 package renderer;
 import primitives.*;
+import primitives.Vector;
+
+
+import java.util.*;
 
 /**
  * Class Camera is the  class representing a Camera of Euclidean geometry in Cartesian
@@ -14,12 +18,7 @@ public class Camera implements Cloneable {
     double width=0.0;
     double height=0.0;
     double distance=0.0;
-//    public Camera(Point p0,Vector vTo,Vector vUp) {
-//        this.vTo=vTo;
-//        this.vUp=vUp;
-//        this.p0=p0;
-//        this.vRight= vTo.crossProduct(vUp).normalize();
-//    }
+
 
     /**
      * Empty constructor
@@ -31,7 +30,7 @@ public class Camera implements Cloneable {
      *
      */
     public static Builder getBuilder(){
-        return Builder;
+        return new Builder();
     }
 
     public Ray constructRay(int nX, int nY, int j, int i){
@@ -48,8 +47,10 @@ public class Camera implements Cloneable {
             return this;
         }
         public Builder setDirection(Vector vTo,Vector vUp){
-            this.camera.vTo=vTo;
-            this.camera.vUp=vUp;
+            if(vTo.dotProduct(vUp) != 0)
+                throw new IllegalArgumentException("Not orthogonal Vectors");
+            this.camera.vTo=vTo.normalize();
+            this.camera.vUp=vUp.normalize();
             return this;
         }
         public Builder setVpSize(double width,double height){
@@ -59,12 +60,35 @@ public class Camera implements Cloneable {
             return this;
         }
         public Builder setVpDistance(double distance){
+            if(distance<0) throw new IllegalArgumentException("Distance can not be negative numbers");
             this.camera.distance=distance;
             return this;
         }
         public Camera build(){
-            if(camera.height==0.0 || camera.width==0.0 || camera.distance)
-            return (Camera) camera.clone();
+            String message="Missing info for render";
+            String className="Camera";
+
+            if(camera.height==0.0 )
+                throw new MissingResourceException(message,className, "Missing height");
+            if(camera.width==0.0 )
+                throw new MissingResourceException(message,className, "Missing width");
+            if(camera.distance==0.0)
+                throw new MissingResourceException(message,className, "Missing distance");
+            if(camera.vTo==null )
+                throw new MissingResourceException(message,className, "Missing vTo");
+            if(camera.vUp==null )
+                throw new MissingResourceException(message,className, "Missing vUp");
+            camera.vRight=camera.vTo.crossProduct(camera.vUp).normalize();
+
+            try
+            {
+                return (Camera) camera.clone();
+            }
+            catch (Exception e)
+            {
+                throw new MissingResourceException(message,className, "clone not work");
+            }
+
         }
 
     }
