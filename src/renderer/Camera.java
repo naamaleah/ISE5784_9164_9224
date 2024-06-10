@@ -112,6 +112,7 @@ public class Camera implements Cloneable {
             String message="Missing info for render";
             String className="Camera";
 
+            //Checking for missing arguments
             if(camera.height==0.0 )
                 throw new MissingResourceException(message,className, "Missing height");
             if(camera.width==0.0 )
