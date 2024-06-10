@@ -84,11 +84,9 @@ public class Camera implements Cloneable {
             {
                 return (Camera) camera.clone();
             }
-            catch (Exception e)
-            {
-                throw new MissingResourceException(message,className, "clone not work");
+            catch (CloneNotSupportedException e){
+                return null;
             }
-
         }
 
     }
