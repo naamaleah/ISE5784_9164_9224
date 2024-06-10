@@ -5,6 +5,8 @@ import primitives.Vector;
 
 import java.util.*;
 
+import static primitives.Util.isZero;
+
 /**
  * Class Camera is the  class representing a Camera of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
@@ -34,7 +36,21 @@ public class Camera implements Cloneable {
     }
 
     public Ray constructRay(int nX, int nY, int j, int i){
-        return null;
+        Point Pc= p0.add(vTo.scale(distance));
+        double Ry=height/nY;
+        double Rx=width/nX;
+        double Yi=-(i-(nY-1)/2)*Ry;
+        double Xj=(j-(nX-1)/2)*Rx;
+        Point Pij=Pc;
+        if (!isZero(Xj)) {
+            Pij = Pij.add(vRight.scale(Xj));
+        }
+
+        if (!isZero(Yi)) {
+            Pij = Pij.add(vUp.scale(Yi));
+        }
+
+        return new Ray(p0 ,Pij.subtract(p0));
     }
 
     /**
