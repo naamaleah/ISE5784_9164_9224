@@ -17,7 +17,7 @@ public class IntegrationTest {
 //      .setImageWriter(new ImageWriter("Test", 1, 1))
             .setLocation(Point.ZERO)
             .setDirection(new Vector(0, 0, -1), new Vector(0, -1, 0))
-            .setVpDistance(1);
+            .setVpDistance(1).setVpSize(3,3);
     private final Camera camera000=cameraBuilder.build();
     private final Camera camera0005=cameraBuilder.setLocation(new Point(0,0,0.5)).build();
 
@@ -31,7 +31,8 @@ public class IntegrationTest {
 
         for (int i = 0; i < Nx ; i++)
             for (int j = 0; j < Ny; j++){
-                count += g.findIntersections(camera.constructRay(Nx,Ny,i,j)).size();
+                var intersections = g.findIntersections(camera.constructRay(Nx, Ny, i, j));
+                count += (intersections != null ? intersections.size() : 0);
             }
         return count;
     }
@@ -73,7 +74,7 @@ public class IntegrationTest {
     void planeTest() {
         // TC01: 9 intersection points, parallel plane
         assertEquals(9,
-                generateRays(new Plane(new Point(0,0,3),new Vector(0,0,1)),camera000), errorMessage);
+                generateRays(new Plane(new Point(0,0,-3),new Vector(0,0,1)),camera000), errorMessage);
         // TC02: 9 intersection points, not parallel plane
         assertEquals(9,
                 generateRays(new Plane(new Point(0,0,-1),new Vector(1.5,3,5)),
