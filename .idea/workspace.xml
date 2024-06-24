@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="Refactoring">
-      <change afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/RenderTests.java" afterDir="false" />
+    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="part4-stage5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +50,7 @@
     "JUnit.GeometriesTest.testFindIntersections.executor": "Debug",
     "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
     "JUnit.RayTest.testFindClosestPoint.executor": "Run",
+    "JUnit.RenderTests.basicRenderXml.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
     "JUnit.SphereTest.testFindIntersections.executor": "Run",
@@ -96,14 +93,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.RenderTests">
-    <configuration name="All in ISE5784_9164_9224" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_9164_9224" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ImageWriterTest.testWriteToImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
@@ -151,6 +140,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RenderTests.basicRenderXml" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_9164_9224" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="basicRenderXml" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RenderTests.renderTwoColorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
@@ -170,10 +175,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.RenderTests" />
+        <item itemvalue="JUnit.RenderTests.basicRenderXml" />
         <item itemvalue="JUnit.RenderTests.renderTwoColorTest" />
         <item itemvalue="JUnit.RayTest.testFindClosestPoint" />
         <item itemvalue="JUnit.ImageWriterTest.testWriteToImage" />
-        <item itemvalue="JUnit.All in ISE5784_9164_9224" />
       </list>
     </recent_temporary>
   </component>
@@ -363,7 +368,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1719238494247</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL‎-00022" summary="part4-stage5">
+      <option name="closed" value="true" />
+      <created>1719248720004</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL‎-00022" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1719248720004</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,6 +408,7 @@
     <MESSAGE value="ImageWriter" />
     <MESSAGE value="Notes" />
     <MESSAGE value="Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
+    <MESSAGE value="part4-stage5" />
+    <option name="LAST_COMMIT_MESSAGE" value="part4-stage5" />
   </component>
 </project>
