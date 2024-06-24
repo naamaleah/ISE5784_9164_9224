@@ -21,6 +21,8 @@ public class Camera implements Cloneable {
     double width=0.0;
     double height=0.0;
     double distance=0.0;
+    ImageWriter imageWriter;
+    RayTracerBase rayTracer;
 
 
     /**
@@ -35,6 +37,64 @@ public class Camera implements Cloneable {
      */
     public static Builder getBuilder(){
         return new Builder();
+    }
+
+    /**
+     * render image "captured" through view plane
+     */
+    public Camera renderImage(){
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
+
+        for (int i = 0; i < nX ; i++)
+            for (int j = 0; j < nY; j++){
+                castRay(nX,nY,i,j);
+            }
+        return this;
+    }
+
+    /**
+     * cast a ray from camera through pixel (i,j) in view plane and get color of pixel
+     *
+     * @param Nx number of rows in view plane
+     * @param Ny number of columns in view plane
+     * @param j  column index of pixel
+     * @param i  row index of pixel
+     */
+    private void castRay(int Nx, int Ny, int j, int i) {
+        // construct ray through pixel
+        Ray ray = constructRay(Nx, Ny, j, i);
+        // return the color using ray tracer
+        Color color = rayTracer.traceRay(ray);
+        imageWriter.writePixel(j, i, color);
+    }
+
+    /**
+     * print grid lines on  image
+     * @param interval interval between each pair of grid lines
+     * @param color    color of grid lines
+     */
+    public Camera printGrid(int interval, Color color){
+        if (imageWriter == null)
+            throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
+        for (int i = 0; i < imageWriter.getNy(); i++) {
+            for (int j = 0; j < imageWriter.getNx(); j++) {
+                if (i % interval == 0 || j % interval == 0)
+                    imageWriter.writePixel(j, i, color);
+            }
+
+        }
+        return this;
+    }
+
+    /**
+     * create a jpeg file, with scene "captured" by camera
+     */
+    public Camera writeToImage(){
+        if (imageWriter == null)
+            throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
+        imageWriter.writeToImage();
+        return this;
     }
 
     /**
@@ -108,6 +168,14 @@ public class Camera implements Cloneable {
             this.camera.distance=distance;
             return this;
         }
+        public Builder setImageWriter(ImageWriter imageWriter){
+            this.camera.imageWriter=imageWriter;
+            return this;
+        }
+        public Builder setRayTracer(RayTracerBase rayTracer){
+            this.camera.rayTracer=rayTracer;
+            return this;
+        }
         public Camera build(){
             String message="Missing info for render";
             String className="Camera";
@@ -123,6 +191,10 @@ public class Camera implements Cloneable {
                 throw new MissingResourceException(message,className, "Missing vTo");
             if(camera.vUp==null )
                 throw new MissingResourceException(message,className, "Missing vUp");
+            if(camera.imageWriter==null )
+                throw new MissingResourceException(message,className, "Missing imageWriter");
+            if(camera.rayTracer==null )
+                throw new MissingResourceException(message,className, "Missing rayTracer");
             camera.vRight=camera.vTo.crossProduct(camera.vUp).normalize();
 
             try

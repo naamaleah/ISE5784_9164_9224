@@ -67,12 +67,27 @@ public class Ray {
       return head;
     return head.add(direction.scale(t));
   }
+
   /**
-   * Returns closes point to the head of the ray
-   * @param listPoint List of points
-   * @return closes point
+   * find the closest GeoPoint to ray origin from a list of GeoPoints
+   * @param pointList list of intersection points
+   * @return the closest {@link Point}
    */
-  public Point findClosestPoint(List<Point> listPoint){
-    return null;
+  public Point findClosestPoint(List<Point> pointList){
+
+      if (pointList==null)
+        return null;
+
+      Point result =null;
+      double minDistance = Double.MAX_VALUE;
+      double distanceSqrt;
+      for (var point : pointList) {
+        distanceSqrt = head.distanceSquared(point);
+        if (distanceSqrt < minDistance) {
+          minDistance = distanceSqrt;
+          result = point;
+        }
+      }
+      return result;
   }
 }
