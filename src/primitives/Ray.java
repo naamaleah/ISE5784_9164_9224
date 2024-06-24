@@ -4,6 +4,8 @@ package primitives;
  * This class represents ray
  */
 
+import java.util.List;
+
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -64,5 +66,13 @@ public class Ray {
     if(isZero(t))
       return head;
     return head.add(direction.scale(t));
+  }
+  /**
+   * Returns closes point to the head of the ray
+   * @param listPoint List of points
+   * @return closes point
+   */
+  public Point findClosestPoint(List<Point> listPoint){
+    return null;
   }
 }

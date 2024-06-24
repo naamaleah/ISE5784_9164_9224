@@ -30,7 +30,7 @@ class GeometriesTest {
 
 
         // =============== Boundary Values Tests ==================
-            // TC02 - ray intersects all of the geometries
+            // TC02 - ray intersects with all the geometries
         ray = new Ray(new Point(0.5,0,0),new Vector(1,0,0));
         assertEquals(4, geometries.findIntersections(ray).size()
                     ," all shapes intersect");

@@ -66,7 +66,7 @@ public class Sphere extends RadialGeometry {
             return List.of(ray.getPoint(t1));
         }
         else
-        return List.of(P0.add(v.scale(t1)),ray.getPoint(t2));
+        return List.of(ray.getPoint(t1),ray.getPoint(t2));
 
     }
 }

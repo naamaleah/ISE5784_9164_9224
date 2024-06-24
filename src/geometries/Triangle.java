@@ -19,8 +19,9 @@ public class Triangle extends Polygon {
     @Override
     public List<Point> findIntersections(Ray ray) {
 
+        var intersections=plane.findIntersections(ray);
         //there is no intersection at all
-        if(this.plane.findIntersections(ray)==null)
+        if(intersections==null)
             return null;
 
         Vector v1=this.vertices.get(0).subtract(ray.getHead());
@@ -37,7 +38,7 @@ public class Triangle extends Polygon {
 
         //point in triangle
         if((t1<0 && t2<0 && t3<0)||(t1>0 && t2>0 && t3>0))
-            return this.plane.findIntersections(ray);
+            return intersections;
 
         //point is not in triangle
         return null;
