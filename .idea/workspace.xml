@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="part4-stage5">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-    </list>
+    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="Tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -393,7 +390,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1719253350516</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL‎-00025" summary="Tests">
+      <option name="closed" value="true" />
+      <created>1719428344161</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL‎-00025" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1719428344162</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,6 +431,7 @@
     <MESSAGE value="Notes" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="part4-stage5" />
-    <option name="LAST_COMMIT_MESSAGE" value="part4-stage5" />
+    <MESSAGE value="Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests" />
   </component>
 </project>
