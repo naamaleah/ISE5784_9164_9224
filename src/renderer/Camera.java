@@ -117,8 +117,8 @@ public class Camera implements Cloneable {
 
         // calculate necessary "size" needed to move from
         // center of view plane to reach the middle point of pixel (i,j)
-        double Yi=-(i-(nY-1)/2)*Ry;
-        double Xj=(j-(nX-1)/2)*Rx;
+        double Yi=-(i-(nY-1)/2d)*Ry;
+        double Xj=(j-(nX-1)/2d)*Rx;
 
         // set result point to middle of view plane
         Point Pij=Pc;
