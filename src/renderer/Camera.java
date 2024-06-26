@@ -172,6 +172,12 @@ public class Camera implements Cloneable {
             this.camera.imageWriter=imageWriter;
             return this;
         }
+
+        /**
+         * Ray-Tracer setter
+         * @param rayTracer Ray-Tracer
+         * @return Returns itself
+         */
         public Builder setRayTracer(RayTracerBase rayTracer){
             this.camera.rayTracer=rayTracer;
             return this;
