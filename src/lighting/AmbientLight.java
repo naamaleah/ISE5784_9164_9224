@@ -8,9 +8,8 @@ import primitives.Double3;
  *
  * @author Naama and Yeela
  */
-public class AmbientLight {
+public class AmbientLight extends Light {
 
-    private final Color intensity;
     /**
      * default color for all object in the scene
      */
@@ -23,8 +22,7 @@ public class AmbientLight {
      * @param Ka attenuation coefficient of color
      */
     public AmbientLight(Color Ia, Double3 Ka) {
-        intensity = Ia.scale(Ka);
-
+        super(Ia.scale(Ka));
     }
 
     /**
@@ -34,15 +32,7 @@ public class AmbientLight {
      * @param Ka attenuation coefficient of color
      */
     public AmbientLight(Color Ia, double Ka) {
-        intensity = Ia.scale(Ka);
+        super(Ia.scale(Ka));
     }
 
-    /**
-     * getter
-     *
-     * @return color intensity
-     */
-    public Color getIntensity() {
-        return intensity;
-    }
 }
