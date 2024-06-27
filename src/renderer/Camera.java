@@ -14,15 +14,42 @@ import static primitives.Util.isZero;
  */
 public class Camera implements Cloneable {
 
+    /**
+     * vector pointing towards view plane (-Z axis)
+     */
     private Vector vTo;
+    /**
+     * vector pointing up ( Y axis)
+     */
     private Vector vUp;
+    /**
+     * camera's position point in 3D space
+     */
     private Point p0;
+    /**
+     * vector pointing right ( X axis)
+     */
     private Vector vRight;
-    double width=0.0;
-    double height=0.0;
-    double distance=0.0;
-    ImageWriter imageWriter;
-    RayTracerBase rayTracer;
+    /**
+     * width of view plane size
+     */
+    private double width=0.0;
+    /**
+     * height of view plane size
+     */
+    private double height=0.0;
+    /**
+     * distance between view plane from camera
+     */
+    private double distance=0.0;
+    /**
+     * image writing to file functionality object
+     */
+    private ImageWriter imageWriter;
+    /**
+     * calculate color of pixel functionality object
+     */
+    private RayTracerBase rayTracer;
 
 
     /**
@@ -146,10 +173,24 @@ public class Camera implements Cloneable {
      */
     public static class Builder{
         private final Camera camera=new Camera();
+
+        /**
+         * Sets the location point for the camera.
+         *
+         * @param p the location Point to set
+         * @return the Builder instance with the updated Height and Width
+         */
         public Builder setLocation(Point p){
             this.camera.p0=p;
             return this;
         }
+        /**
+         * Sets the Direction for the camera.
+         *
+         * @param vTo the vector pointing toward the screen to set
+         * @param vUp the vector pointing upward to set
+         * @return the Builder instance with the updated vTo and vUp
+         */
         public Builder setDirection(Vector vTo,Vector vUp){
             if(vTo.dotProduct(vUp) != 0)
                 throw new IllegalArgumentException("Not orthogonal Vectors");
@@ -157,31 +198,60 @@ public class Camera implements Cloneable {
             this.camera.vUp=vUp.normalize();
             return this;
         }
+        /**
+         * Sets the View plane size for the camera.
+         *
+         * @param width the Width to set
+         * @param height the Height to set
+         * @return the Builder instance with the updated Height and Width
+         */
         public Builder setVpSize(double width,double height){
             if(width<0 ||height<0) throw new IllegalArgumentException("Height and length can not be negative numbers");
             this.camera.width=width;
             this.camera.height=height;
             return this;
         }
+        /**
+         * Sets the Distance for the camera.
+         *
+         * @param distance the Distance to set
+         * @return the Builder instance with the updated Distance
+         */
         public Builder setVpDistance(double distance){
             if(distance<0) throw new IllegalArgumentException("Distance can not be negative numbers");
             this.camera.distance=distance;
             return this;
         }
+        /**
+         * Sets the ImageWriter for the camera.
+         *
+         * @param imageWriter the ImageWriter to set
+         * @return the Builder instance with the updated ImageWriter
+         */
         public Builder setImageWriter(ImageWriter imageWriter){
             this.camera.imageWriter=imageWriter;
             return this;
         }
 
         /**
-         * Ray-Tracer setter
-         * @param rayTracer Ray-Tracer
-         * @return Returns itself
+         * Sets the RayTracer for the camera.
+         *
+         * @param rayTracer the RayTracer to set
+         * @return the Builder instance with the updated RayTracer
          */
         public Builder setRayTracer(RayTracerBase rayTracer){
             this.camera.rayTracer=rayTracer;
             return this;
         }
+        /**
+         * Builds and returns the Camera instance.
+         *
+         * Checks for missing essential fields and throws a MissingResourceException if any are missing.
+         * If all fields are set, calculates the vRight vector and returns a cloned Camera instance.
+         *
+         * @return the built Camera instance
+         * @throws MissingResourceException if any required field is missing
+         */
         public Camera build(){
             String message="Missing info for render";
             String className="Camera";

@@ -9,6 +9,9 @@ import scene.Scene;
  * @author Naama and Yeela
  */
 public abstract class RayTracerBase {
+    /**
+     * {@link Scene} for {@link Color} calculations to be executed on
+     */
     protected Scene scene;
 
     /**

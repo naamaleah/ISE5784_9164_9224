@@ -33,6 +33,12 @@ public class SimpleRayTracer extends RayTracerBase {
         // intersection was found, calculate color of the of pixel.
         return calcColor();
     }
+    /**
+     * find the closest intersection point between ray and geometries in scene
+     *
+     * @param ray ray constructed from camera to scene
+     * @return closest intersection Point
+     */
     private Point findClosestIntersection(Ray ray) {
         // check if ray constructed through the pixel intersects any of geometries
         List<Point> intersections = scene.geometries.findIntersections(ray);
@@ -42,6 +48,11 @@ public class SimpleRayTracer extends RayTracerBase {
 
     }
 
+    /**
+     * calculate color of geometric shape at a given point (phong model)
+     *
+     * @return {@link Color} of the shape at the point
+     */
     private Color calcColor(){
         return this.scene.ambientLight.getIntensity();
     }

@@ -1,9 +1,5 @@
 package primitives;
 
-/**
- * This class represents ray
- */
-
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -58,8 +54,8 @@ public class Ray {
 
   /**
    * Returns a point on the ray
-   * @param t
-   * @return
+   * @param t A number to scale with
+   * @return Returns a point along the ray
    */
   public Point getPoint(double t)
   {
