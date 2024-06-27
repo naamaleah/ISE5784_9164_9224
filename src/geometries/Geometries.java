@@ -23,10 +23,20 @@ public class Geometries implements Intersectable {
     public Geometries() {
     }
 
+    /**
+     * constructor
+     *
+     * @param geometries list of geometries
+     */
     public Geometries(Intersectable... geometries) {
         add(geometries);
     }
 
+    /**
+     * adds geometries to list of geometries
+     *
+     * @param geometries list of geometries
+     */
     public void add(Intersectable... geometries) {
 
         this.geometries.addAll(Arrays.asList(geometries));
@@ -35,20 +45,20 @@ public class Geometries implements Intersectable {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        List<Point> lst = null;
+        List<Point> result = null;
 
-        for (Intersectable shape : geometries) {
+        for (Intersectable geometry : geometries) {
             // get intersection point for each specific item, (item can be either geometry/nested composite of geometries)
-            List<Point> PointList = shape.findIntersections(ray);
+            List<Point> points = geometry.findIntersections(ray);
 
             // points were found , add to composite's total intersection points list
-            if (PointList != null) {
-                if (lst == null) {
-                    lst = new LinkedList<>();
+            if (points != null) {
+                if (result == null) {
+                    result = new LinkedList<>();
                 }
-                lst.addAll(PointList);
+                result.addAll(points);
             }
         }
-        return lst;
+        return result;
     }
 }
