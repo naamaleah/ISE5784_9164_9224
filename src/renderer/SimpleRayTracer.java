@@ -8,13 +8,15 @@ import scene.Scene;
 import java.util.List;
 
 /**
- *class implements rayTracer abstract class
+ * class implements rayTracer abstract class
+ *
  * @author Naama and Yeela
  */
 public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Parameter constructor
+     *
      * @param scene The scene
      */
     public SimpleRayTracer(Scene scene) {
@@ -33,6 +35,7 @@ public class SimpleRayTracer extends RayTracerBase {
         // intersection was found, calculate color of the of pixel.
         return calcColor();
     }
+
     /**
      * find the closest intersection point between ray and geometries in scene
      *
@@ -53,7 +56,7 @@ public class SimpleRayTracer extends RayTracerBase {
      *
      * @return {@link Color} of the shape at the point
      */
-    private Color calcColor(){
+    private Color calcColor() {
         return this.scene.ambientLight.getIntensity();
     }
 }

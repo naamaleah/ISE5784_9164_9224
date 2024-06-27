@@ -6,7 +6,8 @@ import primitives.Color;
 
 /**
  * The class represents a graphical scene
- *  * @author Naama and Yeela
+ *
+ * @author Naama and Yeela
  */
 public class Scene {
 

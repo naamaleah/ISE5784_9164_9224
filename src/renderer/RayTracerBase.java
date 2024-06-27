@@ -6,6 +6,7 @@ import scene.Scene;
 
 /**
  * Class RayTracerBase is an abstract class responsible for calculating colors of a scene
+ *
  * @author Naama and Yeela
  */
 public abstract class RayTracerBase {
@@ -16,6 +17,7 @@ public abstract class RayTracerBase {
 
     /**
      * parameter constructor
+     *
      * @param scene The scene
      */
     public RayTracerBase(Scene scene) {
@@ -23,7 +25,8 @@ public abstract class RayTracerBase {
     }
 
     /**
-     *abstract method - calculate color of a pixel in  image
+     * abstract method - calculate color of a pixel in  image
+     *
      * @param ray Ray to be traced
      * @return Color
      */
