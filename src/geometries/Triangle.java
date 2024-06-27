@@ -19,7 +19,7 @@ public class Triangle extends Polygon {
 
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 
         var intersections = plane.findIntersections(ray);
         //there is no intersection at all
@@ -40,7 +40,8 @@ public class Triangle extends Polygon {
 
         //point in triangle
         if ((t1 < 0 && t2 < 0 && t3 < 0) || (t1 > 0 && t2 > 0 && t3 > 0))
-            return intersections;
+
+            return List.of(new GeoPoint(this,intersections.getFirst()));
 
         //point is not in triangle
         return null;
