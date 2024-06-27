@@ -88,6 +88,7 @@ public class Plane implements Geometry {
 
         double t = alignZero(nqp0 / nv);
 
+        //if t=0 returns the rays head because getPoint deals with it
         Point p = ray.getPoint(t);
 
         // t must be positive
