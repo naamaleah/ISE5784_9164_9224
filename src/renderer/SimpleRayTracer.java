@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
@@ -27,7 +28,7 @@ public class SimpleRayTracer extends RayTracerBase {
     public Color traceRay(Ray ray) {
 
         // find the closest intersection point
-        Point closestPoint = findClosestIntersection(ray);
+        GeoPoint closestPoint = findClosestIntersection(ray);
         // if no intersection point was found , return basic background color of scene
         if (closestPoint == null)
             return scene.background;
@@ -42,19 +43,19 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param ray ray constructed from camera to scene
      * @return closest intersection Point
      */
-    private Point findClosestIntersection(Ray ray) {
+    private GeoPoint findClosestIntersection(Ray ray) {
         // check if ray constructed through the pixel intersects any of geometries
-        List<Point> intersections = scene.geometries.findIntersections(ray);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
 
         // return closest point if list is not empty
-        return intersections == null ? null : ray.findClosestPoint(intersections);
+        return intersections == null ? null : ray.findClosestGeoPoint(intersections);
 
     }
 
     /**
-     * calculate color of geometric shape at a given point (phong model)
+     * calculate color of geometry at a given point (phong model)
      *
-     * @return {@link Color} of the shape at the point
+     * @return {@link Color} of the geometry at the point
      */
     private Color calcColor() {
         return this.scene.ambientLight.getIntensity();

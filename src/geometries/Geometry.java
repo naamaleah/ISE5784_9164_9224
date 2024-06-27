@@ -3,11 +3,36 @@ package geometries;
 import primitives.*;
 
 /**
- * An interface that represents some geometric body
+ * An abstract class that represents some geometric body
  *
  * @author Naama and Yeela
  */
-public interface Geometry extends Intersectable {
+public abstract class Geometry extends Intersectable {
+
+    /**
+     * {@link Color} of the geometry
+     */
+    protected Color emission = Color.BLACK;
+
+    /**
+     * getter for emission field
+     *
+     * @return {@link  Color} of the geometry
+     */
+    public Color getEmission() {
+        return emission;
+    }
+
+    /**
+     * setter for emission field (builder pattern style)
+     *
+     * @param emission {@link Color} object to set shape's color to
+     * @return this instance of object
+     */
+    public Geometry setEmission(Color emission) {
+        this.emission = emission;
+        return this;
+    }
 
     /**
      * Calculates and returns the normal
@@ -15,5 +40,5 @@ public interface Geometry extends Intersectable {
      * @param p A point to calculate the normal
      * @return normal
      */
-    Vector getNormal(Point p);
+    public abstract Vector getNormal(Point p);
 }

@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Naama and Yeela
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
     final private List<Intersectable> geometries = new LinkedList<Intersectable>();
 
@@ -44,19 +44,19 @@ public class Geometries implements Intersectable {
 
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> result = null;
 
         for (Intersectable geometry : geometries) {
             // get intersection point for each specific item, (item can be either geometry/nested composite of geometries)
-            List<Point> points = geometry.findIntersections(ray);
+            List<GeoPoint> geoPoints = geometry.findGeoIntersections(ray);
 
             // points were found , add to composite's total intersection points list
-            if (points != null) {
+            if (geoPoints != null) {
                 if (result == null) {
-                    result = new LinkedList<>();
+                    result = new LinkedList<GeoPoint>();
                 }
-                result.addAll(points);
+                result.addAll(geoPoints);
             }
         }
         return result;
