@@ -3,84 +3,103 @@ package primitives;
 /**
  * Class Point is the basic class representing a point of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
+ *
  * @author Naama and Yeela
  */
 public class Point {
-    /**coordinates */
+    /**
+     * coordinates
+     */
     protected final Double3 xyz;
-    /** Zero point (0,0,0) */
-    public static Point ZERO=new Point(0,0,0);
+    /**
+     * Zero point (0,0,0)
+     */
+    public static Point ZERO = new Point(0, 0, 0);
 
-    /**Parameter constructor
+    /**
+     * Parameter constructor
      *
      * @param xyz coordinates
      */
     public Point(Double3 xyz) {
-       this.xyz=xyz;
+        this.xyz = xyz;
     }
 
-    /**A constructor that accepts three parameters
+    /**
+     * A constructor that accepts three parameters
      *
      * @param x first number value
      * @param y second number value
      * @param z third number value
      */
-   public Point(double x,double y,double z) {
-       xyz=new Double3(x,y,z);
+    public Point(double x, double y, double z) {
+        xyz = new Double3(x, y, z);
     }
 
-    /**Point subtraction returns a vector
+    /**
+     * Point subtraction returns a vector
      *
      * @param other a point
      * @return vector
      */
-    public Vector subtract(Point other){
+    public Vector subtract(Point other) {
         return new Vector(this.xyz.subtract(other.xyz));
     }
 
-    /**Adding points returns a point
+    /**
+     * Adding points returns a point
      *
-     * @param vec a vector
+     * @param v a vector
      * @return point
      */
-    public Point add(Vector vec){
-        return new Point(this.xyz.add(vec.xyz));
+    public Point add(Vector v) {
+        return new Point(this.xyz.add(v.xyz));
     }
 
-    /**Returns distance between points squared
+    /**
+     * Returns distance between points squared
      *
      * @param p a point
      * @return distance Squared
      */
-    public double distanceSquared(Point p){
-        return (xyz.d1-p.xyz.d1)*(xyz.d1-p.xyz.d1)+(xyz.d2-p.xyz.d2)*(xyz.d2-p.xyz.d2)+(xyz.d3-p.xyz.d3)*(xyz.d3-p.xyz.d3);
+    public double distanceSquared(Point p) {
+        return (xyz.d1 - p.xyz.d1) * (xyz.d1 - p.xyz.d1) + (xyz.d2 - p.xyz.d2) * (xyz.d2 - p.xyz.d2) + (xyz.d3 - p.xyz.d3) * (xyz.d3 - p.xyz.d3);
     }
 
-    /**returns distance between points
+    /**
+     * returns distance between points
      *
      * @param p a point
      * @return distance
      */
-    public double distance(Point p){
+    public double distance(Point p) {
         return Math.sqrt(this.distanceSquared(p));
     }
 
 
-
-
     @Override
     public boolean equals(Object obj) {
-        if(this==obj) return true;
+        if (this == obj) return true;
         return obj instanceof Point other && xyz.equals(other.xyz);
     }
 
     @Override
-    public String toString() {return ""+xyz;}
+    public String toString() {
+        return "" + xyz;
+    }
 
     /*
     getters for point
      */
-    double getD1() {return xyz.d1;}
-    double getD2() {return xyz.d2;}
-    double getD3() {return xyz.d3;}
+    double getD1() {
+        return xyz.d1;
+    }
+
+    double getD2() {
+        return xyz.d2;
+    }
+
+    double getD3() {
+        return xyz.d3;
+    }
 }
