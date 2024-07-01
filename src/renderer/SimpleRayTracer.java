@@ -148,9 +148,10 @@ public class SimpleRayTracer extends RayTracerBase {
         Ray ray = new Ray(point, lightDirection);
         double distance = light.getDistance(gp.point);
 
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray).stream()
-                .filter(g -> distance > g.point.distance(gp.point)).toList();
-        return intersections.isEmpty();
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+        if(intersections==null) return true;
+        return intersections.stream()
+                .filter(g -> distance > g.point.distance(gp.point)).toList().isEmpty();
     }
 
 }
