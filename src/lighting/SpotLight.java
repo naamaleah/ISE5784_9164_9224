@@ -5,6 +5,7 @@ import primitives.Point;
 import primitives.Vector;
 
 import static java.lang.Math.max;
+import static java.lang.Math.pow;
 
 /**
  * a {@link PointLight} with direction to the light beam
@@ -12,6 +13,10 @@ import static java.lang.Math.max;
  * @author Naama and Yeela
  */
 public class SpotLight extends PointLight {
+    /**
+     * A factor that determines the narrowness of the light beam
+     */
+    private double narrowBeam=1;
     /**
      * direction of light beam
      */
@@ -59,13 +64,23 @@ public class SpotLight extends PointLight {
         this.direction = direction.normalize();
     }
 
+    /**
+     * Setter for narrowBeam
+     * @param narrowBeam parameter for narrowBeam
+     * @return Return itself
+     */
+    public SpotLight setNarrowBeam(double narrowBeam) {
+        this.narrowBeam = narrowBeam;
+        return this;
+    }
+
     @Override
     public Color getIntensity(Point p) {
         Color color = super.getIntensity(p);
         //vector from light origin point to point p on geometry
         Vector v = super.getL(p);
         // get max between dot product and 0 )
-        double factor = max(0, direction.dotProduct(v));
+        double factor =pow(max(0, direction.dotProduct(v)),narrowBeam) ;
         // scale intensity returned from parent class with factor
         return color.scale(factor);
     }
