@@ -4,9 +4,9 @@ import primitives.*;
 
 /**
  * light source object with direction to the light (no attenuation)
- *  * * @author Naama and Yeela
+ * * * @author Naama and Yeela
  */
-public class DirectionalLight extends Light implements LightSource{
+public class DirectionalLight extends Light implements LightSource {
     /**
      * direction of the light
      */
@@ -14,6 +14,7 @@ public class DirectionalLight extends Light implements LightSource{
 
     /**
      * constructor
+     *
      * @param intensity {@link Color} of intensity of the light
      * @param direction direction {@link Vector} of beam
      */
@@ -30,5 +31,10 @@ public class DirectionalLight extends Light implements LightSource{
     @Override
     public Vector getL(Point p) {
         return direction;
+    }
+
+    @Override
+    public double getDistance(Point point) {
+        return Double.POSITIVE_INFINITY;
     }
 }
