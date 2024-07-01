@@ -116,4 +116,20 @@ class PlaneTest {
                 "ERROR: findIntersections() did not return null when the ray begins " +
                         "in the same point which appears as reference point in the plane");
     }
+
+    /**
+     * Test method for {@link geometries.Plane#findGeoIntersectionsHelper(Ray, double)}
+     */
+    @Test
+    void findGeoIntersectionsHelperTest1() {
+        Ray ray = new Ray(new Point(1, 0, 1), new Vector(1, 0, 0));
+        Plane plane = new Plane(new Point(4, 0, 0), new Vector(1, 0, 0));
+
+
+        assertNull(plane.findGeoIntersectionsHelper(ray, 1d), "wrong zero intersections");
+        List<Intersectable.GeoPoint> res = plane.findGeoIntersectionsHelper(ray, 8d);
+
+        Intersectable.GeoPoint gp = new Intersectable.GeoPoint((Geometry) plane, new Point(4, 0, 1));
+        assertEquals(List.of(gp), res, "wrong one intersections");
+    }
 }

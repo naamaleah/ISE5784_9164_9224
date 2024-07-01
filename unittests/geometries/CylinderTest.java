@@ -199,5 +199,26 @@ class CylinderTest {
         assertNull(result, "Wrong number of points");
     }
 
+    //    /**
+//     * Test method for {@link geometries.Plane#findGeoIntersectionsHelper(Ray, double)}
+//     */
+//    @Test
+//    void findGeoIntersectionsHelperTest1() {
+//        Cylinder cylinder = new Cylinder(1d, new Ray(new Point(2, 0, 0), new Vector(0, 0, 1)), 2d);
+//        List<Intersectable.GeoPoint> res = null;
+//
+//        res = cylinder.findGeoIntersectionsHelper(new Ray(new Point(-1, 0, 1), new Vector(1, 0, 0)), 1d);
+//        assertNull(res, "wrong zero intersections");
+//
+//
+//        res = cylinder.findGeoIntersectionsHelper(new Ray(new Point(-1, 0, 1), new Vector(1, 0, 0)), 2.5d);
+//        assertEquals(1, res.size(), "wrong one point intersections");
+//
+//
+//        res = cylinder.findGeoIntersectionsHelper(new Ray(new Point(-1, 0, 1), new Vector(1, 0, 0)), 5d);
+//        assertEquals(2, res.size(), "wrong two point intersections");
+//
+//    }
+
 
 }
