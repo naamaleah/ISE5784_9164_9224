@@ -3,6 +3,8 @@ package renderer;
 import org.junit.jupiter.api.Test;
 import primitives.Color;
 
+import static java.awt.Color.*;
+
 
 class ImageWriterTest {
 
@@ -16,9 +18,9 @@ class ImageWriterTest {
             for (int j = 0; j < imageWriter.getNy(); j++) {
                 // Check if the current pixel is on a grid line
                 if (i % 50 == 0 || j % 50 == 0)
-                    imageWriter.writePixel(i, j, new Color(java.awt.Color.RED));
+                    imageWriter.writePixel(i, j, new Color(RED));
                 else
-                    imageWriter.writePixel(i, j, new Color(java.awt.Color.YELLOW));
+                    imageWriter.writePixel(i, j, new Color(YELLOW));
 
             }
         imageWriter.writeToImage();

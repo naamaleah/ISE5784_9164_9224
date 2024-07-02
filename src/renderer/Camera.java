@@ -92,9 +92,7 @@ public class Camera implements Cloneable {
      * @param i  row index of pixel
      */
     private void castRay(int Nx, int Ny, int j, int i) {
-        // construct ray through pixel
         Ray ray = constructRay(Nx, Ny, j, i);
-        // return the color using ray tracer
         Color color = rayTracer.traceRay(ray);
         imageWriter.writePixel(j, i, color);
     }
