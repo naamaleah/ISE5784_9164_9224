@@ -7,6 +7,15 @@ package primitives;
  */
 public class Material {
     /**
+     * coefficient for transparency level of material
+     */
+    public Double3 kT=Double3.ZERO;
+
+    /**
+     *  coefficient for reflectiveness level of material
+     */
+    public Double3 kR=Double3.ZERO;
+    /**
      * attenuation coefficient for diffusion of light on the material
      */
     public Double3 kD = Double3.ZERO;
