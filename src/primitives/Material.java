@@ -9,12 +9,12 @@ public class Material {
     /**
      * coefficient for transparency level of material
      */
-    public Double3 kT=Double3.ZERO;
+    public Double3 kT = Double3.ZERO;
 
     /**
-     *  coefficient for reflectiveness level of material
+     * coefficient for reflectiveness level of material
      */
-    public Double3 kR=Double3.ZERO;
+    public Double3 kR = Double3.ZERO;
     /**
      * attenuation coefficient for diffusion of light on the material
      */
@@ -26,9 +26,11 @@ public class Material {
     /**
      * shininess level of geometry
      */
-    public int nShininess=0;
+    public int nShininess = 0;
+
     /**
      * setter for kD field (Builder pattern style)
+     *
      * @param kD coefficient value of diffusion of light on material
      * @return this instance of object
      */
@@ -39,6 +41,7 @@ public class Material {
 
     /**
      * setter for kD field (Builder pattern style)
+     *
      * @param kD coefficient value of diffusion of light on material
      * @return this instance of object
      */
@@ -49,6 +52,7 @@ public class Material {
 
     /**
      * setter for kS field (Builder pattern style)
+     *
      * @param kS coefficient value of specular level of material
      * @return this instance of object
      */
@@ -59,6 +63,7 @@ public class Material {
 
     /**
      * setter for kS field (Builder pattern style)
+     *
      * @param kS coefficient value of specular level of material
      * @return this instance of object
      */
@@ -69,6 +74,7 @@ public class Material {
 
     /**
      * setter for nShininess field (Builder pattern style)
+     *
      * @param nShininess shininess level of geometry
      * @return this instance of object
      */
@@ -76,4 +82,50 @@ public class Material {
         this.nShininess = nShininess;
         return this;
     }
+
+    /**
+     * setter
+     *
+     * @param kT for setter
+     * @return this
+     */
+    public Material setkT(Double3 kT) {
+        this.kT = kT;
+        return this;
+    }
+
+    /**
+     * setter
+     *
+     * @param kT for setter
+     * @return this
+     */
+    public Material setkT(double kT) {
+        this.kT = new Double3(kT);
+        return this;
+    }
+
+    /**
+     * setter
+     *
+     * @param kR for setter
+     * @return this
+     */
+    public Material setkR(Double3 kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * setter
+     *
+     * @param kR for setter
+     * @return this
+     */
+    public Material setkR(double kR) {
+        this.kR = new Double3(kR);
+        return this;
+    }
+
+
 }

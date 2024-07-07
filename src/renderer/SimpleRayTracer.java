@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.Geometry;
 import geometries.Intersectable.GeoPoint;
 import lighting.LightSource;
 import primitives.*;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 import static java.awt.Color.BLACK;
 import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * class implements rayTracer abstract class
@@ -19,6 +21,9 @@ import static primitives.Util.alignZero;
 public class SimpleRayTracer extends RayTracerBase {
 
     private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
+    private static final Double3 INITIAL_K = Double3.ONE;
 
     /**
      * Parameter constructor
@@ -58,37 +63,67 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * calculate the color of a pixel
+     * Additional calcColor function enabling recursion based on depth and light
+     * intensity.
      *
-     * @param gp  the {@link GeoPoint} viewed through the pixel to calculate color of
-     * @param ray ray of camera through pixel in view plane where the point is located
-     * @return color of the pixel
+     * @param gp    the point at which to calculate the light
+     * @param ray   ray from camera to the point
+     * @param level depth of recursion
+     * @param k     weight of light at a certain point in recursion
+     * @return if bottom level reached - color at the point, otherwise - the color
+     * at the point, in addition to the added affects achieved by the
+     * deepening of the recursion
      */
-    private Color calcColor(GeoPoint gp, Ray ray) {
-        return scene.ambientLight.getIntensity().add(calcLocalEffects(gp, ray));
+    private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Color color = calcLocalEffects(gp, ray, k);
+        return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
     }
 
     /**
-     * Calculates the local effects (diffuse and specular) of a given geometric point on a ray.
+     * Calculates the color at a certain point of intersection by using a separate
+     * recursive funtion. This function sends the initial values for the recursion.
      *
-     * @param gp  The geometric point at which to calculate the local effects.
-     * @param ray The ray being traced.
-     * @return The color resulting from the local effects.
+     * @param p   intersection point
+     * @param ray from camera to the point
+     * @return color at the point
      */
-    private Color calcLocalEffects(GeoPoint gp, Ray ray) {
+    private Color calcColor(GeoPoint p, Ray ray) {
+        return calcColor(p, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K)).add(scene.ambientLight.getIntensity());
+    }
+
+    /**
+     * Calculates the color at a certain point as caused by local effects (the
+     * result of various light sources and the geometry's emission light). This is
+     * done using the Phong model for light propagation.
+     *
+     * @param gp  the point at which the light intensity is calculated
+     * @param ray camera ray for which the aforementioned GeoPoint was found
+     * @return the color at the point
+     */
+    private Color calcLocalEffects(GeoPoint gp, Ray ray, Double3 k) {
+        Color color = gp.geometry.getEmission();
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
-        double nv = Util.alignZero(n.dotProduct(v));
-        int nShininess = gp.geometry.getMaterial().nShininess;
-        Double3 kd = gp.geometry.getMaterial().kD;
-        Double3 ks = gp.geometry.getMaterial().kS;
-        Color color = new Color(BLACK).add(gp.geometry.getEmission());//new Color(BLACK);
+        double nv = alignZero(n.dotProduct(v));
+        Material mat = gp.geometry.getMaterial();
+// returns no color in the case that camera ray is perpendicular to the normal
+        // at the point's location
+        if (nv == 0)
+            return color;
+
+        // For each light source in the scene, if the light is on the same side of the
+        // object as the camera, it's affect on the point's color is added
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
-            double nl = Util.alignZero(n.dotProduct(l));
-            if ((nl * nv > 0)&& unshaded(gp,lightSource,l,n,nl)) {
-                Color intensity = lightSource.getIntensity(gp.point);
-                color = color.add(calcDiffusive(kd, l, n, intensity), calcSpecular(ks, l, n, v, nShininess, intensity));
+            double nl = alignZero(n.dotProduct(l));
+            if (alignZero(nl * nv) > 0) {
+                // Checks shade percentage between the light source and the point and only
+                // calculates the intensity from a given light as a factor of the transparency.
+                Double3 ktr = transparency(gp, l, n, nl, lightSource);
+                if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
+                    Color iL = lightSource.getIntensity(gp.point).scale(ktr);
+                    color = color.add(iL.scale(calcDiffusive(mat, nl)), iL.scale(calcSpecular(mat, n, l, nl, v)));
+                }
             }
         }
         return color;
@@ -96,35 +131,16 @@ public class SimpleRayTracer extends RayTracerBase {
 
 
     /**
-     * Calculates the specular reflection component for a given material.
+     * Calculates the effect of diffusive light return at the point.
      *
-     * @param ks             The specular reflection coefficient of the material.
-     * @param l              The direction of the light source.
-     * @param n              The surface normal at the point of reflection.
-     * @param v              The direction from the point of reflection towards the viewer.
-     * @param nShininess     The shininess factor of the material.
-     * @param lightIntensity The intensity of the light source.
-     * @return The color resulting from the specular reflection.
+     * @param mat the material of the geometry the point belongs to
+     * @param nl  dot product of the normal at the point and the ray from the light
+     *            source to the point
+     * @return the diffusive color return at the point
      */
-    private Color calcSpecular(Double3 ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-        Vector r = l.subtract(n.scale(2 * (l.dotProduct(n))));
-        double vrMinus = Math.max(0, v.scale(-1).dotProduct(r));
-        double vrn = Math.pow(vrMinus, nShininess);
-        return lightIntensity.scale(ks.scale(vrn));
-    }
+    private Double3 calcDiffusive(Material mat, double nl) {
+        return mat.kD.scale(nl < 0 ? -nl : nl);
 
-    /**
-     * Calculates the diffuse reflection component for a given material.
-     *
-     * @param kd        The diffuse reflection coefficient of the material.
-     * @param l         The direction of the light source.
-     * @param n         The surface normal at the point of reflection.
-     * @param intensity The intensity of the light source.
-     * @return The color resulting from the diffuse reflection.
-     */
-    private Color calcDiffusive(Double3 kd, Vector l, Vector n, Color intensity) {
-        double ln = Math.abs(l.dotProduct(n));
-        return intensity.scale(kd.scale(ln));
     }
 
 
@@ -148,8 +164,76 @@ public class SimpleRayTracer extends RayTracerBase {
         Ray ray = new Ray(point, lightDirection);
         double distance = light.getDistance(gp.point);
 
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray,distance);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray, distance);
         return intersections == null;
     }
+
+
+    /**
+     * Calculates the effect of specular light return at the point.
+     *
+     * @param mat the material of the geometry the point belongs to
+     * @param n   normal at the point
+     * @param l   the ray from the light source to the point in question
+     * @param nl  dot product of the normal at the point and the ray from the light
+     *            source to the point
+     * @param v   the direction of the camera ray
+     * @return the specular color return at the point
+     */
+    private Double3 calcSpecular(Material mat, Vector n, Vector l, double nl, Vector v) {
+        double vr = v.dotProduct(l.mirror(n, nl));
+        return (alignZero(vr) > 0) ? Double3.ZERO : mat.kS.scale(Math.pow(-vr, mat.nShininess));
+    }
+
+    /**
+     * Recursively returns the added affects for two additional rays emanating from
+     * the intersection point: the reflected ray and the refracted ray.
+     *
+     * @param gp    the point from which to send the secondary rays
+     * @param ray   the from the camera to the intersection point
+     * @param level the depth of recursion
+     * @param k     the weight of light at the current point in the recursion
+     * @return the color obtained from the secondary rays.
+     */
+    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Vector v = ray.getDir();
+        Vector n = gp.geometry.getNormal(gp.point);
+        Material material = gp.geometry.getMaterial();
+
+        Double3 kR = material.kR;
+        Double3 kT = material.kT;
+
+        return calcRayBeamColor(level, k, kT, constructRefractedRays(gp, v, n, material.kB))
+                .add(calcRayBeamColor(level, k, kR, constructReflectedRays(gp, v, n, material.kG)));
+
+    }
+
+    /**
+     * Checks that the weight of the light intensity at this point in the recursion
+     * is above the minimum (if not, black is returned) and proceeds to find the
+     * nearest intersection along that ray, adding it's affects if necessary,
+     * returning black or the background otherwise (if the camera ray is
+     * perpendicular to the normal or no intersection point exists, accordingly).
+     *
+     * @param ray   camera ray
+     * @param level depth of recursion
+     * @param k     current weight for light intensity at this point in recursion
+     * @param kx    weight to be added given the increasing level of recursion
+     * @return the color to be returned along the given secondary ray.
+     */
+    private Color calcGlobalEffect(Ray ray, int level, Double3 k, Double3 kx) {
+        Double3 kkx = k.product(kx);
+        // Checks if weight for light intensity is below minimum
+        if (kkx.lowerThan(MIN_CALC_COLOR_K))
+            return Color.BLACK;
+        GeoPoint gp = findClosestIntersection(ray);
+        // Returns background color if no intersection points are found
+        if (gp == null)
+            return scene.background.scale(kx);
+        // If they are, color at the nearest intersection is returned
+        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection())) ? Color.BLACK
+                : calcColor(gp, ray, level - 1, kkx).scale(kx);
+    }
+
 
 }
