@@ -1,6 +1,7 @@
 package primitives;
 
 import geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -13,6 +14,8 @@ import static primitives.Util.isZero;
  * @author Naama and Yeela
  */
 public class Ray {
+
+    private static final double DELTA = 0.1;
     /**
      * Source point
      */
@@ -42,6 +45,12 @@ public class Ray {
     public Ray(Point p, Vector v) {
         this.head = p;
         this.direction = v.normalize();
+    }
+
+    public Ray(Point p0, Vector direction, Vector normal) {
+        double res = direction.dotProduct(normal);
+        this.head = isZero(res) ? p0 : res > 0 ? p0.add(normal.scale(DELTA)) : p0.add(normal.scale(-DELTA));
+        this.direction = direction.normalize();
     }
 
     /**
@@ -87,14 +96,15 @@ public class Ray {
 
     /**
      * find the closest GeoPoint to ray origin from a list of GeoPoints
+     *
      * @param pointList list of intersection points
      * @return the closest {@link GeoPoint}
      */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> pointList) {
-        if (pointList==null)
+        if (pointList == null)
             return null;
 
-        GeoPoint result =null;
+        GeoPoint result = null;
         double minDistance = Double.MAX_VALUE;
         double ptDistance;
         for (var pt : pointList) {

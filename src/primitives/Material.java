@@ -23,6 +23,10 @@ public class Material {
      * attenuation coefficient for specular level of the material
      */
     public Double3 kS = Double3.ZERO;
+    /** Glossiness factor */
+    public double kG = 0;
+    /** Blurriness factor */
+    public double kB = 0;
     /**
      * shininess level of geometry
      */
