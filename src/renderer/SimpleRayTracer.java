@@ -204,8 +204,8 @@ public class SimpleRayTracer extends RayTracerBase {
         Double3 kR = material.kR;
         Double3 kT = material.kT;
 
-        return calcGlobalEffect(constructRefractedRay(gp.point, v, n),level, material.kT, k)
-                .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n),level, material.kR, k));
+        return calcGlobalEffect(constructRefractedRay(gp.point, v, n), material.kT, level, k)
+                .add(calcGlobalEffect(constructReflectedRay(gp.point, v, n), material.kR, level, k));
 
     }
 
