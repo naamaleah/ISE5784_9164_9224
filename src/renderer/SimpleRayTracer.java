@@ -267,34 +267,40 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * For a point, light source and the ray between them, all intersections capable
-     * of creating shade have their affects added by scaling in accordance with
-     * their level of transparency.
+     * calculate transparency of a point (shade)
      *
-     * @param gp    the point at which the light is being calculated
-     * @param l     ray from the point to the light source for which the shading is
-     *              being calculated
-     * @param n     normal at the point
-     * @param nl    dot product of the normal and the ray to the light source
-     * @param light the light source
-     * @return the factor by which to scale the intensity of light from a light
-     * source at the given point
+     * @param gp    {@link GeoPoint} to calculate transparency for
+     * @param light {@link LightSource} lighting towards the geometry
+     * @param l     normal {@link Vector} to geometry at the point
+     * @param n     light direction {@link Vector} (the original ray)
+     * @return {@link Double3} value of transparency at point
      */
-    protected Double3 transparency(GeoPoint gp, Vector l, Vector n, double nl, LightSource light) {
-        Vector lightDir = l.scale(-1);
-        Ray lightRay = new Ray(gp.point, lightDir, n);
-
-        var intersections = scene.geometries.findGeoIntersections(lightRay, light.getDistance(gp.point));
-        Double3 ktr = Double3.ONE;
+    private Double3 transparency(GeoPoint gp, LightSource light, Vector l, Vector n) {
+        // create a vector by scaling  light direction vector to opposite direction
+        // now originating from point towards light
+        Vector lightScaled = l.scale(-1);
+        // construct a new ray using the scaled vector from the point towards ray
+        // slightly removed from original point by epsilon (in Ray class)
+        Ray shadowRay = new Ray(gp.point, n, lightScaled);
+        // get distance from the light to the point
+        double lightDistance = light.getDistance(shadowRay.getP0());
+        // check if new ray intersect a geometry between point and the light source
+        // further objects behind the light are avoided by distance parameter
+        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(shadowRay, lightDistance);
+        // point is not shaded - return transparency level of 1
         if (intersections == null)
-            return ktr;
-        for (GeoPoint p : intersections) {
-            ktr = ktr.product(p.geometry.getMaterial().kT);
+            return Double3.ONE;
+
+        // point is shaded - iterate through intersection points and add the shade effect from geometry
+        //to transparency level at point
+        Double3 ktr = Double3.ONE;
+        for (var geoPoint : intersections) {
+            ktr = ktr.scale(geoPoint.geometry.getMaterial().kT);
             if (ktr.lowerThan(MIN_CALC_COLOR_K))
                 return Double3.ZERO;
         }
+        // return the transparency
         return ktr;
     }
-
 
 }
