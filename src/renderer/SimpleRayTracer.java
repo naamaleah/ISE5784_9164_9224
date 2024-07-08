@@ -118,7 +118,7 @@ public class SimpleRayTracer extends RayTracerBase {
             if (alignZero(nl * nv) > 0) {
                 // Checks shade percentage between the light source and the point and only
                 // calculates the intensity from a given light as a factor of the transparency.
-                Double3 ktr = transparency(gp, l, n, nl, lightSource);
+                Double3 ktr = transparency(gp, lightSource,l, n);
                 if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
                     Color iL = lightSource.getIntensity(gp.point).scale(ktr);
                     color = color.add(iL.scale(calcDiffusive(mat, nl)), iL.scale(calcSpecular(mat, n, l, nl, v)));
@@ -283,10 +283,10 @@ public class SimpleRayTracer extends RayTracerBase {
         // slightly removed from original point by epsilon (in Ray class)
         Ray shadowRay = new Ray(gp.point, n, lightScaled);
         // get distance from the light to the point
-        double lightDistance = light.getDistance(shadowRay.getP0());
+        double lightDistance = light.getDistance(shadowRay.getHead());
         // check if new ray intersect a geometry between point and the light source
         // further objects behind the light are avoided by distance parameter
-        List<GeoPoint> intersections = scene.getGeometries().findGeoIntersections(shadowRay, lightDistance);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(shadowRay, lightDistance);
         // point is not shaded - return transparency level of 1
         if (intersections == null)
             return Double3.ONE;
@@ -295,12 +295,13 @@ public class SimpleRayTracer extends RayTracerBase {
         //to transparency level at point
         Double3 ktr = Double3.ONE;
         for (var geoPoint : intersections) {
-            ktr = ktr.scale(geoPoint.geometry.getMaterial().kT);
+            ktr = ktr.product(geoPoint.geometry.getMaterial().kT);
             if (ktr.lowerThan(MIN_CALC_COLOR_K))
                 return Double3.ZERO;
         }
         // return the transparency
         return ktr;
     }
+
 
 }
