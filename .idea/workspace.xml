@@ -74,6 +74,8 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/hagai/ISE5784_9164_9224/unittests/renderer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
@@ -227,6 +229,7 @@
       <option name="presentableId" value="Default" />
       <updated>1715063805174</updated>
       <workItem from="1715063806266" duration="3000" />
+      <workItem from="1720505372660" duration="1877000" />
     </task>
     <task id="LOCAL‎-00001" summary="try git">
       <option name="closed" value="true" />
@@ -492,7 +495,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1719861812778</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Shadow">
+      <option name="closed" value="true" />
+      <created>1720454782594</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1720454782594</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Shadow">
+      <option name="closed" value="true" />
+      <created>1720455026539</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1720455026539</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
