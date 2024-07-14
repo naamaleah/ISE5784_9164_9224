@@ -101,4 +101,37 @@ public class ReflectionRefractionTests {
          .renderImage()
          .writeToImage();
    }
+
+   /** Geometry combination including refraction and reflection */
+   @Test
+   public void geometryCombinationTest() {
+      Camera.Builder camera = new Camera.Builder().setLocation(new Point(0, 0, 1000)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+              .setVpSize(200, 200).setVpDistance(1000);
+
+      scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+
+      scene.geometries.add(
+              new Sphere(new Point(0, 0, 0),40d)
+                      .setMaterial(new Material().setkD(0.3).setkS(0.5).setnShininess(10).setkR(0.5)),
+              new Triangle(new Point(0, 20, 0), new Point(20, 70, 0), new Point(-20, 70, 0))
+                      .setMaterial(new Material().setkD(0.2).setkS(0.6).setnShininess(8).setkT(0.6))
+                      .setEmission(new Color(RED)));
+
+      scene.geometries.add( //
+              new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150)) //
+                      .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(60)), //
+              new Triangle(new Point(-150, -150, -115), new Point(-70, 70, -140), new Point(75, 75, -150)) //
+                      .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(60)), //
+              new Sphere(new Point(60, 50, -50),30d).setEmission(new Color(BLUE)) //
+                      .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkT(0.6)));
+
+      scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
+              .setkL(4E-5).setkQ(2E-7));
+
+      ImageWriter imageWriter = new ImageWriter("GeometryCombination", 600, 600);
+      camera.setImageWriter(imageWriter) //
+              .setRayTracer(new SimpleRayTracer(scene)).build() //
+              .renderImage() //
+              .writeToImage();
+   }
 }
