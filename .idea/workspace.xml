@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="yessssss">
+    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="notes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,48 +42,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.All in ISE5784_9164_9224.executor": "Run",
-    "JUnit.All.executor": "Run",
-    "JUnit.CameraTest.testConstructRay.executor": "Run",
-    "JUnit.CylinderTest.findGeoIntersectionsHelperTest1.executor": "Run",
-    "JUnit.GeometriesTest.testFindIntersections.executor": "Debug",
-    "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
-    "JUnit.LightsTests.sphereDirectional.executor": "Run",
-    "JUnit.LightsTests.spherePoint.executor": "Run",
-    "JUnit.LightsTests.sphereSpotNarrow.executor": "Run",
-    "JUnit.LightsTests.trianglesSpotNarrow.executor": "Run",
-    "JUnit.PlaneTest.findGeoIntersectionsHelperTest1.executor": "Run",
-    "JUnit.RayTest.testFindClosestPoint.executor": "Run",
-    "JUnit.RenderTests.basicRenderXml.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.ShadowTests.executor": "Run",
-    "JUnit.SphereTest.findGeoIntersectionsHelperTest1.executor": "Run",
-    "JUnit.SphereTest.testFindIntersections.executor": "Run",
-    "JUnit.VectorTest.testLengthSquared.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/hagai/ISE5784_9164_9224/unittests/renderer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "fileTemplates",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.All in ISE5784_9164_9224.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testConstructRay.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.findGeoIntersectionsHelperTest1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GeometriesTest.testFindIntersections.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ImageWriterTest.testWriteToImage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereDirectional.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.spherePoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereSpotNarrow.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.trianglesSpotNarrow.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.findGeoIntersectionsHelperTest1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.testFindClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.basicRenderXml.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.findGeoIntersectionsHelperTest1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.testLengthSquared.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hagai/ISE5784_9164_9224/unittests/renderer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="geometries" />
@@ -231,7 +228,9 @@
       <option name="presentableId" value="Default" />
       <updated>1715063805174</updated>
       <workItem from="1715063806266" duration="3000" />
-      <workItem from="1720505372660" duration="6851000" />
+      <workItem from="1720505372660" duration="7146000" />
+      <workItem from="1720548843913" duration="132000" />
+      <workItem from="1720695947163" duration="84000" />
     </task>
     <task id="LOCAL‎-00001" summary="try git">
       <option name="closed" value="true" />
@@ -521,7 +520,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720507865786</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="notes">
+      <option name="closed" value="true" />
+      <created>1720543152063</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1720543152063</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +554,6 @@
     <MESSAGE value="test case" />
     <MESSAGE value="Sphere findintersections" />
     <MESSAGE value="find intersections triangle" />
-    <MESSAGE value="notes" />
     <MESSAGE value="renderer" />
     <MESSAGE value="Final" />
     <MESSAGE value="ImageWriter" />
@@ -559,6 +565,7 @@
     <MESSAGE value="Notes" />
     <MESSAGE value="Shadow" />
     <MESSAGE value="yessssss" />
-    <option name="LAST_COMMIT_MESSAGE" value="yessssss" />
+    <MESSAGE value="notes" />
+    <option name="LAST_COMMIT_MESSAGE" value="notes" />
   </component>
 </project>
