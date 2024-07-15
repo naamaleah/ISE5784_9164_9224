@@ -52,7 +52,7 @@ class CylinderTest {
         //TC03 ray starts outside and parallel to the cylinder's ray and crosses the cylinder
 
         var result = cylinder.findIntersections(new Ray(new Point(2.5, 0, -1), v001));
-        assertEquals(2, result.size(), "Wrong number of points");
+//        assertEquals(2, result.size(), "Wrong number of points");
         assertEquals(List.of(new Point(2.5, 0, 0),
                 new Point(2.5, 0, 2)),
                 result,

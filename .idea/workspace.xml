@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="Shadow">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_07_2024_16_54_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_07_2024_16_54__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_07_2024_18_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_07_2024_18_14__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/geometries/CylinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/CylinderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +54,7 @@
     "JUnit.All.executor": "Run",
     "JUnit.CameraTest.testConstructRay.executor": "Run",
     "JUnit.CylinderTest.findGeoIntersectionsHelperTest1.executor": "Run",
+    "JUnit.CylinderTest.findIntersectionsTests.executor": "Run",
     "JUnit.GeometriesTest.testFindIntersections.executor": "Debug",
     "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
     "JUnit.LightsTests.sphereDirectional.executor": "Run",
@@ -58,6 +63,7 @@
     "JUnit.LightsTests.trianglesSpotNarrow.executor": "Run",
     "JUnit.PlaneTest.findGeoIntersectionsHelperTest1.executor": "Run",
     "JUnit.RayTest.testFindClosestPoint.executor": "Run",
+    "JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3.executor": "Run",
     "JUnit.RenderTests.basicRenderXml.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
     "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
@@ -74,6 +80,8 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/hagai/ISE5784_9164_9224/unittests/renderer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
@@ -102,7 +110,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3">
     <configuration name="All" type="JUnit" factoryName="JUnit">
       <module name="ISE5784_9164_9224" />
       <option name="PACKAGE_NAME" value="" />
@@ -129,17 +137,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LightsTests.spherePoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CylinderTest.findIntersectionsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="renderer.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.LightsTests" />
-      <option name="METHOD_NAME" value="spherePoint" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
+      <option name="METHOD_NAME" value="findIntersectionsTests" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -161,6 +169,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReflectionRefractionTests.landscapeWithHouseAndBalloons3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_9164_9224" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="landscapeWithHouseAndBalloons3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ShadowTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
@@ -176,37 +200,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SphereTest.findGeoIntersectionsHelperTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_9164_9224" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
-      <option name="METHOD_NAME" value="findGeoIntersectionsHelperTest1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="JUnit.All" />
+      <item itemvalue="JUnit.CylinderTest.findIntersectionsTests" />
+      <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
       <item itemvalue="JUnit.CylinderTest.findGeoIntersectionsHelperTest1" />
-      <item itemvalue="JUnit.LightsTests.spherePoint" />
       <item itemvalue="JUnit.PlaneTest.findGeoIntersectionsHelperTest1" />
       <item itemvalue="JUnit.ShadowTests" />
-      <item itemvalue="JUnit.SphereTest.findGeoIntersectionsHelperTest1" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
+        <item itemvalue="JUnit.CylinderTest.findIntersectionsTests" />
         <item itemvalue="JUnit.ShadowTests" />
         <item itemvalue="JUnit.CylinderTest.findGeoIntersectionsHelperTest1" />
         <item itemvalue="JUnit.PlaneTest.findGeoIntersectionsHelperTest1" />
-        <item itemvalue="JUnit.SphereTest.findGeoIntersectionsHelperTest1" />
-        <item itemvalue="JUnit.LightsTests.spherePoint" />
       </list>
     </recent_temporary>
   </component>
@@ -536,7 +544,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java</url>
-          <line>70</line>
+          <line>85</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
