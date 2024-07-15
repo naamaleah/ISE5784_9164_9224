@@ -39,14 +39,21 @@ public class Ray {
     /**
      * A parameter constructor accepts a point and a vector
      *
-     * @param p first parameter Point
-     * @param v second parameter Vector
+     * @param p0 first parameter Point
+     * @param v second parameter direction Vector
      */
-    public Ray(Point p, Vector v) {
-        this.head = p;
+    public Ray(Point p0, Vector v) {
+        this.head = p0;
         this.direction = v.normalize();
     }
 
+    /**
+     * A parameter constructor accepts a point and a vector and a normal and moves p0
+     *
+     * @param p0 first parameter Point
+     * @param direction second parameter direction Vector
+     * @param normal third parameter normal Vector
+     */
     public Ray(Point p0, Vector direction, Vector normal) {
         double res = direction.dotProduct(normal);
         this.head = isZero(res) ? p0 : res > 0 ? p0.add(normal.scale(DELTA)) : p0.add(normal.scale(-DELTA));

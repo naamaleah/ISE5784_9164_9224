@@ -26,12 +26,13 @@ public class IntegrationTest {
     String errorMessage = " incorrect number of intersections";
 
     /**
+     *Calculates the number of intersection points from all the reeds in the image
      *
-     * @param geometry
-     * @param camera
-     * @param nx
-     * @param ny
-     * @return
+     * @param geometry geometries collection
+     * @param camera the camera
+     * @param nx resolution x
+     * @param ny resolution y
+     * @return num of intersections
      */
     private int generateRays(Geometry geometry, Camera camera, int nx, int ny) {
         int count = 0;
