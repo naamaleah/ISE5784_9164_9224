@@ -94,38 +94,33 @@ public class PolygonTests {
     */
    @Test
    void testFindIntersections() {
-      Polygon polygon = new Polygon(    p100,
-              new Point(0, 1, 0),
-              new Point(-2, 0, 0),
-              new Point(0,-1,0)
-      );
-      List<Point> result;
+      Polygon t = new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1));
+
       // ============ Equivalence Partitions Tests ==============
-      //TC01: Ray intersects the polygon
-      result = polygon.findIntersections(new Ray(new Point(-0.5, -0.5, -1), new Vector(0.5, 0.5, 3)));
+      // TC01: Ray intersects the Polygon
+      List<Point> result = t.findIntersections(new Ray(new Point(0.5, 0.5, 1), new Vector(-0.5, -1, -1)));
+      assertEquals(1, result.size(), "ERROR: findIntersections() did not return the right number of points");
+      assertEquals(List.of(new Point(0.3, 0.1, 0.6)), result, "Incorrect intersection points");
 
-      assertEquals(1, result.size(), "Wrong number of points");
-      assertEquals(new Point(-0.33d, -0.33d, 0d), result.getFirst(), "Ray doesn't intersect the polygon");
+      // TC02: Ray outside against edge
+      assertNull(t.findIntersections(new Ray(new Point(0.5, 0.5, 1), new Vector(-0.5, -2, -1))),
+              "ERROR: findIntersections() did not return null");
 
-      //TC02:Ray outside against vertex
-      assertNull(polygon.findIntersections(new Ray(new Point(0, -2, 0), new Vector(0, 0, 4))), "Ray isn't outside against vertex");
+      // TC03: Ray outside against vertex
+      assertNull(t.findIntersections(new Ray(new Point(0.5, 0.5, 1), new Vector(1, -0.5, -1))),
+              "ERROR: findIntersections() did not return null");
 
-      //TC03: Ray outside against edge
-      assertNull(polygon.findIntersections(new Ray(new Point(-1, -1, 0), new Vector(0, 0, 3))), "Ray isn't outside against edge");
+      // =============== Boundary Values Tests ==================
+      // TC04: Ray on edge
+      assertNull(t.findIntersections(new Ray(new Point(0.5, 0.5, 1), new Vector(-0.5, -1.5, -1))),
+              "ERROR: findIntersections() did not return null");
 
+      // TC05: Ray on vertex
+      assertNull(t.findIntersections(new Ray(new Point(0.5, 0.5, 1), new Vector(-0.5, 0.5, -1))),
+              "ERROR: findIntersections() did not return null");
 
-      // ============ Boundary Values Tests =============
-      //TC1: Ray On edge
-      result = polygon.findIntersections(new Ray(new Point(-2, 0, 3), new Vector(1.03d, 0.51d, -3)));
-      assertEquals(1, result.size(), "Wrong number of points");
-      assertEquals(new Point(-0.97d, 0.51d, 0d), result.getFirst(), "Ray  isn't on edge of the polygon");
-
-      ///TC2: Ray in vertex
-      assertNull(polygon.findIntersections(new Ray(new Point(0, 1, 0), new Vector(-2d, -1d, 3))),  "Ray  isn't on vertex of the polygon");
-
-      //TC3: Ray On edge's continuation
-      assertNull(polygon.findIntersections(new Ray(new Point(-1, 2, 0), new Vector(-1d, -2d, 3))), "Ray  isn't On edge's continuation");
-
-
+      // TC06: Ray on edge's continuation
+      assertNull(t.findIntersections(new Ray(new Point(0.5, 0.5, 1), new Vector(-0.5, -1, 0.5))),
+              "ERROR: findIntersections() did not return null");
    }
 }
