@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="Tests">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_07_2024_18_14_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_07_2024_19_06_[Changes]/shelved.patch" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/unittests/renderer/LandscapeWithHouseUpInspirationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_10__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +54,9 @@
     "JUnit.CylinderTest.findIntersectionsTests.executor": "Run",
     "JUnit.GeometriesTest.testFindIntersections.executor": "Debug",
     "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
+    "JUnit.LandscapeWithHouseUpInspirationTest.executor": "Run",
+    "JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons.executor": "Run",
+    "JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings.executor": "Run",
     "JUnit.LightsTests.sphereDirectional.executor": "Run",
     "JUnit.LightsTests.spherePoint.executor": "Run",
     "JUnit.LightsTests.sphereSpotNarrow.executor": "Run",
@@ -107,7 +111,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All">
+  <component name="RunManager" selected="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings">
     <configuration name="All" type="JUnit" factoryName="JUnit">
       <module name="ISE5784_9164_9224" />
       <option name="PACKAGE_NAME" value="" />
@@ -118,33 +122,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CylinderTest.findGeoIntersectionsHelperTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LandscapeWithHouseUpInspirationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
-      <option name="METHOD_NAME" value="findGeoIntersectionsHelperTest1" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.LandscapeWithHouseUpInspirationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_9164_9224" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.LandscapeWithHouseUpInspirationTest" />
+      <option name="METHOD_NAME" value="landscapeWithHouseAndBalloons" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CylinderTest.findIntersectionsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="geometries.*" />
+          <option name="PATTERN" value="renderer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
-      <option name="METHOD_NAME" value="findIntersectionsTests" />
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.LandscapeWithHouseUpInspirationTest" />
+      <option name="METHOD_NAME" value="landscapeWithHouseBalloonsAndOfficeBuildings" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -182,36 +201,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShadowTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_9164_9224" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="JUnit.All" />
-      <item itemvalue="JUnit.CylinderTest.findIntersectionsTests" />
+      <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest" />
+      <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" />
+      <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" />
       <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons" />
       <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
-      <item itemvalue="JUnit.CylinderTest.findGeoIntersectionsHelperTest1" />
-      <item itemvalue="JUnit.ShadowTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" />
+        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest" />
+        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" />
         <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons" />
         <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
-        <item itemvalue="JUnit.CylinderTest.findIntersectionsTests" />
-        <item itemvalue="JUnit.ShadowTests" />
-        <item itemvalue="JUnit.CylinderTest.findGeoIntersectionsHelperTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -505,23 +509,7 @@
       <option name="project" value="LOCAL‎" />
       <updated>1721056515760</updated>
     </task>
-    <task id="LOCAL‎-00035" summary="Tests">
-      <option name="closed" value="true" />
-      <created>1721067356995</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL‎-00035" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1721067356995</updated>
-    </task>
-    <task id="LOCAL‎-00036" summary="Tests">
-      <option name="closed" value="true" />
-      <created>1721199309776</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL‎-00036" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1721199309776</updated>
-    </task>
-    <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
