@@ -129,7 +129,7 @@ public class Camera implements Cloneable {
         Vector Vup = vUp;
         Point cameraLoc = p0;
         int numOfRaysInRowCol = (int)Math.floor(Math.sqrt(numOfRays));
-        if(numOfRaysInRowCol == 1)  return rayTracer.traceRay(constructRayThroughPixel(nX, nY, j, i));
+        if(numOfRaysInRowCol == 1)  return rayTracer.traceRay(constructRay(nX, nY, j, i));
 
         Point pIJ = getCenterOfPixel(nX, nY, j, i);
 
@@ -153,7 +153,7 @@ public class Camera implements Cloneable {
      * @param i  index column in the view plane
      * @return ray that goes through the pixel (j, i)  Ray(p0, Vi,j)
      */
-    public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
+    public Ray constructRay(int nX, int nY, int j, int i) {
         Point pIJ = getCenterOfPixel(nX, nY, j, i); // center point of the pixel
 
         //Vi,j = Pi,j - P0, the direction of the ray to the pixel(j, i)
