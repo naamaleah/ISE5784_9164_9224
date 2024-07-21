@@ -4,7 +4,6 @@ import geometries.Intersectable.GeoPoint;
 
 import java.util.List;
 
-import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -16,13 +15,7 @@ import static primitives.Util.isZero;
 public class Ray {
 
     private static final double DELTA = 0.1;
-    /**
-     * Source point
-     */
     private final Point head;
-    /**
-     * Direction vector
-     */
     private final Vector direction;
 
     @Override
@@ -40,7 +33,7 @@ public class Ray {
      * A parameter constructor accepts a point and a vector
      *
      * @param p0 first parameter Point
-     * @param v second parameter direction Vector
+     * @param v  second parameter direction Vector
      */
     public Ray(Point p0, Vector v) {
         this.head = p0;
@@ -50,9 +43,9 @@ public class Ray {
     /**
      * A parameter constructor accepts a point and a vector and a normal and moves p0
      *
-     * @param p0 first parameter Point
+     * @param p0        first parameter Point
      * @param direction second parameter direction Vector
-     * @param normal third parameter normal Vector
+     * @param normal    third parameter normal Vector
      */
     public Ray(Point p0, Vector direction, Vector normal) {
         double res = direction.dotProduct(normal);

@@ -21,7 +21,6 @@ public abstract class Intersectable {
         return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
     }
 
-
     /**
      * static internal helper class representing a point on/in a geometric shape
      */
@@ -47,10 +46,10 @@ public abstract class Intersectable {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            GeoPoint geoPoint = (GeoPoint) o;
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            GeoPoint geoPoint = (GeoPoint) obj;
             return geometry.equals(geoPoint.geometry) && point.equals(geoPoint.point);
         }
 
@@ -62,7 +61,6 @@ public abstract class Intersectable {
         }
     }
 
-    //NVI pattern
 
     /**
      * find all intersection {@link  GeoPoint}s between ray and a geometric object
@@ -81,7 +79,7 @@ public abstract class Intersectable {
      * * calls abstract helper method, each implementing class , implements helper method
      * * to return list of intersection {@link GeoPoint}s for that specific geometry
      *
-     * @param ray ray towards the object
+     * @param ray         ray towards the object
      * @param maxDistance maximum distance from intersection points
      * @return immutable list of intersection {@link  GeoPoint}s
      */

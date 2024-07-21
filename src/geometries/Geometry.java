@@ -49,13 +49,16 @@ public abstract class Geometry extends Intersectable {
 
     /**
      * getter for material field
+     *
      * @return geometry's {@link Material} type
      */
     public Material getMaterial() {
         return material;
     }
+
     /**
      * setter for material field (builder pattern style)
+     *
      * @param material {@link Material} object to set geometry's material to
      * @return this instance of object
      */

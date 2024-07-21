@@ -95,13 +95,9 @@ public class LightsTests {
      */
     private final Point[] vertices =
             {
-                    // the shared left-bottom:
                     new Point(-110, -110, -150),
-                    // the shared right-top:
                     new Point(95, 100, -150),
-                    // the right-bottom
                     new Point(110, -110, -150),
-                    // the left-top
                     new Point(-75, 78, 100)
             };
     /**
