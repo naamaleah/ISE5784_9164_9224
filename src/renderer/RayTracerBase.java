@@ -1,8 +1,8 @@
 package renderer;
-
-import primitives.Color;
-import primitives.Ray;
+import primitives.*;
 import scene.Scene;
+
+import java.util.List;
 
 /**
  * Class RayTracerBase is an abstract class responsible for calculating colors of a scene
@@ -25,10 +25,32 @@ public abstract class RayTracerBase {
     }
 
     /**
-     * abstract method - calculate color of a pixel in  image
-     *
-     * @param ray Ray to be traced
-     * @return Color
+     * Trace the ray and calculates the color
+     * @param ray the ray that came out of the camera
+     * @return the color of the object that the ray is interacts with
      */
     public abstract Color traceRay(Ray ray);
+
+    /**
+     * Trace the ray and calculates the color of the point that interact with the geometries of the scene
+     * @param rays the ray that came out of the camera
+     * @return the color of the object that the ray is interacts with
+     */
+    public abstract Color traceRays(List<Ray> rays);
+
+    /**
+     * Checks the color of the pixel with the help of individual rays and averages between
+     * them and only if necessary continues to send beams of rays in recursion
+     * @param centerP center pixel
+     * @param Width Length
+     * @param Height width
+     * @param minWidth min Width
+     * @param minHeight min Height
+     * @param cameraLoc Camera location
+     * @param Vright Vector right
+     * @param Vup vector up
+     * @param prePoints pre Points
+     * @return Pixel color
+     */
+    public abstract Color AdaptiveSuperSamplingRec(Point centerP, double Width, double Height, double minWidth, double minHeight, Point cameraLoc, Vector Vright, Vector Vup, List<Point> prePoints);
 }

@@ -89,17 +89,23 @@ public class Point {
     }
 
     /*
-    getters for point
+    getters for point x
      */
-    double getD1() {
+    public double getX() {
         return xyz.d1;
     }
 
-    double getD2() {
+    /*
+    getters for point y
+    */
+    public double getY() {
         return xyz.d2;
     }
 
-    double getD3() {
+    /*
+    getters for point z
+    */
+    public double getZ() {
         return xyz.d3;
     }
 }

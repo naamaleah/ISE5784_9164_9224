@@ -6,6 +6,8 @@ import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +47,25 @@ public class SimpleRayTracer extends RayTracerBase {
         // intersection was found, calculate color of the of pixel.
         return calcColor(closestPoint, ray);
     }
+
+    /**
+     * Trace the ray and calculates the color of the point that interact with the geometries of the scene
+     * @param rays the ray that came out of the camera
+     * @return the color of the object that the ray is interact with
+     */
+    @Override
+    public Color traceRays(List<Ray> rays) {
+        Color color=new Color(BLACK);
+        for(Ray ray : rays)
+        {
+            GeoPoint clossestGeoPoint = findClosestIntersection(ray);
+            if (clossestGeoPoint == null)
+                color= color.add( scene.background);
+            else color= color.add(calcColor(clossestGeoPoint,ray));
+        }
+        return color.reduce(rays.size());
+    }
+
 
     /**
      * find the closest intersection point between ray and geometries in scene
@@ -282,5 +303,111 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
 
+//    /**
+//     * Building a beam of rays for transparency and reflection
+//     * @param ray The beam coming out of the camera
+//     * @param direction the vector
+//     * @param glossy The amount of gloss
+//     * @param n normal
+//     * @return Beam of rays
+//     */
+//    List<Ray> raysGrid(Ray ray, int direction, double glossy, Vector n){
+//        int numOfRowCol = isZero(glossy)? 1: (int)Math.ceil(Math.sqrt(glossinessRaysNum));
+//        if (numOfRowCol == 1) return List.of(ray);
+//        Vector Vup ;
+//        double Ax= Math.abs(ray.getDirection().getX()), Ay= Math.abs(ray.getDirection().getY()), Az= Math.abs(ray.getDirection().getZ());
+//        if (Ax < Ay)
+//            Vup= Ax < Az ?  new Vector(0, -ray.getDirection().getZ(), ray.getDirection().getY()) :
+//                    new Vector(-ray.getDirection().getY(), ray.getDirection().getX(), 0);
+//        else
+//            Vup= Ay < Az ?  new Vector(ray.getDirection().getZ(), 0, -ray.getDirection().getX()) :
+//                    new Vector(-ray.getDirection().getY(), ray.getDirection().getX(), 0);
+//        Vector Vright = Vup.crossProduct(ray.getDirection()).normalize();
+//        Point pc=ray.getPoint(distanceGrid);
+//        double step = glossy/sizeGrid;
+//        Point pij=pc.add(Vright.scale(numOfRowCol/2*-step)).add(Vup.scale(numOfRowCol/2*-step));
+//        Vector tempRayVector;
+//        Point Pij1;
+//
+//        List<Ray> rays = new ArrayList<>();
+//        rays.add(ray);
+//        for (int i = 1; i < numOfRowCol; i++) {
+//            for (int j = 1; j < numOfRowCol; j++) {
+//                Pij1=pij.add(Vright.scale(i*step)).add(Vup.scale(j*step));
+//                tempRayVector =  Pij1.subtract(ray.getHead());
+//                if(n.dotProduct(tempRayVector) < 0 && direction == 1) //refraction
+//                    rays.add(new Ray(ray.getHead(), tempRayVector));
+//                if(n.dotProduct(tempRayVector) > 0 && direction == -1) //reflection
+//                    rays.add(new Ray(ray.getHead(), tempRayVector));
+//            }
+//        }
+//
+//        return rays;
+//    }
+
+
+
+
+    /**
+     * Checks the color of the pixel with the help of individual rays and averages between
+     * them and only if necessary continues to send beams of rays in recursion
+     * @param centerP center pixl
+     * @param Width Length
+     * @param Height width
+     * @param minWidth min Width
+     * @param minHeight min Height
+     * @param cameraLoc Camera location
+     * @param Vright Vector right
+     * @param Vup vector up
+     * @param prePoints pre Points
+     * @return Pixel color
+     */
+    @Override
+    public Color AdaptiveSuperSamplingRec(Point centerP, double Width, double Height, double minWidth, double minHeight, Point cameraLoc, Vector Vright, Vector Vup, List<Point> prePoints) {
+        if (Width < minWidth * 2 || Height < minHeight * 2) {
+            return this.traceRay(new Ray(cameraLoc, centerP.subtract(cameraLoc))) ;
+        }
+
+        List<Point> nextCenterPList = new LinkedList<>();
+        List<Point> cornersList = new LinkedList<>();
+        List<primitives.Color> colorList = new LinkedList<>();
+        Point tempCorner;
+        Ray tempRay;
+        for (int i = -1; i <= 1; i += 2){
+            for (int j = -1; j <= 1; j += 2) {
+                tempCorner = centerP.add(Vright.scale(i * Width / 2)).add(Vup.scale(j * Height / 2));
+                cornersList.add(tempCorner);
+                if (prePoints == null || !prePoints.contains(tempCorner)) {
+                    tempRay = new Ray(cameraLoc, tempCorner.subtract(cameraLoc));
+                    nextCenterPList.add(centerP.add(Vright.scale(i * Width / 4)).add(Vup.scale(j * Height / 4)));
+                    colorList.add(traceRay(tempRay));
+                }
+            }
+        }
+
+
+        if (nextCenterPList == null || nextCenterPList.size() == 0) {
+            return primitives.Color.BLACK;
+        }
+
+
+        boolean isAllEquals = true;
+        primitives.Color tempColor = colorList.get(0);
+        for (primitives.Color color : colorList) {
+            if (!tempColor.isAlmostEquals(color))
+                isAllEquals = false;
+        }
+        if (isAllEquals && colorList.size() > 1)
+            return tempColor;
+
+
+        tempColor = primitives.Color.BLACK;
+        for (Point center : nextCenterPList) {
+            tempColor = tempColor.add(AdaptiveSuperSamplingRec(center, Width/2,  Height/2,  minWidth,  minHeight ,  cameraLoc, Vright, Vup, cornersList));
+        }
+        return tempColor.reduce(nextCenterPList.size());
+
+
+    }
 }
 

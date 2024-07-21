@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="Tests">
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/LandscapeWithHouseUpInspirationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_10__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_08__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_08__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_15__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_15__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_07_2024_9_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_07_2024_9_52__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_07_2024_9_57__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_07_2024_9_57__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,54 +52,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.All in ISE5784_9164_9224.executor": "Run",
-    "JUnit.All.executor": "Run",
-    "JUnit.CameraTest.testConstructRay.executor": "Run",
-    "JUnit.CylinderTest.findGeoIntersectionsHelperTest1.executor": "Run",
-    "JUnit.CylinderTest.findIntersectionsTests.executor": "Run",
-    "JUnit.GeometriesTest.testFindIntersections.executor": "Debug",
-    "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
-    "JUnit.LandscapeWithHouseUpInspirationTest.executor": "Run",
-    "JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons.executor": "Run",
-    "JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings.executor": "Run",
-    "JUnit.LightsTests.sphereDirectional.executor": "Run",
-    "JUnit.LightsTests.spherePoint.executor": "Run",
-    "JUnit.LightsTests.sphereSpotNarrow.executor": "Run",
-    "JUnit.LightsTests.trianglesSpotNarrow.executor": "Run",
-    "JUnit.PlaneTest.findGeoIntersectionsHelperTest1.executor": "Run",
-    "JUnit.RayTest.testFindClosestPoint.executor": "Run",
-    "JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons.executor": "Run",
-    "JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3.executor": "Run",
-    "JUnit.RenderTests.basicRenderXml.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.ShadowTests.executor": "Run",
-    "JUnit.SphereTest.findGeoIntersectionsHelperTest1.executor": "Run",
-    "JUnit.SphereTest.testFindIntersections.executor": "Run",
-    "JUnit.VectorTest.testLengthSquared.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/hagai/ISE5784_9164_9224/unittests/renderer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "fileTemplates",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.All in ISE5784_9164_9224.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CameraTest.testConstructRay.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.findGeoIntersectionsHelperTest1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CylinderTest.findIntersectionsTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GeometriesTest.testFindIntersections.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ImageWriterTest.testWriteToImage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereDirectional.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.spherePoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereSpotNarrow.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.trianglesSpotNarrow.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTest.findGeoIntersectionsHelperTest1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTest.testFindClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.basicRenderXml.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.findGeoIntersectionsHelperTest1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTest.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTest.testLengthSquared.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hagai/ISE5784_9164_9224/unittests/renderer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="geometries" />
@@ -111,7 +116,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings">
+  <component name="RunManager" selected="JUnit.All">
     <configuration name="All" type="JUnit" factoryName="JUnit">
       <module name="ISE5784_9164_9224" />
       <option name="PACKAGE_NAME" value="" />
@@ -122,48 +127,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LandscapeWithHouseUpInspirationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CylinderTest.findGeoIntersectionsHelperTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="renderer.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.LandscapeWithHouseUpInspirationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_9164_9224" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.LandscapeWithHouseUpInspirationTest" />
-      <option name="METHOD_NAME" value="landscapeWithHouseAndBalloons" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
+      <option name="METHOD_NAME" value="findGeoIntersectionsHelperTest1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CylinderTest.findIntersectionsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_9164_9224" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="renderer.*" />
+          <option name="PATTERN" value="geometries.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.LandscapeWithHouseUpInspirationTest" />
-      <option name="METHOD_NAME" value="landscapeWithHouseBalloonsAndOfficeBuildings" />
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
+      <option name="METHOD_NAME" value="findIntersectionsTests" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,21 +191,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ShadowTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_9164_9224" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.All" />
-      <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest" />
-      <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" />
-      <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" />
+      <item itemvalue="JUnit.CylinderTest.findIntersectionsTests" />
       <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons" />
       <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
+      <item itemvalue="JUnit.CylinderTest.findGeoIntersectionsHelperTest1" />
+      <item itemvalue="JUnit.ShadowTests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" />
-        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest" />
-        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" />
         <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons" />
         <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
+        <item itemvalue="JUnit.CylinderTest.findIntersectionsTests" />
+        <item itemvalue="JUnit.ShadowTests" />
+        <item itemvalue="JUnit.CylinderTest.findGeoIntersectionsHelperTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -509,7 +514,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1721056515760</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL‎-00035" summary="Tests">
+      <option name="closed" value="true" />
+      <created>1721067356995</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL‎-00035" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1721067356995</updated>
+    </task>
+    <task id="LOCAL‎-00036" summary="Tests">
+      <option name="closed" value="true" />
+      <created>1721199309776</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL‎-00036" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1721199309776</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,30 +568,5 @@
     <MESSAGE value="Shadow" />
     <MESSAGE value="Tests" />
     <option name="LAST_COMMIT_MESSAGE" value="Tests" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/Camera.java</url>
-          <line>287</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/renderer/Camera.java</url>
-          <line>290</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/renderer/Camera.java</url>
-          <line>268</line>
-          <properties class="renderer.Camera.Builder" method="build">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

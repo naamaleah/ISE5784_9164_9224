@@ -6,6 +6,7 @@ import primitives.Vector;
 
 import java.util.*;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -52,6 +53,14 @@ public class Camera implements Cloneable {
      * calculate color of pixel functionality object
      */
     private RayTracerBase rayTracer;
+    /**
+     * number of rays through a pixel
+     */
+    private int antiAliasing=1;
+    /**
+     * optimize with adaptive
+     */
+    private boolean adaptive = false;
 
 
     /**
@@ -76,10 +85,18 @@ public class Camera implements Cloneable {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
 
-        for (int i = 0; i < nX; i++)
-            for (int j = 0; j < nY; j++) {
-                castRay(nX, nY, i, j);
-            }
+        if (!adaptive) {
+            for (int i = 0; i < nX; i++)
+                for (int j = 0; j < nY; j++) {
+                    castRays(nX, nY, i, j);
+                }
+        }
+        else{
+            for (int i = 0; i < nX; i++)
+                for (int j = 0; j < nY; j++) {
+                    imageWriter.writePixel(i, j, AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), i, j, antiAliasing));
+                }
+        }
         return this;
     }
 
@@ -91,10 +108,57 @@ public class Camera implements Cloneable {
      * @param j  column index of pixel
      * @param i  row index of pixel
      */
-    private void castRay(int Nx, int Ny, int j, int i) {
-        Ray ray = constructRay(Nx, Ny, j, i);
-        Color color = rayTracer.traceRay(ray);
+    private void castRays(int Nx, int Ny, int j, int i) {
+        List<Ray> rays = constructRays(Nx, Ny, j, i, antiAliasing);
+        Color color = rayTracer.traceRays(rays);
         imageWriter.writePixel(j, i, color);
+    }
+
+    /**
+     * Checks the color of the pixel with the help of individual rays and averages between them and only
+     * if necessary continues to send beams of rays in recursion
+     * @param nX Pixel length
+     * @param nY Pixel width
+     * @param j The position of the pixel relative to the y-axis
+     * @param i The position of the pixel relative to the x-axis
+     * @param numOfRays The amount of rays sent
+     * @return Pixel color
+     */
+    private Color AdaptiveSuperSampling(int nX, int nY, int j, int i,  int numOfRays)  {
+        Vector Vright = vRight;
+        Vector Vup = vUp;
+        Point cameraLoc = p0;
+        int numOfRaysInRowCol = (int)Math.floor(Math.sqrt(numOfRays));
+        if(numOfRaysInRowCol == 1)  return rayTracer.traceRay(constructRayThroughPixel(nX, nY, j, i));
+
+        Point pIJ = getCenterOfPixel(nX, nY, j, i);
+
+        double rY = alignZero(height / nY);
+        // the ratio Rx = w/Nx, the width of the pixel
+        double rX = alignZero(width / nX);
+
+
+        double PRy = rY/numOfRaysInRowCol;
+        double PRx = rX/numOfRaysInRowCol;
+        return rayTracer.AdaptiveSuperSamplingRec(pIJ, rX, rY, PRx, PRy,cameraLoc,Vright, Vup,null);
+    }
+
+    /**
+     * construct ray through a pixel in the view plane
+     * nX and nY create the resolution
+     *
+     * @param nX number of pixels in the width of the view plane
+     * @param nY number of pixels in the height of the view plane
+     * @param j  index row in the view plane
+     * @param i  index column in the view plane
+     * @return ray that goes through the pixel (j, i)  Ray(p0, Vi,j)
+     */
+    public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
+        Point pIJ = getCenterOfPixel(nX, nY, j, i); // center point of the pixel
+
+        //Vi,j = Pi,j - P0, the direction of the ray to the pixel(j, i)
+        Vector vIJ = pIJ.subtract(p0);
+        return new Ray(p0, vIJ);
     }
 
     /**
@@ -132,15 +196,15 @@ public class Camera implements Cloneable {
     }
 
     /**
-     * construct ray from a {@link Camera} towards center of a pixel in a view plane
+     * get the center point of the pixel in the view plane
      *
      * @param nX number of rows in view plane
      * @param nY number of columns in view plane
      * @param j  column index of pixel
      * @param i  row index of pixel
-     * @return {@link Ray} from camera to center of pixel (i,j)
+     * @return the center point of the pixel
      */
-    public Ray constructRay(int nX, int nY, int j, int i) {
+    private Point getCenterOfPixel(int nX, int nY, int j, int i) {
         //view plane center:
         Point Pc = p0.add(vTo.scale(distance));
 
@@ -173,8 +237,64 @@ public class Camera implements Cloneable {
         }
 
         //return ray from camera to middle point of pixel(i,j) in view plane
-        return new Ray(p0, Pij.subtract(p0));
+        return Pij;
     }
+
+
+    /**
+     * Creates a beam of rays into a square grid
+     * @param nX Pixel length
+     * @param nY Pixel width
+     * @param j Position the pixel on the y-axis inside the grid
+     * @param i Position the pixel on the x-axis inside the grid
+     * @param numOfRays The root of the number of beams sent per pixel
+     * @return List of beams of rays
+     */
+    public List<Ray> constructRays(int nX, int nY, int j, int i, int numOfRays) {
+        if (numOfRays== 0) {
+            throw new IllegalArgumentException("num Of Rays can not be 0");
+        }
+        if (numOfRays == 1) {
+            return List.of(new Ray(p0, getCenterOfPixel( nX,  nY, j, i).subtract(p0)));
+        }
+        else {
+            List<Ray> rays = new LinkedList<>();
+            Point pIJ = getCenterOfPixel(nX, nY, j, i);
+
+            double rY = alignZero(height / nY);
+            // the ratio Rx = w/Nx, the width of the pixel
+            double rX = alignZero(width / nX);
+
+            double pY = alignZero(rY / numOfRays);
+            double pX = alignZero(rX / numOfRays);
+            Point PijTemP = pIJ;
+            for (int p = 1; p < numOfRays; p++) {
+                for (int m = 1; m < numOfRays; m++) {
+                    PijTemP = pIJ.add(vRight.scale(pX * m)).add(vUp.scale(pY * p));
+                    rays.add(new Ray(p0, PijTemP.subtract(p0).normalize()));
+                }
+            }
+            return rays;
+        }
+    }
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     *
+     * @param x angles to rotate around the x axis
+     * @param y angles to rotate around the y axis
+     * @param z angles to rotate around the z axis
+     * @return the current camera
+     */
+    public Camera rotate(double x, double y, double z) {
+        vTo = vTo.rotateX(x).rotateY(y).rotateZ(z);
+        vUp = vUp.rotateX(x).rotateY(y).rotateZ(z);
+        vRight = vTo.crossProduct(vUp);
+
+        return this;
+    }
+
+
 
     /**
      * A nested class to implement a constructor template for the camera
@@ -254,6 +374,25 @@ public class Camera implements Cloneable {
          */
         public Builder setRayTracer(RayTracerBase rayTracer) {
             this.camera.rayTracer = rayTracer;
+            return this;
+        }
+
+        /**
+         * set the anti Aliasing
+         *
+         * @return the Camera object
+         */
+        public Builder setantiAliasing(int antiAliasing) {
+            this.camera.antiAliasing = antiAliasing;
+            return this;
+        }
+        /**
+         * set the adaptive
+         *
+         * @return the Camera object
+         */
+        public Builder setadaptive(boolean adaptive) {
+            this.camera.adaptive = adaptive;
             return this;
         }
 
