@@ -300,10 +300,7 @@ public class LandscapeWithHouseUpInspirationTest {
                 new Polygon(new Point(-180, -50, -250), new Point(-178, -50, -250), new Point(-178, 65, -250), new Point(-180, 65, -250))
                         .setEmission(new Color(105, 105, 105)) // Dark gray color
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-//                // Lamp Head
-//                new Sphere(new Point(-179, 85, -250), 20d).setEmission(new Color(250, 250, 0))
-//                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setkT(0.5).setnShininess(100)),
-//
+               // Lamp Head
                 new Triangle(new Point(-179 - 7.5, 55, -249 - 7.5), new Point(-179 + 7.5, 55, -249 - 7.5), new Point(-179, 65, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
@@ -420,7 +417,7 @@ public class LandscapeWithHouseUpInspirationTest {
         cameraBuilder.setLocation(new Point(0, 0, 300))
                 .setVpDistance(300)
                 .setVpSize(500, 500)
-                .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetter1", 1000, 1000))
+                .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetter2", 1000, 1000))
                 .setantiAliasing(10)
                 .build()
                 .renderImage()
