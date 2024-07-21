@@ -208,20 +208,77 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates reflected ray and refraction ray
+     * Calculates the global effect of a ray beam (list of rays) and avaraages the
+     * result.
      *
-     * @param geoPoint geometry point
-     * @param ray      ray
-     * @param k        k value
-     * @return color
+     * @param level the depth of recursion
+     * @param k     the weight of light at the current point in the recursion
+     * @param kB    the attenuation factor of the geometry of the ray beam origin
+     * @param rays  the list of rays
+     * @return the averaged color of the ray beam
      */
-    private Color calcGlobalEffects(GeoPoint geoPoint, Ray ray, int level, Double3 k) {
+    private Color calcRayBeamColor(int level, Double3 k, Double3 kB, List<Ray> rays) {
+        int size = rays.size();
+        if (size == 0) return Color.BLACK;
+
+        if (rays.size() == 1)
+            return calcGlobalEffect(rays.get(0), level, k, kB);
+
         Color color = Color.BLACK;
-        Material material = geoPoint.geometry.getMaterial();
-        Ray reflectedRay = constructReflectedRay(geoPoint, geoPoint.geometry.getNormal(geoPoint.point), ray.getDirection());
-        Ray refractedRay = constructRefractedRay(geoPoint, geoPoint.geometry.getNormal(geoPoint.point), ray.getDirection());
-        return calcGlobalEffect(geoPoint, level, color, material.kR, k, reflectedRay)
-                .add(calcGlobalEffect(geoPoint, level, color, material.kT, k, refractedRay));
+        for (Ray rT : rays)
+            color = color.add(calcGlobalEffect(rT, level, k, kB));
+
+        return color.reduce(size);
+    }
+
+    /**
+     * Recursively returns the added affects for two additional rays emanating from
+     * the intersection point: the reflected ray and the refracted ray.
+     *
+     * @param gp    the point from which to send the secondary rays
+     * @param ray   the from the camera to the intersection point
+     * @param level the depth of recursion
+     * @param k     the weight of light at the current point in the recursion
+     * @return the color obtained from the secondary rays.
+     */
+    private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
+        Vector v = ray.getDirection();
+        Vector n = gp.geometry.getNormal(gp.point);
+        Material material = gp.geometry.getMaterial();
+
+        Double3 kR = material.kR;
+        Double3 kT = material.kT;
+
+        return calcRayBeamColor(level, k, kR, constructReflectedRays(gp, v, n, material.kG))
+                .add(calcRayBeamColor(level, k, kT, constructRefractedRays(gp, v, n, material.kB)));
+
+    }
+
+    /**
+     * Checks that the weight of the light intensity at this point in the recursion
+     * is above the minimum (if not, black is returned) and proceeds to find the
+     * nearest intersection along that ray, adding it's affects if necessary,
+     * returning black or the background otherwise (if the camera ray is
+     * perpendicular to the normal or no intersection point exists, accordingly).
+     *
+     * @param ray   camera ray
+     * @param level depth of recursion
+     * @param k     current weight for light intensity at this point in recursion
+     * @param kx    weight to be added given the increasing level of recursion
+     * @return the color to be returned along the given secondary ray.
+     */
+    private Color calcGlobalEffect(Ray ray, int level, Double3 k, Double3 kx) {
+        Double3 kkx = k.product(kx);
+        // Checks if weight for light intensity is below minimum
+        if (kkx.lowerThan(MIN_CALC_COLOR_K))
+            return Color.BLACK;
+        GeoPoint gp = findClosestIntersection(ray);
+        // Returns background color if no intersection points are found
+        if (gp == null)
+            return scene.background.scale(kx);
+        // If they are, color at the nearest intersection is returned
+        return isZero(gp.geometry.getNormal(gp.point).dotProduct(ray.getDirection())) ? Color.BLACK
+                : calcColor(gp, ray, level - 1, kkx).scale(kx);
     }
 
     /**
@@ -303,47 +360,43 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
 
-//    /**
-//     * Building a beam of rays for transparency and reflection
-//     * @param ray The beam coming out of the camera
-//     * @param direction the vector
-//     * @param glossy The amount of gloss
-//     * @param n normal
-//     * @return Beam of rays
-//     */
-//    List<Ray> raysGrid(Ray ray, int direction, double glossy, Vector n){
-//        int numOfRowCol = isZero(glossy)? 1: (int)Math.ceil(Math.sqrt(glossinessRaysNum));
-//        if (numOfRowCol == 1) return List.of(ray);
-//        Vector Vup ;
-//        double Ax= Math.abs(ray.getDirection().getX()), Ay= Math.abs(ray.getDirection().getY()), Az= Math.abs(ray.getDirection().getZ());
-//        if (Ax < Ay)
-//            Vup= Ax < Az ?  new Vector(0, -ray.getDirection().getZ(), ray.getDirection().getY()) :
-//                    new Vector(-ray.getDirection().getY(), ray.getDirection().getX(), 0);
-//        else
-//            Vup= Ay < Az ?  new Vector(ray.getDirection().getZ(), 0, -ray.getDirection().getX()) :
-//                    new Vector(-ray.getDirection().getY(), ray.getDirection().getX(), 0);
-//        Vector Vright = Vup.crossProduct(ray.getDirection()).normalize();
-//        Point pc=ray.getPoint(distanceGrid);
-//        double step = glossy/sizeGrid;
-//        Point pij=pc.add(Vright.scale(numOfRowCol/2*-step)).add(Vup.scale(numOfRowCol/2*-step));
-//        Vector tempRayVector;
-//        Point Pij1;
-//
-//        List<Ray> rays = new ArrayList<>();
-//        rays.add(ray);
-//        for (int i = 1; i < numOfRowCol; i++) {
-//            for (int j = 1; j < numOfRowCol; j++) {
-//                Pij1=pij.add(Vright.scale(i*step)).add(Vup.scale(j*step));
-//                tempRayVector =  Pij1.subtract(ray.getHead());
-//                if(n.dotProduct(tempRayVector) < 0 && direction == 1) //refraction
-//                    rays.add(new Ray(ray.getHead(), tempRayVector));
-//                if(n.dotProduct(tempRayVector) > 0 && direction == -1) //reflection
-//                    rays.add(new Ray(ray.getHead(), tempRayVector));
-//            }
-//        }
-//
-//        return rays;
-//    }
+    /**
+     * Constructs a list of rays that are refracted from the given ray. filtering
+     * out those that are not in the same direction as the main ray. (spead is
+     * determined by kB)
+     *
+     * @param gp the point from which the rays are refracted
+     * @param v  the direction of the main ray
+     * @param n  the normal at the point
+     * @param kB the Blur factor
+     * @return the list of rays
+     */
+    private List<Ray> constructRefractedRays(GeoPoint gp, Vector v, Vector n, double kB) {
+        Ray rfRay = constructRefractedRay(gp, v, n);
+        double res = rfRay.getDirection().dotProduct(n);
+        return kB == 0 ? List.of(rfRay)
+                : new TargetArea(rfRay, kB).constructRayBeamGrid().stream()
+                .filter(r -> r.getDirection().dotProduct(n) * res > 0).collect(Collectors.toList());
+    }
+
+    /**
+     * Constructs a list of rays that are reflected from the given ray. filtering
+     * out those that are not in the same direction as the main ray. (spead is
+     * determined by kG)
+     *
+     * @param gp the point from which the rays are reflected
+     * @param v  the direction of the main ray
+     * @param n  the normal at the point
+     * @param kG the Blur factor
+     * @return the list of rays
+     */
+    private List<Ray> constructReflectedRays(GeoPoint gp, Vector v, Vector n, double kG) {
+        Ray rfRay = constructReflectedRay(gp, v, n);
+        double res = rfRay.getDirection().dotProduct(n);
+        return kG == 0 ? List.of(rfRay)
+                : new TargetArea(rfRay, kG).constructRayBeamGrid().stream()
+                .filter(r -> r.getDirection().dotProduct(n) * res > 0).collect(Collectors.toList());
+    }
 
 
 

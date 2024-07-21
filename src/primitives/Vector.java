@@ -117,6 +117,15 @@ public class Vector extends Point {
         return new Vector(x, y, z);
     }
 
+    /**
+     * creates a vector perpendicular to the vector.
+     *
+     * @return the resulting vector
+     */
+    public Vector makePerpendicularVector() {
+        double a = getX(), b = getY(), c = getZ();
+        return (a == b && b == c) ? new Vector(0, -a, a).normalize() : new Vector(b - c, c - a, a - b).normalize();
+    }
 
     /**
      * Rotates the vector around the y axis

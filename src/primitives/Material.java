@@ -23,6 +23,14 @@ public class Material {
      * attenuation coefficient for specular level of the material
      */
     public Double3 kS = Double3.ZERO;
+    /**
+     * Glossiness factor
+     * */
+    public double kG = 0;
+    /**
+     * Blurriness factor
+     * */
+    public double kB = 0;
 
     /**
      * shininess level of geometry
@@ -125,6 +133,28 @@ public class Material {
      */
     public Material setkR(double kR) {
         this.kR = new Double3(kR);
+        return this;
+    }
+
+    /**
+     * Sets Glossy attenuation factor.
+     *
+     * @param kG the Glossy attenuation factor.
+     * @return the material
+     */
+    public Material setkG(double kG) {
+        this.kG = kG;
+        return this;
+    }
+
+    /**
+     * Sets Blur attenuation factor.
+     *
+     * @param kB the Blur attenuation factor.
+     * @return the material
+     */
+    public Material setkB(double kB) {
+        this.kB = kB;
         return this;
     }
 
