@@ -1,17 +1,11 @@
 package renderer;
 
-import geometries.Geometry;
 import geometries.Intersectable.GeoPoint;
 import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
-
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.awt.Color.BLACK;
 import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
 
 /**
  * class implements rayTracer abstract class
@@ -36,13 +30,11 @@ public class SimpleRayTracer extends RayTracerBase {
     @Override
     public Color traceRay(Ray ray) {
 
-        // find the closest intersection point
         GeoPoint closestPoint = findClosestIntersection(ray);
-        // if no intersection point was found , return basic background color of scene
+
         if (closestPoint == null)
             return scene.background;
 
-        // intersection was found, calculate color of the of pixel.
         return calcColor(closestPoint, ray);
     }
 
@@ -53,10 +45,8 @@ public class SimpleRayTracer extends RayTracerBase {
      * @return closest intersection Point
      */
     private GeoPoint findClosestIntersection(Ray ray) {
-        // check if ray constructed through the pixel intersects any of geometries
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
 
-        // return closest point if list is not empty
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
         return intersections == null ? null : ray.findClosestGeoPoint(intersections);
 
     }
@@ -105,13 +95,9 @@ public class SimpleRayTracer extends RayTracerBase {
         Vector n = gp.geometry.getNormal(gp.point);
         double nv = alignZero(n.dotProduct(v));
         Material mat = gp.geometry.getMaterial();
-// returns no color in the case that camera ray is perpendicular to the normal
-        // at the point's location
-        if (nv == 0)
-            return color;
 
-        // For each light source in the scene, if the light is on the same side of the
-        // object as the camera, it's affect on the point's color is added
+        if (nv == 0) return color;
+
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
@@ -199,8 +185,8 @@ public class SimpleRayTracer extends RayTracerBase {
         Material material = geoPoint.geometry.getMaterial();
         Ray reflectedRay = constructReflectedRay(geoPoint, geoPoint.geometry.getNormal(geoPoint.point), ray.getDirection());
         Ray refractedRay = constructRefractedRay(geoPoint, geoPoint.geometry.getNormal(geoPoint.point), ray.getDirection());
-        return calcGlobalEffect(geoPoint, level, color, material.kR, k, reflectedRay)
-                .add(calcGlobalEffect(geoPoint, level, color, material.kT, k, refractedRay));
+        return calcGlobalEffect( level, color, material.kR, k, reflectedRay)
+                .add(calcGlobalEffect( level, color, material.kT, k, refractedRay));
     }
 
     /**
@@ -233,7 +219,6 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * function calculates global effects of color on point
      *
-     * @param geoPoint geometry point to color
      * @param level    level of recursion
      * @param color    color until now
      * @param kx       kx value of material
@@ -241,7 +226,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param ray      ray that intersects
      * @return color
      */
-    private Color calcGlobalEffect(GeoPoint geoPoint, int level, Color color, Double3 kx, Double3 k, Ray ray) {
+    private Color calcGlobalEffect( int level, Color color, Double3 kx, Double3 k, Ray ray) {
         Double3 kkx = kx.product(k);
         if (kkx.lowerThan(MIN_CALC_COLOR_K)) return Color.BLACK;
         GeoPoint reflectedPoint = findClosestIntersection(ray);

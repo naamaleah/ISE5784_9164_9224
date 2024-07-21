@@ -79,9 +79,7 @@ public class SpotLight extends PointLight {
         Color color = super.getIntensity(p);
         //vector from light origin point to point p on geometry
         Vector v = super.getL(p);
-        // get max between dot product and 0 )
         double factor =pow(max(0, direction.dotProduct(v)),narrowBeam) ;
-        // scale intensity returned from parent class with factor
         return color.scale(factor);
     }
 }

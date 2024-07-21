@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="Tests">
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/LandscapeWithHouseUpInspirationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_07_2024_18_10__Changes_.xml" afterDir="false" />
+    <list default="true" id="7345b2ac-acad-4245-a662-5d58aa030623" name="Changes" comment="LandscapeWithHouseUpInspirationTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/LandscapeWithHouseUpInspirationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/LandscapeWithHouseUpInspirationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/LightsTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +117,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings">
+  <component name="RunManager" selected="JUnit.LandscapeWithHouseUpInspirationTest">
     <configuration name="All" type="JUnit" factoryName="JUnit">
       <module name="ISE5784_9164_9224" />
       <option name="PACKAGE_NAME" value="" />
@@ -211,8 +217,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" />
         <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest" />
+        <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseBalloonsAndOfficeBuildings" />
         <item itemvalue="JUnit.LandscapeWithHouseUpInspirationTest.landscapeWithHouseAndBalloons" />
         <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons" />
         <item itemvalue="JUnit.ReflectionRefractionTests.landscapeWithHouseAndBalloons3" />
@@ -509,7 +515,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1721056515760</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="LandscapeWithHouseUpInspirationTest">
+      <option name="closed" value="true" />
+      <created>1721207392793</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1721207392793</updated>
+    </task>
+    <task id="LOCAL-00036" summary="LandscapeWithHouseUpInspirationTest">
+      <option name="closed" value="true" />
+      <created>1721207405929</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1721207405929</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +568,8 @@
     <MESSAGE value="Notes" />
     <MESSAGE value="Shadow" />
     <MESSAGE value="Tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests" />
+    <MESSAGE value="LandscapeWithHouseUpInspirationTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="LandscapeWithHouseUpInspirationTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
