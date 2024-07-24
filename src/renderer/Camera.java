@@ -294,6 +294,25 @@ public class Camera implements Cloneable {
         return this;
     }
 
+    /**
+     * Adds the given amount to the camera's position
+     *
+     * @return the current camera
+     */
+    public Camera move(Vector amount) {
+        p0 = p0.add(amount);
+        return this;
+    }
+
+    /**
+     * Adds x, y, z to the camera's position
+     *
+     * @return the current camera
+     */
+    public Camera move(double x, double y, double z) {
+        return move(new Vector(x, y, z));
+    }
+
 
 
     /**

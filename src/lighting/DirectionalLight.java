@@ -2,6 +2,8 @@ package lighting;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * light source object with direction to the light (no attenuation)
  * * * @author Naama and Yeela
@@ -36,5 +38,10 @@ public class DirectionalLight extends Light implements LightSource {
     @Override
     public double getDistance(Point point) {
         return Double.POSITIVE_INFINITY;
+    }
+
+    @Override
+    public List<Vector> getLCircle(Point p, double r, int amount) {
+        return List.of(getL(p));
     }
 }
