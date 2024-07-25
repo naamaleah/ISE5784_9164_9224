@@ -5,6 +5,7 @@ import primitives.Vector;
 
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
@@ -56,11 +57,15 @@ public class Camera implements Cloneable {
     /**
      * number of rays through a pixel
      */
-    private int antiAliasing=1;
+    private int antiAliasing = 1;
     /**
      * optimize with adaptive
      */
     private boolean adaptive = false;
+    /**
+     * optimize with threads
+     */
+    private boolean threads = false;
 
 
     /**
@@ -85,17 +90,33 @@ public class Camera implements Cloneable {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
 
-        if (!adaptive) {
-            for (int i = 0; i < nX; i++)
-                for (int j = 0; j < nY; j++) {
-                    castRays(nX, nY, i, j);
-                }
-        }
-        else{
-            for (int i = 0; i < nX; i++)
-                for (int j = 0; j < nY; j++) {
-                    imageWriter.writePixel(i, j, AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), i, j, antiAliasing));
-                }
+        if (threads) {
+            if (!adaptive) {
+                IntStream.range(0, nX).parallel().forEach(x -> {
+                    IntStream.range(0, nY).parallel().forEach(y -> {
+                        this.castRays(nX, nY, x, y);
+                    });
+                });
+            } else {
+                IntStream.range(0, nX).parallel().forEach(x -> {
+                    IntStream.range(0, nY).parallel().forEach(y -> {
+                        imageWriter.writePixel(x, y, AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), x, y, antiAliasing));
+                    });
+                });
+            }
+        } else {
+            if (!adaptive) {
+                for (int i = 0; i < nX; i++)
+                    for (int j = 0; j < nY; j++) {
+                        castRays(nX, nY, i, j);
+                    }
+            } else {
+                for (int i = 0; i < nX; i++)
+                    for (int j = 0; j < nY; j++) {
+                        imageWriter.writePixel(i, j, AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), i, j, antiAliasing));
+                    }
+            }
+
         }
         return this;
     }
@@ -117,19 +138,20 @@ public class Camera implements Cloneable {
     /**
      * Checks the color of the pixel with the help of individual rays and averages between them and only
      * if necessary continues to send beams of rays in recursion
-     * @param nX Pixel length
-     * @param nY Pixel width
-     * @param j The position of the pixel relative to the y-axis
-     * @param i The position of the pixel relative to the x-axis
+     *
+     * @param nX        Pixel length
+     * @param nY        Pixel width
+     * @param j         The position of the pixel relative to the y-axis
+     * @param i         The position of the pixel relative to the x-axis
      * @param numOfRays The amount of rays sent
      * @return Pixel color
      */
-    private Color AdaptiveSuperSampling(int nX, int nY, int j, int i,  int numOfRays)  {
+    private Color AdaptiveSuperSampling(int nX, int nY, int j, int i, int numOfRays) {
         Vector Vright = vRight;
         Vector Vup = vUp;
         Point cameraLoc = p0;
-        int numOfRaysInRowCol = (int)Math.floor(Math.sqrt(numOfRays));
-        if(numOfRaysInRowCol == 1)  return rayTracer.traceRay(constructRay(nX, nY, j, i));
+        int numOfRaysInRowCol = (int) Math.floor(Math.sqrt(numOfRays));
+        if (numOfRaysInRowCol == 1) return rayTracer.traceRay(constructRay(nX, nY, j, i));
 
         Point pIJ = getCenterOfPixel(nX, nY, j, i);
 
@@ -138,9 +160,9 @@ public class Camera implements Cloneable {
         double rX = alignZero(width / nX);
 
 
-        double PRy = rY/numOfRaysInRowCol;
-        double PRx = rX/numOfRaysInRowCol;
-        return rayTracer.AdaptiveSuperSamplingRec(pIJ, rX, rY, PRx, PRy,cameraLoc,Vright, Vup,null);
+        double PRy = rY / numOfRaysInRowCol;
+        double PRx = rX / numOfRaysInRowCol;
+        return rayTracer.AdaptiveSuperSamplingRec(pIJ, rX, rY, PRx, PRy, cameraLoc, Vright, Vup, null);
     }
 
     /**
@@ -243,21 +265,21 @@ public class Camera implements Cloneable {
 
     /**
      * Creates a beam of rays into a square grid
-     * @param nX Pixel length
-     * @param nY Pixel width
-     * @param j Position the pixel on the y-axis inside the grid
-     * @param i Position the pixel on the x-axis inside the grid
+     *
+     * @param nX        Pixel length
+     * @param nY        Pixel width
+     * @param j         Position the pixel on the y-axis inside the grid
+     * @param i         Position the pixel on the x-axis inside the grid
      * @param numOfRays The root of the number of beams sent per pixel
      * @return List of beams of rays
      */
     public List<Ray> constructRays(int nX, int nY, int j, int i, int numOfRays) {
-        if (numOfRays== 0) {
+        if (numOfRays == 0) {
             throw new IllegalArgumentException("num Of Rays can not be 0");
         }
         if (numOfRays == 1) {
-            return List.of(new Ray(p0, getCenterOfPixel( nX,  nY, j, i).subtract(p0)));
-        }
-        else {
+            return List.of(new Ray(p0, getCenterOfPixel(nX, nY, j, i).subtract(p0)));
+        } else {
             List<Ray> rays = new LinkedList<>();
             Point pIJ = getCenterOfPixel(nX, nY, j, i);
 
@@ -312,7 +334,6 @@ public class Camera implements Cloneable {
     public Camera move(double x, double y, double z) {
         return move(new Vector(x, y, z));
     }
-
 
 
     /**
@@ -405,6 +426,7 @@ public class Camera implements Cloneable {
             this.camera.antiAliasing = antiAliasing;
             return this;
         }
+
         /**
          * set the adaptive
          *
@@ -412,6 +434,16 @@ public class Camera implements Cloneable {
          */
         public Builder setadaptive(boolean adaptive) {
             this.camera.adaptive = adaptive;
+            return this;
+        }
+
+        /**
+         * set the threads
+         *
+         * @return the Camera object
+         */
+        public Builder setThreads() {
+            this.camera.threads = true;
             return this;
         }
 

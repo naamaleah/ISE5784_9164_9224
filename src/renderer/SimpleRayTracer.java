@@ -34,15 +34,6 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private double radiusBeamSS = 10;
 
-    /**
-     * Declares whether to use glossiness
-     */
-    private boolean isGlossy = false;
-    /**
-     * The number of glossiness rays to create
-     */
-    private int numOfGlossinessRays = 100;
-
 
     /**
      * Parameter constructor
@@ -53,31 +44,7 @@ public class SimpleRayTracer extends RayTracerBase {
         super(scene);
     }
 
-    /**
-     * Sets the isGlossiness used
-     *
-     * @param flag true or false
-     * @return RayTracerBasic object
-     */
-    public SimpleRayTracer useGlossiness(boolean flag) {
-        this.isGlossy = flag;
-        return this;
-    }
 
-    /**
-     * Set the number og glossiness rays
-     *
-     * @param numOfGlossinessRays number of glossiness rays per point
-     * @return this
-     */
-    public SimpleRayTracer setNumOfGlossinessRays(int numOfGlossinessRays) {
-        if (numOfGlossinessRays <= 0) {
-            throw new IllegalArgumentException("number of glossiness rays should be greater than 0");
-        }
-
-        this.numOfGlossinessRays = numOfGlossinessRays;
-        return this;
-    }
 
     /**
      * Sets the isSoftShadow used
@@ -218,20 +185,11 @@ public class SimpleRayTracer extends RayTracerBase {
 
         if (!kkr.lowerThan(MIN_CALC_COLOR_K)) { //if the reflection level is not lower than the minimum
             //construct a reflection  ray from the point
-            if (!isGlossy) { //if its not set to glossy construct just one reflected ray
-                Ray reflectedRay = constructReflectedRay(n, inRay, intersection.point);
+                Ray reflectedRay = constructReflectedRay(intersection.point, n, inRay);
 
                 //add this color to the point by recursively calling calcGlobalEffect
                 color = color.add(calcGlobalEffect(reflectedRay, level, kr, kkr));
 
-            } else { //otherwise construct multiple glossy rays
-                List<Ray> reflectedRays = constructReflectedRays(n, inRay, intersection.point, material.kG);
-
-                //for each reflected glossy ray, calc color
-                for (Ray reflectedRay : reflectedRays) {
-                    color = color.add(calcGlobalEffect(reflectedRay, level, kr, kkr).reduce(reflectedRays.size()));
-                }
-            }
         }
 
         //transparency  attenuation factor of the material
@@ -240,23 +198,12 @@ public class SimpleRayTracer extends RayTracerBase {
         Double3 kkt = kt.product(k);
 
         if (!kkt.lowerThan(MIN_CALC_COLOR_K)) {//if the transparency level is not lower than the minimum
-            if (!isGlossy) { //if its not set to glossy construct just one refracted ray
                 //construct a refracted ray from the point
                 Ray refractedRay = constructRefractedRay(n, inRay, intersection.point);
 
                 //add to the color to the point by recursively calling calcGlobalEffect
                 color = color.add(calcGlobalEffect(refractedRay, level, kt, kkt));
-            } else { //otherwise construct multiple refracted rays
-                //get list of refracted rays
-                List<Ray> refractedRays = constructRefractedRays(n, inRay, intersection.point, material.kG);
-
-                //for each refeacted ray, calc the color
-                for (Ray refractedRay : refractedRays) {
-                    color = color.add(calcGlobalEffect(refractedRay, level, kt, kkt).reduce(refractedRays.size()));
-                }
-            }
         }
-
         return color;
     }
 
@@ -496,65 +443,18 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Constructs a reflection ray from an intersection
+     * function will construct a reflection ray
      *
-     * @param n normal to the point
-     * @param v direction of the ray to the point
-     * @param p the [point
-     * @return new Ray
+     * @param point geometry point to check
+     * @param normal   normal vector
+     * @param vector   direction of ray to point
+     * @return reflection ray
      */
-    private Ray constructReflectedRay(Vector n, Vector v, Point p) {
-        double vn = alignZero(v.dotProduct(n)); //v*n
-
-        if (isZero(vn)) {
-            return null;
-        }
-
-        Vector vnn = n.scale(2 * vn);// n*2*vn
-        Ray r = new Ray(p, v.subtract(vnn), n); //new Ray{point,v-2*(v*n)*n}
-        return r;
+    private Ray constructReflectedRay(Point point, Vector normal, Vector vector) {
+        Vector reflectedVector = vector.subtract(normal.scale(2 * vector.dotProduct(normal)));
+        return new Ray(point, reflectedVector, normal);
     }
 
-    /**
-     * Constructs randomized reflection rays at the intersection point according to kG.
-     * If kG is 1 then only one ray is returned with the specular vector
-     *
-     * @param p  the intersection point
-     * @param v  the intersection's ray direction
-     * @param n  the normal at the intersection point
-     * @param kG the glossiness parameter in range of [0,1], where 0 - matte, 1 - glossy
-     * @return randomized reflection rays
-     */
-    private List<Ray> constructReflectedRays(Vector n, Vector v, Point p, double kG) {
-        Ray r = constructReflectedRay(n, v, p);
-
-        List<Ray> result = new LinkedList<>();
-        result.add(r);
-
-        // If kG is equals to 1 then return only 1 ray, the specular ray (r)
-        if (isZero(kG - 1)) {
-            return result;
-        }
-
-        List<Vector> randomizedVectors = createRandomVectorsOnSphere(n);
-
-        // If kG is equals to 0 then select all the randomized vectors
-        if (isZero(kG)) {
-            for (Vector vec : randomizedVectors) {
-                result.add(new Ray(p, vec, n));
-            }
-            return result;
-        }
-
-        // If kG is in range (0,1) then move the randomized vectors towards the specular vector (v)
-        Vector d = r.getDirection();
-        for (Vector vec : randomizedVectors) {
-            vec = vec.scale(1 - kG);
-            vec = vec.add(d.scale(kG));
-            result.add(new Ray(p, vec, n));
-        }
-        return result;
-    }
 
     /**
      * Construct a refractive ray from a point
@@ -568,89 +468,6 @@ public class SimpleRayTracer extends RayTracerBase {
         return new Ray(p, v, n);
     }
 
-    /**
-     * Constructs randomized refraction rays at the intersection point according to kG.
-     * If kG is 1 then only one ray is returned with the vector v (which is the specular vector).
-     *
-     * @param p  the intersection point
-     * @param v  the intersection's ray direction
-     * @param n  the normal at the intersection point
-     * @param kG the glossiness parameter in range of [0,1], where 0 - matte, 1 - glossy
-     * @return randomized refraction rays
-     */
-    private List<Ray> constructRefractedRays(Vector n, Vector v, Point p, double kG) {
-        Ray r = constructRefractedRay(n, v, p);
-        List<Ray> result = new LinkedList<>();
-        result.add(r);
-
-        // If kG is equals to 1 then return only 1 ray, the specular ray (v)
-        if (isZero(kG - 1)) {
-            return result;
-        }
-
-        List<Vector> randomizedVectors = createRandomVectorsOnSphere(n);
-
-        // If kG is equals to 0 then select all the randomized vectors
-        if (isZero(kG)) {
-            for (Vector vec : randomizedVectors) {
-                result.add(new Ray(p, vec, n));
-            }
-            return result;
-        }
-
-        // If kG is in range (0,1) then move the randomized vectors towards the specular vector (v)
-        for (Vector vec : randomizedVectors) {
-            vec = vec.scale(1 - kG);
-            vec = vec.add(v.scale(kG));
-            result.add(new Ray(p, vec, n));
-        }
-        return result;
-    }
-
-    /**
-     * Creates random vectors on the unit hemisphere with a given normal on the hemisphere's bottom.<br>
-     * source: https://my.eng.utah.edu/~cs6958/slides/pathtrace.pdf#page=18
-     *
-     * @param n normal to the hemisphere's bottom
-     * @return the randomized vectors
-     */
-    private List<Vector> createRandomVectorsOnSphere(Vector n) {
-        // pick axis with the smallest component in normal in order to prevent picking
-        // an axis parallel to the normal and consequently creating zero vector
-        Vector axis;
-        if (Math.abs(n.getX()) < Math.abs(n.getY()) && Math.abs(n.getX()) < Math.abs(n.getZ())) {
-            axis = new Vector(1, 0, 0);
-        } else if (Math.abs(n.getY()) < Math.abs(n.getZ())) {
-            axis = new Vector(0, 1, 0);
-        } else {
-            axis = new Vector(0, 0, 1);
-        }
-
-        // find two vectors orthogonal to the normal
-        Vector x = n.crossProduct(axis);
-        Vector z = n.crossProduct(x);
-
-        List<Vector> randomVectors = new LinkedList<>();
-
-        //  Vector[] randomVectors = new Vector[numOfVectors];
-        for (int i = 0; i < numOfGlossinessRays; i++) {
-            // pick a point on the hemisphere bottom
-            double u, v, u2, v2;
-            do {
-                u = random() * 2 - 1;
-                v = random() * 2 - 1;
-                u2 = u * u;
-                v2 = v * v;
-            } while (u2 + v2 >= 1);
-
-            // calculate the height of the point
-            double w = Math.sqrt(1 - u2 - v2);
-
-            // create the new vector according to the base (x, n, z) and the coordinates (u, w, v)
-            randomVectors.add(x.scale(u).add(z.scale(v)).add(n.scale(w)));
-        }
-        return randomVectors;
-    }
 
     /**
      * Returns transparency level with soft shadow effect

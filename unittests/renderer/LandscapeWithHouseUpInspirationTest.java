@@ -23,9 +23,9 @@ public class LandscapeWithHouseUpInspirationTest {
      */
     private final Camera.Builder cameraBuilder = Camera.getBuilder()
             .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
-            .setRayTracer(new SimpleRayTracer(scene).useGlossiness(true));
+            .setRayTracer(new SimpleRayTracer(scene).useSoftShadow(false));
     // Office Buildings with Darker Reflective Glass in 3D using Polygons
-    Material lessReflectiveGlass = new Material().setkD(0.4).setkS(0.4).setkR(0.2).setnShininess(100);
+    Material lessReflectiveGlass = new Material().setkD(0.4).setkS(0.1).setkR(0.001).setnShininess(100);
     Color darkGrayBlue = new Color(47, 79, 79); // Darker gray-blue color
 
     @Test
@@ -181,7 +181,7 @@ public class LandscapeWithHouseUpInspirationTest {
                 // Building 1
                 new Polygon(new Point(-300, -50, -400), new Point(-200, -50, -400), new Point(-200, 200, -400), new Point(-300, 200, -400)) // Front
                         .setEmission(darkGrayBlue)
-                        .setMaterial(lessReflectiveGlass.setkG(7)),
+                        .setMaterial(lessReflectiveGlass),
                 new Polygon(new Point(-300, -50, -500), new Point(-200, -50, -500), new Point(-200, 200, -500), new Point(-300, 200, -500)) // Back
                         .setEmission(darkGrayBlue)
                         .setMaterial(lessReflectiveGlass),
@@ -406,8 +406,8 @@ public class LandscapeWithHouseUpInspirationTest {
                         .setMaterial(new Material().setkD(0.5).setkS(0.3).setnShininess(30))
                 );
 
-
-        scene.setBackground(new Color(135, 206, 250)); // Sky blue background
+        scene.setBackground(new Color(0, 128, 0)); // Sky blue background
+        // scene.setBackground(new Color(135, 206, 250)); // Sky blue background
         scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0));
         scene.lights.add(new DirectionalLight(new Color(400, 400, 400), new Vector(1, -1, -1)));
         scene.lights.add(new PointLight(new Color(255, 255, 0), new Point(-179, 62, -247)));
