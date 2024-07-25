@@ -418,7 +418,8 @@ public class LandscapeWithHouseUpInspirationTest {
                 .setVpDistance(300)
                 .setVpSize(500, 500)
                 .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetter2", 1000, 1000))
-                //.setantiAliasing(10)
+                .setantiAliasing(10)
+                .setThreads()
                 .build()
                 .renderImage()
                 .writeToImage();
