@@ -8,6 +8,13 @@ package primitives;
 
 public class Vector extends Point {
 
+    /*
+    Static vectors representing the X, Y, and Z axes for convenience
+     */
+    public static final Vector X = new Vector(1, 0, 0);
+    public static final Vector Y = new Vector(0, 1, 0);
+    public static final Vector Z = new Vector(0, 0, 1);
+
     /**A constructor that accepts three values
      *
      * @param x first number value
@@ -159,4 +166,5 @@ public class Vector extends Point {
 
         return new Vector(x, y, z);
     }
+
 }
