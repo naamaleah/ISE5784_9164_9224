@@ -23,9 +23,9 @@ public class LandscapeWithHouseUpInspirationTest {
      */
     private final Camera.Builder cameraBuilder = Camera.getBuilder()
             .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
-            .setRayTracer(new SimpleRayTracer(scene).useSoftShadow(true));
+            .setRayTracer(new SimpleRayTracer(scene).useSoftShadow(false));
     // Office Buildings with Darker Reflective Glass in 3D using Polygons
-    Material lessReflectiveGlass = new Material().setkD(0.4).setkS(0.1).setkR(0.001).setnShininess(100);
+    Material lessReflectiveGlass = new Material().setkD(0.1).setkS(0.1).setkR(0.1).setnShininess(10);
     Color darkGrayBlue = new Color(47, 79, 79); // Darker gray-blue color
 
     @Test
@@ -37,7 +37,7 @@ public class LandscapeWithHouseUpInspirationTest {
                 new Sphere(new Point(140, -50, -400), 200d).setEmission(new Color(15, 150, 34))
                         .setMaterial(new Material().setkD(0.2).setkS(0.1).setnShininess(100)),
                 new Plane(new Point(0, -50, -300), new Vector(0, 1, 0)).setEmission(new Color(34, 139, 34))
-                        .setMaterial(new Material().setkD(0.5).setkS(0.2).setnShininess(30)),
+                        .setMaterial(new Material().setkD(0.3).setkS(0.2).setnShininess(30)),
                 // Clouds
                 new Sphere(new Point(-140, 200, -150), 30d).setEmission(new Color(255, 255, 255))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(50)),
@@ -301,33 +301,33 @@ public class LandscapeWithHouseUpInspirationTest {
                         .setEmission(new Color(105, 105, 105)) // Dark gray color
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
                // Lamp Head
-                new Triangle(new Point(-179 - 7.5, 55, -249 - 7.5), new Point(-179 + 7.5, 55, -249 - 7.5), new Point(-179, 65, -249))
+                new Triangle(new Point(-194, 50, -264), new Point(-164, 50, -264), new Point(-179, 60, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Triangle(new Point(-179 + 7.5, 55, -249 - 7.5), new Point(-179 + 7.5, 55, -249 + 7.5), new Point(-179, 65, -249))
+                new Triangle(new Point(-164, 50, -264), new Point(-164, 50, -234), new Point(-179, 60, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Triangle(new Point(-179 + 7.5, 55, -249 + 7.5), new Point(-179 - 7.5, 55, -249 + 7.5), new Point(-179, 65, -249))
+                new Triangle(new Point(-164, 50, -234), new Point(-194, 50, -234), new Point(-179, 60, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Triangle(new Point(-179 - 7.5, 55, -249 + 7.5), new Point(-179 - 7.5, 55, -249 - 7.5), new Point(-179, 65, -249))
+                new Triangle(new Point(-194, 50, -234), new Point(-194, 50, -264), new Point(-179, 60, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
 
-
-                new Triangle(new Point(-179 - 7.5, 47, -249 - 7.5), new Point(-179 + 7.5, 47, -249 - 7.5), new Point(-179, 57, -249))
+                new Triangle(new Point(-194, 42, -264), new Point(-164, 42, -264), new Point(-179, 52, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Triangle(new Point(-179 + 7.5, 47, -249 - 7.5), new Point(-179 + 7.5, 47, -249 + 7.5), new Point(-179, 57, -249))
+                new Triangle(new Point(-164, 42, -264), new Point(-164, 42, -234), new Point(-179, 52, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Triangle(new Point(-179 + 7.5, 47, -249 + 7.5), new Point(-179 - 7.5, 47, -249 + 7.5), new Point(-179, 57, -249))
+                new Triangle(new Point(-164, 42, -234), new Point(-194, 42, -234), new Point(-179, 52, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Triangle(new Point(-179 - 7.5, 47, -249 + 7.5), new Point(-179 - 7.5, 47, -249 - 7.5), new Point(-179, 57, -249))
+                new Triangle(new Point(-194, 42, -234), new Point(-194, 42, -264), new Point(-179, 52, -249))
                         .setEmission(new Color(105, 105, 105))
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100))
+
 
         );
 
@@ -406,22 +406,24 @@ public class LandscapeWithHouseUpInspirationTest {
                         .setMaterial(new Material().setkD(0.5).setkS(0.3).setnShininess(30))
                 );
 
-        scene.setBackground(new Color(0, 128, 0)); // Sky blue background
-        // scene.setBackground(new Color(135, 206, 250)); // Sky blue background
+        scene.setBackground(new Color(135, 206, 250)); // Sky blue background
         scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0));
         scene.lights.add(new DirectionalLight(new Color(400, 400, 400), new Vector(1, -1, -1)));
-        scene.lights.add(new PointLight(new Color(255, 255, 0), new Point(-179, 62, -247)));
-        scene.lights.add(new SpotLight(new Color(0, 0, 255), new Point(-179, 54, -247),new Vector(0,-1,0)).setNarrowBeam(15));
+        scene.lights.add(new PointLight(new Color(255, 255, 0), new Point(-179, 57, -247)));
+        scene.lights.add(new SpotLight(new Color(0, 0, 255), new Point(-179, 49, -247),new Vector(0,-1,0)).setNarrowBeam(15));
 
 
         cameraBuilder.setLocation(new Point(0, 0, 300))
                 .setVpDistance(300)
                 .setVpSize(500, 500)
-                .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetter2", 1000, 1000))
-                .setantiAliasing(10)
-                .setadaptive(true)
+              //  .setDirection(new Point(-30, 200, -180), new Vector(0, 1, 0))
+                .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetter3.2", 1000, 1000))
+                 .setantiAliasing(18)
                 .setThreads()
+                .setadaptive(true)
                 .build()
+                .rotate(0,50,0)
+                .move(150,0,-150)
                 .renderImage()
                 .writeToImage();
     }

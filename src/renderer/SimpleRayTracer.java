@@ -36,7 +36,7 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * The radius of the beam for rays of soft shadow
      */
-    private double radiusBeamSS = 10;
+    private double radiusBeamSS = 1;
 
 
     /**

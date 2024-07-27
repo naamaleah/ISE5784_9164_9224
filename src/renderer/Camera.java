@@ -323,6 +323,7 @@ public class Camera implements Cloneable {
     }
 
 
+
     /**
      * A nested class to implement a constructor template for the camera
      */
@@ -332,11 +333,11 @@ public class Camera implements Cloneable {
         /**
          * Sets the location point for the camera.
          *
-         * @param p the location Point to set
+         * @param p0 the location Point to set
          * @return the Builder instance with the updated Height and Width
          */
-        public Builder setLocation(Point p) {
-            this.camera.p0 = p;
+        public Builder setLocation(Point p0) {
+            this.camera.p0 = p0;
             return this;
         }
 
@@ -352,6 +353,19 @@ public class Camera implements Cloneable {
                 throw new IllegalArgumentException("Not orthogonal Vectors");
             this.camera.vTo = vTo.normalize();
             this.camera.vUp = vUp.normalize();
+            return this;
+        }
+
+        /**
+         * Sets the camera position and direction based on a target point.
+         * @param target the point the camera is aimed at
+         * @param vUp the up direction for the camera
+         * @return the Builder instance with the updated location and direction
+         */
+        public Builder setDirection(Point target, Vector vUp ) {
+            this.camera.vTo = target.subtract(this.camera.p0).normalize();
+            this.camera.vUp = vUp.subtract(this.camera.vTo.scale(vUp.dotProduct(this.camera.vTo))).normalize();
+            this.camera.vRight = this.camera.vUp.crossProduct(vUp).normalize();
             return this;
         }
 
@@ -433,6 +447,7 @@ public class Camera implements Cloneable {
             this.camera.threads = true;
             return this;
         }
+
 
         /**
          * Builds and returns the Camera instance.
