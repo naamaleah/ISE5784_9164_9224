@@ -9,6 +9,9 @@ import geometries.Triangle;
 import lighting.AmbientLight;
 import primitives.*;
 import scene.Scene;
+import scene.XMLSceneBuilder;
+
+import java.io.File;
 
 /**
  * Test rendering a basic image
@@ -85,8 +88,11 @@ public class RenderTests {
       // ...
       // NB: unit tests is not the correct place to put XML parsing code
 
+      String filePath = System.getProperty("user.dir") + "/XML/renderTestTwoColors.xml";
+      File xmlFile = new File(filePath);
       camera
          .setImageWriter(new ImageWriter("xml render test", 1000, 1000))
+         .setRayTracer(new SimpleRayTracer(new XMLSceneBuilder("SimpleTestXML").loadSceneFromFile(xmlFile)))
          .build()
          .renderImage()
          .printGrid(100, new Color(YELLOW))

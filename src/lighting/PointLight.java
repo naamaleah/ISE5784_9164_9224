@@ -116,7 +116,7 @@ public class PointLight extends Light implements LightSource {
 
         List<Vector> result = new LinkedList<>();
 
-        Vector l = getL(p); //vector to the center of the point light
+        Vector l = getL(p);
         result.add(l);
 
         if (amount < 2) {
@@ -124,32 +124,30 @@ public class PointLight extends Light implements LightSource {
         }
 
         Vector vAcross;
-        if (isZero(l.getX()) && isZero(l.getY())) { //if l is parallel to z axis, then the normal is across z on x axis
+        if (isZero(l.getX()) && isZero(l.getY())) {
             vAcross = new Vector(-1 * l.getZ(), 0, 0).normalize();
-        } else { //otherwise get the normal using x and y
+        } else {
             vAcross = new Vector(-1 * l.getY(), l.getX(), 0).normalize();
         }
-        Vector vForward = vAcross.crossProduct(l).normalize(); //the vector to the other direction
+        Vector vForward = vAcross.crossProduct(l).normalize();
 
         double cosAngle, sinAngle, moveX, moveY, d;
 
         for (int i = 0; i < amount; i++) {
             Point movedPoint = this.position;
 
-            cosAngle = 2 * RND.nextDouble() - 1; //random cosine of angle between (-1,1)
-            sinAngle = sqrt(1 - cosAngle * cosAngle); //sin(angle)=1-cos^2(angle)
+            cosAngle = 2 * RND.nextDouble() - 1;
+            sinAngle = sqrt(1 - cosAngle * cosAngle);
 
-            d = r * (2 * RND.nextDouble() - 1); //d is between (-r,r)
-            if (isZero(d)) { //if we got 0 then try again, because it will just be the same as the center
+            d = r * (2 * RND.nextDouble() - 1);
+            if (isZero(d)) {
                 i--;
                 continue;
             }
 
-            //says how much to move across and down
             moveX = d * cosAngle;
             moveY = d * sinAngle;
 
-            //moving the point according to the value
             if (!isZero(moveX)) {
                 movedPoint = movedPoint.add(vAcross.scale(moveX));
             }
@@ -157,7 +155,7 @@ public class PointLight extends Light implements LightSource {
                 movedPoint = movedPoint.add(vForward.scale(moveY));
             }
 
-            result.add(p.subtract(movedPoint).normalize()); //adding the vector from the new point to the light position
+            result.add(p.subtract(movedPoint).normalize());
         }
         return result;
     }

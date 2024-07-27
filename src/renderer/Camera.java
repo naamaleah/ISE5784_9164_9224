@@ -66,6 +66,15 @@ public class Camera implements Cloneable {
      * optimize with threads
      */
     private boolean threads = false;
+    /**
+     * Pixel Manager object to support multi-threading
+     */
+    private PixelManager pixelManager;
+
+    /**
+     * Progress percentage printing interval
+     */
+    private long printInterval = 1;
 
 
     /**
@@ -89,18 +98,22 @@ public class Camera implements Cloneable {
     public Camera renderImage() {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
-
+        pixelManager = new PixelManager(nY, nX, printInterval);
         if (threads) {
             if (!adaptive) {
                 IntStream.range(0, nX).parallel().forEach(x -> {
                     IntStream.range(0, nY).parallel().forEach(y -> {
-                        this.castRays(nX, nY, x, y);
+                        PixelManager.Pixel pixel = pixelManager.nextPixel();
+                        this.castRays(nX, nY, pixel.col(), pixel.row());
+                        pixelManager.pixelDone();
                     });
                 });
             } else {
                 IntStream.range(0, nX).parallel().forEach(x -> {
                     IntStream.range(0, nY).parallel().forEach(y -> {
-                        imageWriter.writePixel(x, y, AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), x, y, antiAliasing));
+                        PixelManager.Pixel pixel = pixelManager.nextPixel();
+                        imageWriter.writePixel(pixel.col(), pixel.row(), AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), pixel.col(), pixel.row(), antiAliasing));
+                        pixelManager.pixelDone();
                     });
                 });
             }
@@ -147,22 +160,18 @@ public class Camera implements Cloneable {
      * @return Pixel color
      */
     private Color AdaptiveSuperSampling(int nX, int nY, int j, int i, int numOfRays) {
-        Vector Vright = vRight;
-        Vector Vup = vUp;
-        Point cameraLoc = p0;
         int numOfRaysInRowCol = (int) Math.floor(Math.sqrt(numOfRays));
         if (numOfRaysInRowCol == 1) return rayTracer.traceRay(constructRay(nX, nY, j, i));
 
         Point pIJ = getCenterOfPixel(nX, nY, j, i);
 
         double rY = alignZero(height / nY);
-        // the ratio Rx = w/Nx, the width of the pixel
         double rX = alignZero(width / nX);
 
 
         double PRy = rY / numOfRaysInRowCol;
         double PRx = rX / numOfRaysInRowCol;
-        return rayTracer.AdaptiveSuperSamplingRec(pIJ, rX, rY, PRx, PRy, cameraLoc, Vright, Vup, null);
+        return rayTracer.AdaptiveSuperSamplingRec(pIJ, rX, rY, PRx, PRy, p0, vRight, vUp, null);
     }
 
     /**
@@ -176,9 +185,7 @@ public class Camera implements Cloneable {
      * @return ray that goes through the pixel (j, i)  Ray(p0, Vi,j)
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
-        Point pIJ = getCenterOfPixel(nX, nY, j, i); // center point of the pixel
-
-        //Vi,j = Pi,j - P0, the direction of the ray to the pixel(j, i)
+        Point pIJ = getCenterOfPixel(nX, nY, j, i);
         Vector vIJ = pIJ.subtract(p0);
         return new Ray(p0, vIJ);
     }
@@ -190,18 +197,13 @@ public class Camera implements Cloneable {
      * @param color    color of grid lines
      */
     public Camera printGrid(int interval, Color color) {
-        // Check if the imageWriter is initialized
         if (imageWriter == null)
             throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
-        // Iterate over each pixel row
         for (int i = 0; i < imageWriter.getNy(); i++) {
-            // Iterate over each pixel column
             for (int j = 0; j < imageWriter.getNx(); j++) {
-                // Check if the current pixel is on a grid line
                 if (i % interval == 0 || j % interval == 0)
                     imageWriter.writePixel(j, i, color);
             }
-
         }
         return this;
     }
@@ -210,7 +212,6 @@ public class Camera implements Cloneable {
      * create a jpeg file, with scene "captured" by camera
      */
     public Camera writeToImage() {
-        // Check if the imageWriter is initialized
         if (imageWriter == null)
             throw new MissingResourceException("image writer is not initialized", ImageWriter.class.getName(), "");
         imageWriter.writeToImage();
@@ -227,38 +228,24 @@ public class Camera implements Cloneable {
      * @return the center point of the pixel
      */
     private Point getCenterOfPixel(int nX, int nY, int j, int i) {
-        //view plane center:
         Point Pc = p0.add(vTo.scale(distance));
 
-        // calculate "size" of each pixel -
-        // height per pixel = total "physical" height / number of rows
-        // width per pixel = total "physical" width / number of columns
         double Ry = height / nY;
         double Rx = width / nX;
 
-        // calculate necessary "size" needed to move from
-        // center of view plane to reach the middle point of pixel (i,j)
         double Yi = -(i - (nY - 1) / 2d) * Ry;
         double Xj = (j - (nX - 1) / 2d) * Rx;
 
-        // set result point to middle of view plane
         Point Pij = Pc;
 
-        // if result of xJ is > 0
-        // move result point left/right on  X axis
-        // to reach middle point of pixel (i,j) (on X axis direction)
         if (!isZero(Xj)) {
             Pij = Pij.add(vRight.scale(Xj));
         }
 
-        // if result of yI is > 0
-        // move result point up/down on Y axis
-        // to reach middle point of pixel (i,j)
         if (!isZero(Yi)) {
             Pij = Pij.add(vUp.scale(Yi));
         }
 
-        //return ray from camera to middle point of pixel(i,j) in view plane
         return Pij;
     }
 
@@ -284,7 +271,7 @@ public class Camera implements Cloneable {
             Point pIJ = getCenterOfPixel(nX, nY, j, i);
 
             double rY = alignZero(height / nY);
-            // the ratio Rx = w/Nx, the width of the pixel
+
             double rX = alignZero(width / nX);
 
             double pY = alignZero(rY / numOfRays);
@@ -460,7 +447,6 @@ public class Camera implements Cloneable {
             String message = "Missing info for render";
             String className = "Camera";
 
-            //Checking for missing arguments
             if (camera.height == 0.0)
                 throw new MissingResourceException(message, className, "Missing height");
             if (camera.width == 0.0)

@@ -16,7 +16,7 @@ public class SpotLight extends PointLight {
     /**
      * A factor that determines the narrowness of the light beam
      */
-    private double narrowBeam=1;
+    private double narrowBeam = 1;
     /**
      * direction of light beam
      */
@@ -66,6 +66,7 @@ public class SpotLight extends PointLight {
 
     /**
      * Setter for narrowBeam
+     *
      * @param narrowBeam parameter for narrowBeam
      * @return Return itself
      */
@@ -77,9 +78,8 @@ public class SpotLight extends PointLight {
     @Override
     public Color getIntensity(Point p) {
         Color color = super.getIntensity(p);
-        //vector from light origin point to point p on geometry
         Vector v = super.getL(p);
-        double factor =pow(max(0, direction.dotProduct(v)),narrowBeam) ;
+        double factor = pow(max(0, direction.dotProduct(v)), narrowBeam);
         return color.scale(factor);
     }
 }
