@@ -23,7 +23,7 @@ public class LandscapeWithHouseUpInspirationTest {
      */
     private final Camera.Builder cameraBuilder = Camera.getBuilder()
             .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
-            .setRayTracer(new SimpleRayTracer(scene).useSoftShadow(false));
+            .setRayTracer(new SimpleRayTracer(scene).useSoftShadow());
     // Office Buildings with Darker Reflective Glass in 3D using Polygons
     Material lessReflectiveGlass = new Material().setkD(0.1).setkS(0.1).setkR(0.1).setnShininess(10);
     Color darkGrayBlue = new Color(47, 79, 79); // Darker gray-blue color
@@ -417,10 +417,10 @@ public class LandscapeWithHouseUpInspirationTest {
                 .setVpDistance(300)
                 .setVpSize(500, 500)
               //  .setDirection(new Point(-30, 200, -180), new Vector(0, 1, 0))
-                .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetter3.2", 1000, 1000))
-                 .setantiAliasing(18)
+                .setImageWriter(new ImageWriter("landscapeWithHouseAndBalloonsBetterFinal", 1000, 1000))
+                 .setantiAliasing(300)
                 .setThreads()
-                .setadaptive(true)
+                .setadaptive()
                 .build()
                 .rotate(0,50,0)
                 .move(150,0,-150)

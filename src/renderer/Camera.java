@@ -66,15 +66,6 @@ public class Camera implements Cloneable {
      * optimize with threads
      */
     private boolean threads = false;
-    /**
-     * Pixel Manager object to support multi-threading
-     */
-    private PixelManager pixelManager;
-
-    /**
-     * Progress percentage printing interval
-     */
-    private long printInterval = 1;
 
 
     /**
@@ -98,22 +89,17 @@ public class Camera implements Cloneable {
     public Camera renderImage() {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
-        pixelManager = new PixelManager(nY, nX, printInterval);
         if (threads) {
             if (!adaptive) {
                 IntStream.range(0, nX).parallel().forEach(x -> {
                     IntStream.range(0, nY).parallel().forEach(y -> {
-                        PixelManager.Pixel pixel = pixelManager.nextPixel();
-                        this.castRays(nX, nY, pixel.col(), pixel.row());
-                        pixelManager.pixelDone();
+                        this.castRays(nX, nY, x, y);
                     });
                 });
             } else {
                 IntStream.range(0, nX).parallel().forEach(x -> {
                     IntStream.range(0, nY).parallel().forEach(y -> {
-                        PixelManager.Pixel pixel = pixelManager.nextPixel();
-                        imageWriter.writePixel(pixel.col(), pixel.row(), AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), pixel.col(), pixel.row(), antiAliasing));
-                        pixelManager.pixelDone();
+                        imageWriter.writePixel(x, y, AdaptiveSuperSampling(imageWriter.getNx(), imageWriter.getNy(), x, y, antiAliasing));
                     });
                 });
             }
@@ -323,7 +309,6 @@ public class Camera implements Cloneable {
     }
 
 
-
     /**
      * A nested class to implement a constructor template for the camera
      */
@@ -358,11 +343,12 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the camera position and direction based on a target point.
+         *
          * @param target the point the camera is aimed at
-         * @param vUp the up direction for the camera
+         * @param vUp    the up direction for the camera
          * @return the Builder instance with the updated location and direction
          */
-        public Builder setDirection(Point target, Vector vUp ) {
+        public Builder setDirection(Point target, Vector vUp) {
             this.camera.vTo = target.subtract(this.camera.p0).normalize();
             this.camera.vUp = vUp.subtract(this.camera.vTo.scale(vUp.dotProduct(this.camera.vTo))).normalize();
             this.camera.vRight = this.camera.vUp.crossProduct(vUp).normalize();
@@ -433,8 +419,8 @@ public class Camera implements Cloneable {
          *
          * @return the Camera object
          */
-        public Builder setadaptive(boolean adaptive) {
-            this.camera.adaptive = adaptive;
+        public Builder setadaptive() {
+            this.camera.adaptive = true;
             return this;
         }
 

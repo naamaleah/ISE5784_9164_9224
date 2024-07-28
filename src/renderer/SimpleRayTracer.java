@@ -52,11 +52,10 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * Sets the isSoftShadow used
      *
-     * @param flag true or false
      * @return RayTracerBase Object
      */
-    public SimpleRayTracer useSoftShadow(boolean flag) {
-        this.isSoftShadow = flag;
+    public SimpleRayTracer useSoftShadow() {
+        this.isSoftShadow = true;
         return this;
     }
 
@@ -347,21 +346,7 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
 
-    /**
-     * Checks the color of the pixel with the help of individual rays and averages between
-     * them and only if necessary continues to send beams of rays in recursion
-     *
-     * @param centerP   center pixl
-     * @param Width     Length
-     * @param Height    width
-     * @param minWidth  min Width
-     * @param minHeight min Height
-     * @param cameraLoc Camera location
-     * @param Vright    Vector right
-     * @param Vup       vector up
-     * @param prePoints pre Points
-     * @return Pixel color
-     */
+
     @Override
     public Color AdaptiveSuperSamplingRec(Point centerP, double Width, double Height, double minWidth, double minHeight, Point cameraLoc, Vector Vright, Vector Vup, List<Point> prePoints) {
         if (Width < minWidth * 2 || Height < minHeight * 2) {
